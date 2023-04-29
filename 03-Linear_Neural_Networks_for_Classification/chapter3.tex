@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{enumitem}
+
+\begin{document}
+
+\begin{enumerate}[label=\arabic*.]
+\item Assume that we have some data $x_1, \dots x_n \in \mathbb{R}$. Our goal is to find a constant $b$ such that $\sum_i (y_i - b)^2$ is minimized.
+	\begin{enumerate}[label=\arabic*.]
+	\item Find an analytic solution for the optimal value of $b$.
+	\item How does this problem and its solution relate to the normal distribution?
+	\item What if we change the loss from
+		\begin{equation*}
+		\sum_i (x_i - b)^2
+		\end{equation*}
+		to
+		\begin{equation*}
+		\sum_i |x_i - b|?
+		\end{equation*}
+		Can you find the optimal solution for $b$?
+	\end{enumerate}
+\item Prove that the affine functions that can be expressed by $y = Wx + b$ are equivalent to linear functions on $(x, 1)$.
+\item Assume that you want to find quadratic functions of $y$, i.e.,
+	$$
+	y = Wx^2 + b.
+	$$
+	How would you formulate this in a deep network?
+\item Recall that one of the conditions for the linear regression problem to be solvable was that the design matrix $X$ has full rank.
+	\begin{enumerate}[label=\arabic*.]
+	\item What happens if this is not the case?
+	\item How could you fix it? What happens if you add a small amount of coordinate-wise independent Gaussian noise to all entries of $X$?
+	\item What is the expected value of the design matrix $X^tX$ in this case?
+	\item What happens with stochastic gradient descent when $X^tX$ does not have full rank?
+	\end{enumerate}
+\item Assume that the noise model governing the additive noise $e_i$ is the exponential distribution. That is, $p(e_i) = \lambda e^{-\lambda e_i}$.
+	\begin{enumerate}[label=\arabic*.]
+	\item Write out the negative log-likelihood of the data under the model $p(e_i)$.
+	\item Can you find a closed form solution?
+	\item Suggest a minibatch stochastic gradient descent algorithm to solve this problem. What could possibly go wrong (hint: what happens near the stationary point as we keep on updating the parameters)? Can you fix this?
+	\end{enumerate}
+\item Assume that we want to design a neural network with two layers by composing two linear layers. That is, the output of the first layer becomes the input of the second layer. Why would such a naive composition not work?
+\item What happens if you want to use regression for realistic price estimation of houses or stock prices?
+	\begin{enumerate}[label=\arabic*.]
+	\item Show that the additive Gaussian noise assumption is not appropriate. Hint: can we have negative prices? What about fluctuations?
+	\item Why would regression to the logarithm of the price be much better, i.e., $y = \log \operatorname{price}$?
+	\item What do you need to worry about when dealing with pennystock, i.e., stock with very low prices? Hint: can you trade at all possible prices? Why is this a bigger problem for cheap stock?
+	\item For more information review the celebrated Black-Scholes model for option pricing (Black and Scholes, 1973).
+	\end{enumerate}
+\item Suppose we want to use regression to estimate the number of apples sold in a grocery store.
+	\begin{enumerate}[label=\arabic*.]
+	\item What are the problems with a Gaussian additive noise model? Hint: you are selling apples, not oil.
+	\item The Poisson distribution captures distributions over counts. It is given by $P(k; \lambda) = \frac{e^{-\lambda} \lambda^k}{k!}$. Here $\lambda$ is the rate function and $k$ is the number of events you see. Prove that $\lambda$ is the expected value of counts $k$.
+	\item Design a loss function associated with the Poisson distribution.
+	\item Design a loss function for estimating $\log \lambda$ instead.
+	\end{enumerate}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Data Manipulation}{1}{}%
+\contentsline {section}{\numberline {2}Data Preprocessing}{1}{}%
+\contentsline {section}{\numberline {3}Linear Algebra}{1}{}%
+\contentsline {section}{\numberline {4}Calculus}{3}{}%
+\contentsline {section}{\numberline {5}Automatic Differentiation}{7}{}%
+\contentsline {section}{\numberline {6}Probability and Statistics}{8}{}%
+\contentsline {section}{\numberline {7}Documentation}{10}{}%
