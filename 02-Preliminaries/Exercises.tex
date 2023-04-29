@@ -272,17 +272,121 @@ $$
 	\end{itemize}
 
 	\item Give an example where observing more data will only reduce the amount of uncertainty up to a point and then no further. Explain why this is the case and where you expect this point to occur.
+	\begin{itemize}
+		\item Sticking to the same example as before, flipping a fair coin. If the question is what is the probability that the coin is fair, we get a convergence to $100\%$. But if we instead ask what is the probability that the next flip will be heads we can only have a certainty of $50\%$ that it will be heads. If $p$ denotes the probability of heads, we can establish this value arbitrarily close, but the probability of getting heads will still be $p$. This uncertainty is inherent to the system. Using the notation of the book, this is an example of aleatoric uncertainty, while the actual value of $p$ is epistemic uncertainty.
+	\end{itemize}
 	\item We empirically demonstrated convergence to the mean for the toss of a coin. Calculate the variance of the estimate of the probability that we see a head after drawing $n$ samples.
+		\begin{itemize}
+			\item Let $X_i \in \{0, 1\}$ denote if the $i$th flip landed on head and consider 
+			$$
+			\tilde{X}_n := \sum_{i = 1}^n X_i.
+			$$
+			We are interested in $P(\tilde{X}_n \geq 1)$. Note that for $k \in {0, \dots, n}$ the statement $\tilde{X}_n = k$ is equivalent to there being exactly $k$ heads, which means we have $k$ heads and $n - k$ tails. Denote by $p$ the probability of getting heads, then flipping $k$ heads and $n - k$ tails has a probability of
+			$$
+			p^k (1 - p)^{n - k}
+			$$
+			and because the order of those doesn't matter we have to multiply this with the number of permutations, i.e., we are interested in how many arrangements there are to distribute $k$ (or equivalently $n - k$) elements in $n$ slots. This is exactly the binomial coefficient
+			$$
+			\binom{n}{k} = \frac{n!}{k! (n - k)!}.
+			$$
+			In total this means
+			$$
+			P(\tilde{X}_n = k) = \binom{n}{k} p^k (1 - p)^{n - k}.
+			$$
+
+			Looking back on it now, I just realized that the $X_i$ are all independent as such
+			$$
+			E[\tilde{X}_n] = E\left[\sum_{i = 1}^n X_i\right] = \sum_{i = 1}^n E[X_i] = \sum_{i = 1}^n p = np.
+			$$
+
+			Alternatively the expected value of $\tilde{X}_n$ can then be calculated directly as
+			$$
+			\begin{aligned}
+			E[\tilde{X}_n] &= \sum_{k = 0}^n kP(\tilde{X}_n = k) \\
+			&= \sum_{k = 0}^n k \binom{n}{k} p^k (1 - p)^{n - k} \\
+			&= \sum_{k = 0}^n k \binom{n}{k} p^k (1 - p)^{n - k}.
+			\end{aligned}
+			$$
+			This can be explicitly calculated to be $np$, we're only going to prove the case where $p = 1 - p = 0.5$, in that case
+			$$
+			\begin{aligned}
+			E[\tilde{X}_n] &= \sum_{k = 0}^n k \binom{n}{k} 2^{-n}
+			&= 2^{-n} \sum_{k = 0}^n k \binom{n}{k} \\
+			&\overset{*}{=} 2^{-n} 2^{n - 1} = n / 2 = pn.
+			\end{aligned}
+			$$
+			What remains to be shown is that $(*)$ holds. This can be done inductively, it obviously holds for $n = 1$. Now suppose the identity holds for some $n \in \mathbb{N}$, then
+			$$
+			\sum_{k = 0}^{n + 1} k \binom{n + 1}{k} = (n + 1) + \sum_{k = 0}^n k \binom{n + 1}{k},
+			$$
+			using Pascal's triangle equality we can write
+			$$
+			\binom{n + 1}{k} = \binom{n}{k} + \binom{n}{k - 1}.
+			$$
+			With this we can then calculate
+			$$
+			\begin{aligned}
+			\sum_{k = 0}^{n + 1} k \binom{n + 1}{k} &= (n + 1) + \sum_{k = 0}^n k \binom{n + 1}{k} \\
+			&= (n + 1) + \sum_{k = 0}^n k \left[ \binom{n}{k} + \binom{n}{k - 1} \right] \\
+			&= (n + 1) + \sum_{k = 0}^n k \binom{n}{k} + \sum_{k = 0}^n k \binom{n}{k - 1} \\
+			&= (n + 1) + \sum_{k = 0}^n k \binom{n}{k} + \sum_{k = 0}^{n - 1} (k + 1) \binom{n}{k} \\
+			&= (n + 1) + \sum_{k = 0}^n k \binom{n}{k} + \sum_{k = 0}^{n - 1} k \binom{n}{k} + \sum_{k = 0}^{n - 1} \binom{n}{k} \\
+			&= (n + 1) + \sum_{k = 0}^n k \binom{n}{k} + \sum_{k = 0}^n k \binom{n}{k} + \sum_{k = 0}^{n - 1} \binom{n}{k} - n \\
+			&= 2 \sum_{k = 0}^n k \binom{n}{k} - n + \sum_{k = 0}^n \binom{n}{k} - 1.
+			\end{aligned}
+			$$
+			Applying the well-known identity
+			$$
+			\sum_{k = 0}^n \binom{n}{k} = 2^n
+			$$
+			and the induction hypothesis to this yields
+			$$
+			2 (2^{n - 1}) + 2^n = 2^{n + 1}.
+			$$
+			By induction it then follows that for all $n \in \mathbb{N}$ the identity
+			$$
+			\sum_{k = 0}^n k \binom{n}{k} = 2^n
+			$$
+			holds.
+			\item Just as for the expected value
+			$$
+			\operatorname{Var}[\tilde{X}_n] = \sum_{i = 1}^n \operatorname{Var}[X_i] = np(1 - p).
+			$$
+		\end{itemize}
 		\begin{enumerate}
 			\item How does the variance scale with the number of observations?
+				\begin{itemize}
+					\item It scales linearly.
+				\end{itemize}
 			\item Use Chebyshev's inequality to bound the deviation from the expectation.
+				\begin{itemize}
+					\item For $p = 1/2$ the mean is $\mu = n / 2$ and the standard deviation is $\sigma = \sqrt{n} / 2$. Applying Chebychev's inequality with these values and $k > 0$ yields
+					$$
+					P\left(\left|\tilde{X}_n - \frac{n}{2}\right| \geq k \frac{\sqrt{n}}{2}\right) \leq \frac{1}{k^2}.
+					$$
+					For example for $n = 16$ and $k = 2$ this becomes
+					$$
+					P(|\tilde{X}_{16} - 8| \geq 4) \leq \frac{1}{4},
+					$$
+					inverting this statement then proves that $P(6 \leq \tilde{X}_{16} \leq 10) \geq \frac{3}{4}$, i.e., there is a more than $75\%$ chance that on flipping $16$ (fair) coins we have at least $6$ and at most $10$ heads.
+				\end{itemize}
 			\item How does it relate to the central limit theorem?
+				\begin{itemize}
+					\item $$\lim_{n \rightarrow \infty} \frac{\tilde{X}_n - n / 2}{\sqrt{n} / 2}$$ converges to the standard normal distribution.
+				\end{itemize}
 		\end{enumerate}
 	\item Assume that we draw samples from a probability distribution with zero mean and unit variance. Compute the averages
 	$$
-	z_m = m^{-1} \sum_{i = 1}^m x_i.
+	z_m = m^{-1} \sum_{i = 1}^m X_i.
 	$$
 	Can we apply Chebychev's inequality for every $z_m$ independently? Why not?
+		\begin{itemize}
+			\item I'll assume we're talking about $X_i$ with finite amounts of values. The $X_i$ are independent so
+			$$
+			E[z_m] = E[m^{-1}\sum_i^m X_i] = m^{-1} \sum_{i = 1}^m \underbrace{E[X_i]}_{=\ 0} = 0.
+			$$
+			No, we can't apply Chebychev's inequality independently because $z_{m + 1} = z_m + X_{m + 1}$ as such $z_m$ and $z_{m + 1}$ are not independent.
+		\end{itemize}
 	\item Given two events with probability $P(\mathcal{A})$ and $P(\mathcal{B})$ compute upper and lower bounds on $P(\mathcal{A} \cup \mathcal{B})$ and $P(\mathcal{A} \cap \mathcal{B})$. Hint: graph the situation using a Venn diagram.
 		\begin{itemize}
 			\item Using a Venn diagram we can immediately see that
@@ -323,7 +427,13 @@ $$
 	\begin{enumerate}
 		\item Work out the joint probability table for $D_1$ and $D_2$ given $H = 0$ based on the information you have so far.
 			\begin{itemize}
-				\item 
+				\item
+					\begin{center}
+						\begin{tabular}{|c|c|} \hline
+						a & b \\ \hline
+						a & b \\ \hline
+						\end{tabular}
+					\end{center}
 			\end{itemize}
 		\item Derive the probability of the patient being positive $(H = 1)$ after one test returns positive. You can assume the same baseline probability $P(H = 1) = 0.0015$ as before.
 		\item Derive the probability of the patient being positive $(H = 1)$ and both tests return positive.
