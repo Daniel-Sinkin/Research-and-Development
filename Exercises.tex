@@ -495,7 +495,8 @@ $$
 				\item Using Bayes' theorem we obtain
 				$$
 				\begin{aligned}
-				P(D_1 = 0, D_2 = 1 | H = 1) = \frac{P(D_1 = 0, D_2 = 1)}{P(H = 1)},&&P(D_1 = 1, D_2 = 0 | H = 1) = \frac{P(D_1 = 1, D_2 = 0)}{P(H = 1)}
+				P(D_1 = 0, D_2 = 1 | H = 1) &= \frac{P(D_1 = 0, D_2 = 1)}{P(H = 1)}, \\
+				P(D_1 = 1, D_2 = 0 | H = 1) &= \frac{P(D_1 = 1, D_2 = 0)}{P(H = 1)}
 				\end{aligned}
 				$$
 			\end{itemize}
@@ -773,6 +774,100 @@ $$
 		\end{itemize}
 \end{enumerate}
 
+\setcounter{subsection}{3}
+\subsection{Multivariable Calculus}
+\begin{enumerate}
+\item Given a column vector $\beta$, compute the derivatives of both $f(x) = \beta^t x$ and $g(x) = x^t \beta$. Why do you get the same answer?
+	\begin{itemize}
+	\item Note that $f, g : \mathbb{R}^n \rightarrow \mathbb{R}$ and that $f(x) = f(x)^t = g(x)$ so these are the same function. Alternatively this could be shown by $f(x) = \langle x, \beta \rangle = \langle \beta, x \rangle = g(x)$ where we have used that the scalar product is a symmetric bilinear form. To calculate consider
+	$$
+	\frac{\partial}{\partial x_i} f(x) = \frac{\partial}{\partial x_i} \sum_{j = 1}^n \beta_j x_j = \beta_i
+	$$
+	as such $\nabla f(x) = \nabla g(x) = \beta$.
+	\end{itemize}
+\item Let $v \in \mathbb{R}^n$. What is $\frac{\partial}{\partial v} ||v||_2$. 
+	\begin{itemize}
+	\item We can calculate by using the definition of the directional derivative, let $n(x) = ||x||_2$, this is a smooth function outside of $x = 0$. We can calculate
+	$$
+	\begin{aligned}
+	\lim_{t \rightarrow 0} \frac{n(v + tv) - n(v)}{t} &= \lim_{t \rightarrow 0} \frac{n((1 + t)v) - n(v)}{t} \\
+	&= \lim_{t \rightarrow 0} \frac{|1 + t| \cdot ||v|| - ||v||}{t} \\
+	&= \lim_{t \rightarrow 0} \frac{(|1 + t| - 1) ||v||}{t} \\
+	&= \left(\lim_{t \rightarrow 0} \frac{|1 + t| - 1}{t}\right) ||v|| \\
+	&= ||v||.
+	\end{aligned}
+	$$
+	\end{itemize}
+\item Let $L(x, y) = \log(e^x + e^y)$. Compute the gradient. What is the sum of the components of the gradient?
+	\begin{itemize}
+		\item We only have to calculate the derivative with respect to $x$ because the function is invariant under the operation $T(x, y) = (y, x)$:
+		$$
+		\frac{\partial L}{\partial x} = \frac{\frac{\partial}{\partial x} (e^x + e^y)}{e^x + e^y} = \frac{e^x}{e^x + e^y}
+		$$
+		from this it follows that $\frac{\partial L}{\partial y} = \frac{e^y}{e^x + e^y}$ and so
+		$$
+		\nabla L(x, y) = \frac{1}{e^x + e^y} \begin{pmatrix} e^x \\ e^y \end{pmatrix}
+		$$
+		or alternatively
+		$$
+		\nabla L(x, y) = e^{-L(x, y)} \begin{pmatrix} e^x \\ e^y \end{pmatrix}.
+		$$
+		The sum of the components is just $1$.
+		\item Let $f(x, y) = x^2 y + x y^2$. Show that the only critical point is $(0, 0)$. By considering $g(x) = f(x, x)$, determine if $(0, 0)$ is a maximum, minimum or neither.
+			\begin{itemize}
+				\item It is easy to see that
+				$$
+				\nabla f(x, y) = \begin{pmatrix} 2xy + y^2 \\ x^2 + 2xy \end{pmatrix}
+				$$
+				and this vanishes if and only if $(x, y) = (0, 0)$. Note that $g(x)$ is simply $f$ evaluated along the path $\gamma(t) = (t, t)$. Note that $g(x) = 2x^3$ which is a strictly monotone increasing function, as such $0$ is neither a minimum nor a maximum of $g$ and as such $(0, 0)$ is a saddle point of $f$.
+			\end{itemize}
+		\item Suppose we are minimizing a function $f(x) = g(x) + h(x)$. How can we geometrically interpret the condition $\nabla f = 0$ in terms of $g$ and $h$.
+			\begin{itemize}
+				\item Note that $0 = \nabla f(x) = \nabla g(x) + \nabla h(x)$ and therefore $\nabla h(x) = - \nabla g(x)$. This means that the corresponding gradients point in opposite directions and have the same length.
+			\end{itemize}
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Integral Calculus}
+\begin{enumerate}
+	\item What is $\int_1^2 \frac{1}{x} dx$?
+		\begin{itemize}
+			\item The function
+			$$
+			f : [1, 2] \rightarrow \mathbb{R}, x \mapsto \frac{1}{x}
+			$$
+			is a continuous function on a compact domain and therefore (Riemann) integrable. Its integral can be calculated as follows:
+			$$
+			\int_1^2 f(x) dx = \int_1^2 \frac{1}{x} dx \left. \ln(x)\right|_{x = 1}^{x = 2} = \ln(2) - \ln(1) = \ln(2).
+			$$ 
+		\end{itemize}
+	\item Use the change of variables formula to integrate $\int_0^{\sqrt{\pi}} x \sin(x^2) dx$.
+		\begin{itemize}
+			\item Let $\phi(x) = x^2$ then $d\phi(x) = \phi'(x) dx = 2x dx$. If we write $y = \phi(x)$ this can be stated as $x dx = \frac{1}{dy}$ and $\sin(x^2) = \sin(y)$. Furthermore $\phi(0) = 0$ and $\phi(\sqrt{\pi}) = \pi$. Using the change of variables formula we can calculate the integral as follows:
+			$$
+			\begin{aligned}
+			\int_0^{\sqrt{\pi}} x \sin(x^2) dx &= \int_0^\pi \frac{1}{2} \sin(y) dy \\
+			&= \frac{1}{2} \left. -\cos(y)\right|_{y = 0}^{y = \pi} \\
+			&= -\cos(\pi) + \cos(0) = 1.
+			\end{aligned}
+			$$
+		\end{itemize}
+	\item What is $\int_{[0, 1]} xy dx dy$?
+		\begin{itemize}
+		\item
+		$$
+		\int_{[0, 1]} xy dx dy = \int_0^1 \int_0^1 xy dx dy = \int_0^1 y dy \int_0^1 x dx = \left( \int_0^1 x dx \right)^2 = \frac{1}{4}.
+		$$
+		\end{itemize}
+	\item Use the change of variables formula to compute
+		$$
+		\begin{aligned}
+		\int_0^2 \int_0^1 \frac{xy(x^2 - y^2)}{(x^2 + y^2)^3} dy dx,&& \int_0^1 \int_0^2 \frac{xy(x^2 - y^2)}{(x^2 + y^2)^3} dx dy
+		\end{aligned}
+		$$
+		to see that they are different.
+\end{enumerate}
+
 \setcounter{subsection}{5}
 \subsection{Random Variables}
 \begin{enumerate}
@@ -801,11 +896,7 @@ $$
 	\end{itemize}
 \item I walk up to you on the street and say “I have a random variable with mean $1$, standard deviation $2$, and I observed $25\%$ of my samples taking a value larger than $9$.” Do you believe me? Why or why not?
 	\begin{itemize}
-		\item Note that $9 = \mu + 4 \cdot \sigma$. Using Chebychev's inequality we see
-		$$
-		P(|X - \mu| \geq 4 \sigma) \leq \frac{1}{4^2} = \frac{1}{16}.
-		$$
-		Furthermore we are only interested in the values for which $X > \mu + 4 \sigma$, not the other direction. As such if we assume the distribution to be symmetrical around $\mu$ this cuts the probability in half to $\frac{1}{32}$. Now this is the probability that a single sample has a value greater than $9$. A random sample has the probability $\frac{1}{32}$ to lie in this area. If we have a reasonable amount of samples the probability of more than $1/4$ of those lying in this region is very small.
+		\item Note that $9 = \mu + 4 \cdot \sigma$, as such the samples are $4$ standard deviations away from the mean (even worse it's only clustered in one direction). We can determine the likelyhood of this using a $Z$ table. Where we are interested in the complement of a $Z$ value of $4$, which is roughly $1 - 0.99997 = 0.00003 = 0.003\%$. This is a vanishingly small number so either your random variable is not normally distributed (which given the fact that I've been only been told the standard deviation and the mean is a reasonable assumption) or your measurements are wrong.
 	\end{itemize}
 \end{enumerate}
 

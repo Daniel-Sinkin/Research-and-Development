@@ -8,3 +8,4 @@
 .obsidian/
 .ipynb_checkpoints/
 _minted-Exercises/
+__pycache__/
