@@ -492,7 +492,12 @@ $$
 			\end{itemize}
 		\item Derive the probability of the patient being positive $(H = 1)$ after one test returns positive. You can assume the same baseline probability $P(H = 1) = 0.0015$ as before.
 			\begin{itemize}
-				\item a
+				\item Using Bayes' theorem we obtain
+				$$
+				\begin{aligned}
+				P(D_1 = 0, D_2 = 1 | H = 1) = \frac{P(D_1 = 0, D_2 = 1)}{P(H = 1)},&&P(D_1 = 1, D_2 = 0 | H = 1) = \frac{P(D_1 = 1, D_2 = 0)}{P(H = 1)}
+				\end{aligned}
+				$$
 			\end{itemize}
 		\item Derive the probability of the patient being positive $(H = 1)$ and both tests return positive.
 	\end{enumerate}
@@ -586,9 +591,9 @@ $$
 		wx + b
 		$$
 	\end{itemize}
-\item Assume that you want to find quadratic functions of $y$, i.e.,
+\item Assume that you want to find quadratic functions of $x$, i.e.,
 	$$
-	y = Wx^2 + b.
+	f(x) = b + \sum_i w_i x_i + \sum_{j \leq i} w_{ij} x_i x_j.
 	$$
 	How would you formulate this in a deep network?
 \item Recall that one of the conditions for the linear regression problem to be solvable was that the design matrix $X$ has full rank.
@@ -766,6 +771,42 @@ $$
 			\end{aligned}
 			$$
 		\end{itemize}
+\end{enumerate}
+
+\setcounter{subsection}{5}
+\subsection{Random Variables}
+\begin{enumerate}
+\item Suppose that we have the random variable with density given by $p(x) = \frac{1}{x^2}$ for $x \geq 1$ and $p(x) = 0$ otherwise. What is $P(X > 2)$.
+	\begin{itemize}
+		\item We can obtain the probability by integrating the density function:
+		$$
+		\begin{aligned}
+		P(X > 2) &= \int_{(2, \infty)} p(x) dx \\
+		&= \int_{(2, \infty)} \frac{1}{x^2} dx \\
+		&= \left. -x^{-1} \right|_{x = 2}^\infty \\
+		&= 2^{-1} = 0.5.
+		\end{aligned}
+		$$
+	\end{itemize}
+\item The Laplace distribution is a random variable whose density is given by $p(x) = \frac{1}{2}e^{-|x|}$. What is the mean and the standard deviation of this function? As a hint, $\int_0^\infty x e^{-x} dx = 1$ and $\int_0^\infty x^2 e^{-x} = 2$.
+	\begin{itemize}
+	\item Note that $x \mapsto \frac{x}{2} e^{-|x|}$ is an antisymmetric function, as such
+	$$
+	\mu = \int_{-\infty}^\infty x \frac{1}{2}e^{-|x|} dx = 0.
+	$$
+	On the other hand $h(x) = \frac{x^2}{2}e^{-|x|}$ is symmetric as such $\int_{-\infty}^\infty h(x) = 2 \int_0^\infty h(x)$ and as such
+	$$
+	\sigma^2 = 2 \int_0^\infty \frac{x^2}{2} e^{- |x|} dx = \int_0^\infty x^2e^{-x} dx = 2.
+	$$
+	\end{itemize}
+\item I walk up to you on the street and say “I have a random variable with mean $1$, standard deviation $2$, and I observed $25\%$ of my samples taking a value larger than $9$.” Do you believe me? Why or why not?
+	\begin{itemize}
+		\item Note that $9 = \mu + 4 \cdot \sigma$. Using Chebychev's inequality we see
+		$$
+		P(|X - \mu| \geq 4 \sigma) \leq \frac{1}{4^2} = \frac{1}{16}.
+		$$
+		Furthermore we are only interested in the values for which $X > \mu + 4 \sigma$, not the other direction. As such if we assume the distribution to be symmetrical around $\mu$ this cuts the probability in half to $\frac{1}{32}$. Now this is the probability that a single sample has a value greater than $9$. A random sample has the probability $\frac{1}{32}$ to lie in this area. If we have a reasonable amount of samples the probability of more than $1/4$ of those lying in this region is very small.
+	\end{itemize}
 \end{enumerate}
 
 \end{document}

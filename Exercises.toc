@@ -11,3 +11,4 @@
 \contentsline {subsection}{\numberline {23.1}Geometry and Linear Algebraic Operations}{20}{subsection.23.1}%
 \contentsline {subsection}{\numberline {23.2}Eigendecompositions}{21}{subsection.23.2}%
 \contentsline {subsection}{\numberline {23.3}Single Variable Calculus}{22}{subsection.23.3}%
+\contentsline {subsection}{\numberline {23.6}Random Variables}{23}{subsection.23.6}%
