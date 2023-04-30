@@ -7,6 +7,10 @@
 
 \usepackage{graphicx}
 
+\usepackage{minted}
+
+\usepackage{hyperref}
+
 \begin{document}
 
 \tableofcontents
@@ -165,7 +169,7 @@
 	y(x) = 4x - 4.
 	$$
 	\begin{center}
-    	\includegraphics[width=0.6\textwidth]{Images/4_6.png}
+    	\includegraphics[width=0.6\textwidth]{Images/2_4_6.png}
     \end{center}
 	\end{itemize}
 \item Find the gradient of the function $f(x) = ||x||_2$? What happens for $x = 0$?
@@ -220,7 +224,7 @@
 \begin{enumerate}
 \item Why is the second derivative much more expensive to compute than the first derivative?
 	\begin{itemize}
-		The derivative can be approximated by sampling two points, the second derivative needs more points. If we consider the second derivative as the derivative of the derivative then we need to sample two points at each of the original sampling points, which more than doubles the workload. Note that the second derivative is the average rate of change of the rate of change of the two sample points, symbolically:
+		\item The derivative can be approximated by sampling two points, the second derivative needs more points. If we consider the second derivative as the derivative of the derivative then we need to sample two points at each of the original sampling points, which more than doubles the workload. Note that the second derivative is the average rate of change of the rate of change of the two sample points, symbolically:
 		$$
 		f'(x_0) \sim f(x_0 + \varepsilon) - f(x_0 - \varepsilon)
 		$$
@@ -237,13 +241,64 @@
 		There are much better choice for sampling points to get faster numerical convergence, but this is beyond the scope of what we're doing here. 
 	\end{itemize}
 \item After running the function for backpropagation, immediately run it again and see what happens. Why?
+	\begin{itemize}
+		\item An error is thrown, because the gradient tape gets wiped.
+	\end{itemize}
 \item In the control flow example where we calculate the derivative of d with respect to a, what would happen if we changed the variable a to a random vector or a matrix? At this point, the result of the calculation f(a) is no longer a scalar. What happens to the result? How do we analyze this?
+	\begin{itemize}
+		\item My guess would be that we just get a higher order tensor as our gradient. Yeah, we get a higher order tensor, equal to the dimension of $a$. For the function in question all its entries are the same.
+	\end{itemize}
 \item Let $f(x) = \sin(x)$. Plot the graph of $f$ and its derivative $f'$. Do not exploit the fact that $f'(x) = \cos(x)$ but rather use automatic differentiation to get the result.
+	\begin{itemize}
+		\item The code can be found below, the plot is as follows:
+		\begin{center}
+		\includegraphics[width=0.6\textwidth]{Images/2_5_4.png}
+		\end{center}
+	\end{itemize}
 \item Let $f(x) = ((\log x^2) \cdot \sin x) + x^{-1}$. Write out a dependency graph tracing results from $x$ to $f(x)$.
+	\begin{itemize}
+		\item I'm not entirely sure what they are looking for, but maybe it's like the type of graph you'd draw for a parser which tries to understand mathematical operations. This notation I just made up, it's useable but I doubt it's standard.
+		$$
+		\begin{aligned}
+		f(x) &\rightarrow \{(\log x^2) \cdot \sin x, x^{-1}, +\} \\
+		&\rightarrow \{\{\log x^2, \sin x, \cdot\}, x^{-1}, +\} \\
+		&\rightarrow \{\{x^2, \log, \circ\}, \sin x, \cdot\}, x^{-1}, +\}
+		\end{aligned}
+		$$
+	\end{itemize}
 \item Use the chain rule to compute the derivative $f'$ of the aforementioned function, placing each term on the dependency graph that you constructed previously.
+	\begin{itemize}
+		\item
+		$$
+		\begin{aligned}
+		df &= d\{\{x^2, \log, \circ\}, \sin x, \cdot\}, x^{-1}, +\} \\
+		&= \{d\{x^2, \log, \circ\}, \sin x, \cdot\}, d(x^{-1}),+\} \\
+		&= \{d\{x^2, \log, \circ\} \cdot \sin(x) + \{x^2, \log, \circ\} \cdot d\sin(x), \sin x, \cdot\}, -x^{-2},+\} \\
+		&= \{d\{x^2, \log, \circ\} \cdot \sin(x) + \{x^2, \log, \circ\} \cdot d\sin(x), \sin x, \cdot\}, -x^{-2},+\} \\
+		&= \{\frac{2x}{x^2} \cdot \sin(x) + \{x^2, \log, \circ\} \cdot \cos(x), \sin x, \cdot\}, -x^{-2},+\} \\
+		&= \dots
+		\end{aligned}
+		$$
+		Something like this, you get the idea.
+	\end{itemize}
 \item Given the graph and the intermediate derivative results, you have a number of options when computing the gradient. Evaluate the result once starting from $x$ to $f$ and once from $f$ tracing back to $x$. The path from $x$ to $f$ is commonly known as \textit{forward differentiation}, whereas the path from $f$ to $x$ is known as \textit{backward differentiation}.
 \item When might you want to use forward differentiation and when backward differentiation? Hint: consider the amount of intermediate data needed, the ability to parallelize steps, and the size of matrices and vectors involved.
 \end{enumerate}
+
+\begin{minted}{python}
+# Code for Ex 4
+num_steps = 100
+my_tau = 2 * tf.constant(3.14159265358979323846, dtype = tf.float32)
+x = tf.linspace(0.0, my_tau, num_steps)
+x_var = tf.Variable(x)
+with tf.GradientTape() as t:
+    y = tf.math.sin(x_var)
+x_grad = t.gradient(y, x_var)
+assert(tf.reduce_all(tf.abs(x_grad - tf.math.cos(x)) < 0.001))
+
+y = [x_grad, tf.math.cos(x)]
+printing.plot(x, y, "x", "y", legend=["f'(x)", "cos(x)"])
+\end{minted}
 
 \subsection{Probability and Statistics}
 This might be a bit too technical for the course, but to remind myself of the background. Let $(\Omega, \mathcal{A}, P)$ be a probability space, this is a measure space (i.e. $\Omega$ is some set, $\mathcal{A}$ is a sigma algebra on $\Omega$ and $P$ is a measure, i.e. a $\sigma$-additive function $P : \mathcal{A} \rightarrow [0, +\infty)$ which satisfies $P(\emptyset) = 0$), where the measure is a probability function, i.e. $P(\Omega) = 1$. Recall that this means that probability theory is only interested in the theory of finite measures.
@@ -418,26 +473,27 @@ $$
 			P(X_n, \dots, X_1) = P(X_n|X_{n - 1})P(X_{n - 2}|X_{n - 3})\cdot \dots \cdot P(X_1|X_0)P(X_0).
 			$$
 		\end{itemize}
-	\item In Section 2.6.5, assume that the outcomes of the two tests are not independent. In particular assume that either test on its own has a false positive rate of $10\%$ and a false negative rate of $1\%$. That is, assume that
+	\item In Section 2.6.5, assume that the outcomes of the two tests are not independent. In particular assume that either test on its own has a false positive rate of $10\%$ and a false negative rate of $1\%$. That is, for $i = 1, 2$ assume that $P(D_i = 1 | H = 0) = 0.1$ and that $P(D_i = 0 | H = 1) = 0.01$. Moreover, assume that for $H = 1$ (infected) the test outcomes are conditionally dependent, i.e., that 
 	$$
-	P(D = 1 | H = 0) = 0.1,
+	P(D_1, D_2|H = 1) = P(D_1 | H = 1)P(D_2 | H = 1)
 	$$
-	and that
-	$$
-	P(D_1, D_2 | H = 1) = 0.02.
-	$$
+	but for healthy patients the outcomes are coupled via $P(D_1 = 1, D_2 = 1| H = 0) = 0.02$.
 	\begin{enumerate}
 		\item Work out the joint probability table for $D_1$ and $D_2$ given $H = 0$ based on the information you have so far.
 			\begin{itemize}
 				\item
 					\begin{center}
 						\begin{tabular}{|c|c|c|} \hline
-						Conditional Probability & $H = 1$ & b \\ \hline
-						& a & b \\ \hline
+						Joint Probability ($H = 0$) & $D_2 = 1$ & $D_2 = 0$ \\ \hline
+						$D_1 = 1$ & 0.02 & b \\ \hline
+						$D_1 = 0$ & a & b \\ \hline
 						\end{tabular}
 					\end{center}
 			\end{itemize}
 		\item Derive the probability of the patient being positive $(H = 1)$ after one test returns positive. You can assume the same baseline probability $P(H = 1) = 0.0015$ as before.
+			\begin{itemize}
+				\item a
+			\end{itemize}
 		\item Derive the probability of the patient being positive $(H = 1)$ and both tests return positive.
 	\end{enumerate}
 	\item Assume that you are an asset manager for an investment bank and you have a choice of stocks $s_i$ to invest in. Your portfolio needs to add up to $1$ with weights $\alpha_i$ for each stock. The stocks have an average return $\mu = E_{s \sim P}[s]$ and covariance $\Sigma = \operatorname{Cov}_{s \sim P}[s]$.
