@@ -1,0 +1,10 @@
+# Ignore LaTeX build files
+*.out
+*.log
+*.aux
+*.toc
+
+# Ignore Obsidian and Jupyter Notebook folders
+.obsidian/
+.ipynb_checkpoints/
+_minted-Exercises/
