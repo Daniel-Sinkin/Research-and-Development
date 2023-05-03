@@ -5,7 +5,6 @@
 *.toc
 
 # Ignore Obsidian and Jupyter Notebook folders
-.obsidian/
 .ipynb_checkpoints/
 _minted-Exercises/
 __pycache__/
