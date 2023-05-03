@@ -19,8 +19,25 @@
 \setcounter{section}{1}
 \section{Preliminaries}
 \subsection{Data Manipulation}
+\begin{enumerate}
+\item Run the code in this section. Change the conditional statement \texttt{X == Y} to \texttt{X < Y} or \texttt{X > Y}, and then see what kind of tensor you can get.
+\item Replace the two tensors that operate by element in the broadcasting mechanism with other shapes, e.g., 3-dimensional tensors. Is the result the same as expected?
+\end{enumerate}
 
 \subsection{Data Preprocessing}
+\begin{enumerate}
+    \item Try loading datasets, e.g., Abalone from the UCI Machine Learning Repository and inspect their properties. What fraction of them has missing values? What fraction of the variables is numerical, categorical, or text?
+
+    \item Try out indexing and selecting data columns by name rather than by column number. The pandas documentation on indexing has further details on how to do this.
+
+    \item How large a dataset do you think you could load this way? What might be the limitations? Hint: consider the time to read the data, representation, processing, and memory footprint. Try this out on your laptop. What changes if you try it out on a server?
+
+    \item How would you deal with data that has a very large number of categories? What if the category labels are all unique? Should you include the latter?
+
+    \item What alternatives to pandas can you think of? How about loading NumPy tensors from a file? Check out Pillow, the Python Imaging Library.
+\end{enumerate}
+
+
 
 \subsection{Linear Algebra}
 \begin{enumerate}
@@ -125,6 +142,7 @@
 	f_4'(x) = \frac{1}{x}.
 	$$
 	\end{itemize}
+
 \item In the same vein, prove the product, sum, and quotient rule from first principles.
 	\begin{itemize}
 	\item Using a similiar construction to the triangle inequality we can write
@@ -147,10 +165,12 @@
 	\item The sum formula immediately follows from the linearity of $\lim$.
 	\item The quotient formula immediately follows from the product rule by noting that $\frac{f}{g} = f \cdot \frac{1}{g}$ as well as $\left(\frac{1}{g(x)}\right)' = -\frac{g'(x)}{g^2(x)}$. To see this apply the product rule on $1 = g(x) \frac{1}{g(x)}$.
 	\end{itemize}
+
 \item Prove that the constant multiple rule follows as a special case of the product rule.
 	\begin{itemize}
 	\item $(cf(x))' = c' f(x) + c f'(x)$, we have already shown that $c' = 0$ so that $(cf)' = cf'$.
 	\end{itemize}
+
 \item Calculate the derivative of $f(x) = x^x$. 
 	\begin{itemize}
 	\item We assume that $x > 0$ then $f(x) = x^x = e^{x \log(x))}$. Let $u(x) = x \log(x)$ then $u'(x) = \log(x) + x \cdot \frac{1}{x} = \log(x) + 1$. This allows us to write $f(x) = e^{u(x)}$, the derivative of $f$ is then, by using the chain rule and the fact that $\frac{d}{dx} e^x = e^x$, given by
@@ -158,10 +178,12 @@
 	f'(x) = u'(x) e^{u(x)} = (1 + \log(x))e^{x \log(x)} = (1 + \log(x))x^x.
 	$$
 	\end{itemize}
+
 \item What does it mean that $f'(x) = 0$ for some $x$? Give an example of a function $f$ and a location $x$ for which this might hold.
 	\begin{itemize}
 	\item Depending on the neighboring values (or if it's $C^2$ on the sign of the second derivative), that $x$ is either a minimizer ($x = 0$ for $f(x) = x^2$), a maximizer ($x = 0$ for $f(x) = -x^2$) or a saddle point ($x = 0$ for $f(x) = x^3$).
 	\end{itemize}
+
 \item Plot the function $y = f(x) = x^3 - \frac{1}{x}$ and plot its tangent line at $x = 1$.
 	\begin{itemize}
 	\item The derivative of $f$ is given by $f'(x) = 3x^2 + \frac{1}{x^2}$, evaluated at $x = 1$ this yields a slope of $f'(1) = 3 + 1 = 4$, so the tangent line is given by $y(x) = 4x + b$ where $b$ is such thatt $y(1) = 4 + b = f(1) = 0$ so that $b = -4$. In total this means the tangent line at $x = 1$ is given by
@@ -172,6 +194,7 @@
     	\includegraphics[width=0.6\textwidth]{Images/2_4_6.png}
     \end{center}
 	\end{itemize}
+
 \item Find the gradient of the function $f(x) = ||x||_2$? What happens for $x = 0$?
 	\begin{itemize}
 	\item Note that if $x = (x_1, \dots, x_n)$ then $g(x) := f(x)^2 = ||x||_2^2 = \sum_{i = 1}^n x_i^2$. It follows that for $x \neq 0$ the corresponding partial derivates are simply given by
@@ -184,6 +207,7 @@
 	$$
 	Note that this construction breaks down at $x = 0$ as we would divide by $0$. But this is not surprising because $x \mapsto \sqrt{x}$ is not differentiable at $0$ and $f(x) = \sqrt{g(x)}$.
 	\end{itemize}
+
 \item Can you write out the chain rule for the case where $u = f(x, y, z)$ and $x = x(a, b), y = y(a, b)$ and $z = z(a, b)$?
 	\begin{itemize}
 	\item We can write $u(a, b) = f(x(a, b), y(a, b), z(a, b))$ and with that
@@ -203,6 +227,7 @@
 	\nabla u(a, b) = (\nabla f, \nabla f)^t \cdot (D(x, y, z)).
 	$$
 	\end{itemize}
+
 \item Given a function $f(x)$ that is invertible, compute the derivative of its inverse $f^{-1}(x)$. Here we have that $f^{-1}(f(x)) = x$ and conversely $f(f^{-1}(y)) = y$. Hint: Use these properties in your derivation.
 	\begin{itemize}
 		\item We can calculate
@@ -219,6 +244,16 @@
 		$$
 	\end{itemize}
 \end{enumerate}
+
+\begin{minted}{python}
+# Code for Ex 6
+def f(x):
+    return x ** 3 - 1 / x
+
+x = np.arange(0.2, 1.8, 0.02)
+y = [x ** 3 - 1 / x, 4 * x - 4]
+plot(x, y, 'x', 'f(x)', legend=['f(x)', 'Tangent line (x=1)'])
+\end{minted}
 
 \subsection{Automatic Differentiation}
 \begin{enumerate}
@@ -600,31 +635,214 @@ $$
 \item Recall that one of the conditions for the linear regression problem to be solvable was that the design matrix $X$ has full rank.
 	\begin{enumerate}[label=\arabic*.]
 	\item What happens if this is not the case?
+		\begin{itemize}
+			\item The solution ceases to be unique, or doesn't exist at all.
+		\end{itemize}
 	\item How could you fix it? What happens if you add a small amount of coordinate-wise independent Gaussian noise to all entries of $X$?
+		\begin{itemize}
+			\item Adding random noise is almost certainly going to make the new matrix invertible. 
+		\end{itemize}
 	\item What is the expected value of the design matrix $X^tX$ in this case?
 	\item What happens with stochastic gradient descent when $X^tX$ does not have full rank?
 	\end{enumerate}
-\item Assume that the noise model governing the additive noise $e_i$ is the exponential distribution. That is, $p(e_i) = \lambda e^{-\lambda e_i}$.
+\item Assume that the noise model governing the additive noise $\varepsilon$ is the exponential distribution. That is, $p(\varepsilon) = \frac{1}{2}\exp(-|\varepsilon|)$.
 	\begin{enumerate}[label=\arabic*.]
-	\item Write out the negative log-likelihood of the data under the model $p(e_i)$.
+	\item Write out the negative log-likelihood of the data under the model $p(e_i)$.	
+		\begin{itemize}
+			\item Assuming that $p(y | x) = p(y - w^tx - b)$ we see that $p(y|X) = \prod_{i = 1}^n p(y^{(i)}|x^{(i)})$ and so
+			$$
+			\begin{aligned}
+			-\log(p(y|X)) &= - \log \prod_{i = 1}^n p(y^{(i)}|x^{(i)}) \\
+			&= - \sum_{i = 1}^n \log\left(\frac{1}{2}\exp(-|y^{(i)} - w^tx^{(i)} - b|)\right) \\
+			&= - \sum_{i = 1}^n \log(1 / 2) - \sum_{i = 1}^n \log(\exp-|y^{(i)} - w^tx^{(i)} - b|)) \\
+			&= n \log(2) + \sum_{i = 1}^n |y^{(i)} - w^tx^{(i)} - b|.
+			\end{aligned}
+			$$
+			Note that minimizing this expression is equivalent to minimizing 
+			$$
+			\sum_{i = 1}^n |y^{(i)} - w^tx^{(i)} - b|,
+			$$
+			i.e., to
+			$$
+			||y - Wx||_1.
+			$$
+		\end{itemize}
 	\item Can you find a closed form solution?
+		\begin{itemize}
+			\item We have determined this in the previous exercise.
+		\end{itemize}
 	\item Suggest a minibatch stochastic gradient descent algorithm to solve this problem. What could possibly go wrong (hint: what happens near the stationary point as we keep on updating the parameters)? Can you fix this?
+		\begin{itemize}
+			\item The main issue that will come up around stationary points is that $x \mapsto |x|$ is not actually differentiable around $0$. I have no idea how to solve this, maybe we have to add some kind of random noise.
+ 		\end{itemize}
 	\end{enumerate}
-\item Assume that we want to design a neural network with two layers by composing two linear layers. That is, the output of the first layer becomes the input of the second layer. Why would such a naive composition not work?
+	\item Assume that we want to design a neural network with two layers by composing two linear layers. That is, the output of the first layer becomes the input of the second layer. Why would such a naive composition not work?
+	\begin{itemize}
+		\item The composition of linear maps like this results in another linear map, as such we have not gained anything.
+	\end{itemize}
 \item What happens if you want to use regression for realistic price estimation of houses or stock prices?
 	\begin{enumerate}[label=\arabic*.]
 	\item Show that the additive Gaussian noise assumption is not appropriate. Hint: can we have negative prices? What about fluctuations?
+		\begin{itemize}
+			\item There are a couple of problems with this, first of all prices of stocks and housing prices can't be $0$. For houses there is even a lower bound on the price of a house. Furthermore the price of a stock can vary, for example larger, better known companies tend to have less volatility.
+		\end{itemize}
 	\item Why would regression to the logarithm of the price be much better, i.e., $y = \log \operatorname{price}$?
+		\begin{itemize}
+			\item It would allow for negative values, which alleviates one of the problems with assuming gaussian noise mentioned before. Furthermore differences in log prices correspond to relative changes in price, because
+			$$
+			\log(x) - \log(y) = \log\left(\frac{x}{y}\right).
+			$$
+			\item Furthermore note that there is only so low a house price can go, but housing prices towards the upper values is far higher, a log-based scale does alleviate this right-skew.
+		\end{itemize}
 	\item What do you need to worry about when dealing with pennystock, i.e., stock with very low prices? Hint: can you trade at all possible prices? Why is this a bigger problem for cheap stock?
+		\begin{itemize}
+			\item The price can't be negative, and for small values the relative jumps become huge even if there is very littel absolute change, for example $0.01 \rightarrow 0.1$ is already a $1000\%$ increase even though the price of the stock barely changed. Also I suppose there could be some rounding concerns.
+		\end{itemize}
 	\item For more information review the celebrated Black-Scholes model for option pricing (Black and Scholes, 1973).
+		\begin{itemize}
+			\item The Black-Scholes model allows us to see the (theoretical) impact on the price given by volatility.
+		\end{itemize}
 	\end{enumerate}
 \item Suppose we want to use regression to estimate the number of apples sold in a grocery store.
 	\begin{enumerate}[label=\arabic*.]
 	\item What are the problems with a Gaussian additive noise model? Hint: you are selling apples, not oil.
+		\begin{itemize}
+			\item There is the same problem as before, the amount sould can't be negative.
+			\item The amount of apples sold is a discrete quantity, but the Gaussian thingy assumes a continues distribution. If our number of apples sold is large enough this might not be a concern, but in a grocery store the quantity over let's say a week won't be huge.
+			\item Fungibility: There could be bad batches of apples, while oil is basically the same across its own type of class (I guess there are better and worse types of oil but I'd assume those are split in their own categories).
+		\end{itemize}
 	\item The Poisson distribution captures distributions over counts. It is given by $P(k; \lambda) = \frac{e^{-\lambda} \lambda^k}{k!}$. Here $\lambda$ is the rate function and $k$ is the number of events you see. Prove that $\lambda$ is the expected value of counts $k$.
+		\begin{itemize}
+			\item Recall that
+			$$
+			e^x = \sum_{k = 0}^\infty \frac{x^k}{k!}.
+			$$
+			We can calculate the expected value as follows:
+			$$
+			\begin{aligned}
+			E &= \sum_k k p(k|\lambda) \\
+			&= \sum_{k = 1}^\infty k \lambda^k \frac{e^{-\lambda}}{k!} \\
+			&= \lambda e^{-\lambda} \sum_{k = 1}^\infty \frac{\lambda^{k - 1}}{(k - 1)!}\\
+			&= \lambda e^{-\lambda} \sum_{k = 0}^\infty \frac{\lambda^k}{k!} \\
+			&= \lambda e^{-\lambda}e^{\lambda} = \lambda.
+			\end{aligned}
+			$$
+		\end{itemize}
 	\item Design a loss function associated with the Poisson distribution.
 	\item Design a loss function for estimating $\log \lambda$ instead.
 	\end{enumerate}
+\end{enumerate}
+
+\subsection{Object-Oriented Design for Implementation}
+\begin{enumerate}
+	\item Locate full implementations of the above classes that are saved in the d2l library. We strongly recommend that you look at the implementation in detail once you have gained some more familiarity with deep learning modeling.
+
+    \item Remove the savehyperparameters statement in the B class. Can you still print self.a and self.b? Optional: if you have dived into the full implementation of the HyperParameters class, can you explain why?
+\end{enumerate}
+
+\subsection{Synthetic Regression Data}
+\begin{enumerate}
+	\item  What will happen if the number of examples cannot be divided by the batch size. How to change this behavior by specifying a different argument by using framework’s API?
+
+
+	\item What if we want to generate a huge dataset, where both the size of the parameter vector w and the number of examples numexamples are large?
+
+	\begin{enumerate}
+		\item What happens if we cannot hold all data in memory?
+
+		\item How would you shuffle the data if data is held on disk? Your task is to design an efficient algorithm that does not require too many random reads or writes. Hint: pseudorandom permutation generators allow you to design a reshuffle without the need to store the permutation table explicitly (Naor and Reingold, 1999).
+	\end{enumerate}
+
+    \item Implement a data generator that produces new data on the fly, every time the iterator is called.
+
+    \item How would you design a random data generator that generates the same data each time it is called?
+\end{enumerate}
+
+\subsection{Linear Regression Implementation from Scratch}
+\begin{enumerate}
+\item What would happen if we were to initialize the weights to zero. Would the algorithm still work? What if we initialized the parameters with variance $1,000$ rather than $0.01$?
+
+\item Assume that you are Georg Simon Ohm trying to come up with a model for resistors that relate voltage and current. Can you use automatic differentiation to learn the parameters of your model?
+
+\item Can you use Planck's Law to determine the temperature of an object using spectral energy density? For reference, the spectral density $B$ of radiation emanating from a black body is
+$$
+B(\lambda, T) = \frac{2 hc^2}{\lambda^5} \cdot \left(\exp \frac{h c}{\lambda k T} - 1\right)^{-1}.
+$$
+Here $\lambda$ is the wavelength, $T$ is the temperature, $c$ is the speed of light, $h$ is Planck's quantum, and $k$ is the Boltzmann constant. You measure the energy for different wavelengths $\lambda$ and you now need to fit the spectral density curve to Planck's law.
+
+\item What are the problems you might encounter if you wanted to compute the second derivatives of the loss? How would you fix them?
+
+\item Why is the `reshape` method needed in the `loss` function?
+
+\item Experiment using different learning rates to find out how quickly the loss function value drops. Can you reduce the error by increasing the number of epochs of training?
+
+\item If the number of examples cannot be divided by the batch size, what happens to \mintinline{python}{data_iter} at the end of an epoch?
+
+\item Try implementing a different loss function, such as the absolute value loss
+\begin{minted}{python}
+	(y_hat - d2l.reshape(y, y_hat.shape)).abs().sum()
+\end{minted}
+
+\item Check what happens for regular data.
+
+\item Check whether there is a difference in behavior if you actively perturb some entries of $\mathbf{y}$, such as $y_5 = 10000$.
+
+\item Can you think of a cheap solution for combining the best aspects of squared loss and absolute value loss? Hint: how can you avoid really large gradient values?
+
+\item Why do we need to reshuffle the dataset? Can you design a case where a maliciously dataset would break the optimization algorithm otherwise?
+\end{enumerate}
+
+\subsection{Concise Implementation of Linear Regression}
+\begin{enumerate}
+\item How would you need to change the learning rate if you replace the aggregate loss over the minibatch with an average over the loss on the minibatch?
+\item Review the framework documentation to see which loss functions are provided. In particular, replace the squared loss with Huber’s robust loss function. That is, use the loss function
+$$
+l(y,y') = \begin{cases}
+|y-y'| -\frac{\sigma}{2} & \text{ if } |y-y'| > \sigma \\
+\frac{1}{2 \sigma} (y-y')^2 & \text{ otherwise}
+\end{cases}
+$$
+\item How do you access the gradient of the weights of the model?
+\item How does the solution change if you change the learning rate and the number of epochs? Does it keep on improving?
+\item How does the solution change as you change the amount of data generated? 
+	\begin{enumerate}
+		\item lot the estimation error for $\hat{\mathbf{w}} - \mathbf{w}$ and $\hat{b} - b$ as a function of the amount of data. Hint: increase the amount of data logarithmically rather than linearly, i.e., 5, 10, 20, 50, ..., 10,000 rather than 1,000, 2,000, ..., 10,000.
+		\item Why is the suggestion in the hint appropriate?
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Generalization}
+
+\begin{enumerate}
+\item When can you solve the problem of polynomial regression exactly?
+
+\item Give at least five examples where dependent random variables make treating the problem as IID data inadvisable.
+
+\item Can you ever expect to see zero training error? Under which circumstances would you see zero generalization error?
+
+\item Why is $K$-fold cross-validation very expensive to compute?
+
+\item Why is the $K$-fold cross-validation error estimate biased?
+
+\item The VC dimension is defined as the maximum number of points that can be classified with arbitrary labels $\{\pm 1\}$ by a function of a class of functions. Why might this not be a good idea to measure how complex the class of functions is? Hint: what about the magnitude of the functions?
+
+\item Your manager gives you a difficult dataset on which your current algorithm does not perform so well. How would you justify to him that you need more data? Hint: you cannot increase the data but you can decrease it.
+\end{enumerate}
+
+\subsection{Weight Decay}
+
+\begin{enumerate}
+\item Experiment with the value of $\lambda$ in the estimation problem in this section. Plot training and validation accuracy as a function of $\lambda$. What do you observe?
+
+\item Use a validation set to find the optimal value of $\lambda$. Is it really the optimal value? Does this matter?
+
+\item What would the update equations look like if instead of $\|\mathbf{w}\|^2$ we used $\sum_i |w_i|$ as our penalty of choice ($\ell_1$ regularization)?
+
+\item We know that $\|\mathbf{w}\|^2 = \mathbf{w}^\top \mathbf{w}$. Can you find a similar equation for matrices (see the Frobenius norm in :numref:`subsec_lin-algebra-norms`)?
+
+\item Review the relationship between training error and generalization error. In addition to weight decay, increased training, and the use of a model of suitable complexity, what other ways can you think of to deal with overfitting?
+
+\item In Bayesian statistics we use the product of prior and likelihood to arrive at a posterior via $P(w \mid x) \propto P(x \mid w) P(w)$. How can you identify $P(w)$ with regularization?
 \end{enumerate}
 
 \newpage
@@ -899,5 +1117,4 @@ $$
 		\item Note that $9 = \mu + 4 \cdot \sigma$, as such the samples are $4$ standard deviations away from the mean (even worse it's only clustered in one direction). We can determine the likelyhood of this using a $Z$ table. Where we are interested in the complement of a $Z$ value of $4$, which is roughly $1 - 0.99997 = 0.00003 = 0.003\%$. This is a vanishingly small number so either your random variable is not normally distributed (which given the fact that I've been only been told the standard deviation and the mean is a reasonable assumption) or your measurements are wrong.
 	\end{itemize}
 \end{enumerate}
-
 \end{document}
