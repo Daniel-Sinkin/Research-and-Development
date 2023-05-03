@@ -13,4 +13,129 @@
 
 \begin{document}
 
+\section{Probability and Counting}
+\subsection*{Counting}
+\begin{enumerate}
+	\item How many ways are there to permute the letters in the word MISSISSIPPI?
+		\begin{itemize}
+			\item The answer is obtained by finding the total number of permutation and dividing by the number of permutation of the individual letters. The total number of permutations is $11!$ because there are $11$ characters in that word. For example the number of permutations of the four characters $S$ is $4!$, as such the number of permutations is
+			$$
+			\frac{11!}{1!4!4!2!} = 34650.
+			$$
+		\end{itemize}
+	\item
+		\begin{enumerate}
+			\item How many 7-digit phone numbers are possible, assuming that the first digit can’t be a 0 or a 1?
+				\begin{itemize}
+					\item Assuming all other digits are possible there are $10 - 2 = 8$ possible digits for the first position and $10$ for the remaining $7 - 1 = 6$ positions as such the number of phone numbers is
+					$$
+					8 * 10^6 = 8000000.
+					$$
+				\end{itemize}
+			\item Re-solve (a), except now assume also that the phone number is not allowed to start with 911 (since this is reserved for emergency use, and it would not be desirable for the system to wait to see whether more digits were going to be dialed after someone has dialed 911).
+				\begin{itemize}
+					\item The total count of numbers starting with 911 is $10^4$ as such removing those yields
+					$$
+					8000000 - 10^4 = 7990000.
+					$$
+				\end{itemize}
+		\end{enumerate}
+	\item Fred is planning to go out to dinner each night of a certain week, Monday through Friday, with each dinner being at one of his ten favorite restaurants.
+		\begin{itemize}
+			\item How many possibilities are there for Fred’s schedule of dinners for that Monday through Friday, if Fred is not willing to eat at the same restaurant more than once?
+				\begin{itemize}
+					\item There are $5$ days and $10$ restaurants which are picked without repetation. As such he as $10$ choices on the first day, $9$ choices on the second day and so on, as such in total
+					$$
+					\frac{10!}{5!} = 30240.
+					$$
+				\end{itemize}
+			\item How many possibilities are there for Fred’s schedule of dinners for that Monday through Friday, if Fred is willing to eat at the same restaurant more than once, but is not willing to eat at the same place twice in a row (or more)?
+				\begin{itemize}
+					\item There are $10$ possibilities on the first day. On the second day he can choose any restaurant which is different from the first one. Same situation on the third day and so on. As such in total
+					$$
+					10 * 9^4 = 65610.
+					$$
+				\end{itemize}
+		\end{itemize}
+	\item A round-robin tournament is being held with n tennis players; this means that every player will play against every other player exactly once.
+		\begin{enumerate}
+			\item How many possible outcomes are there for the tournament (the outcome lists out who won and who lost for each game)?
+				\begin{itemize}
+					\item Every player will have exactly $n - 1$ opponents, summing up over all players gives $n(n - 1)$, but of course we doublecounted everything because every opponent is also a player. As such the total number of matches is $\frac{n(n - 1)}{2}$. Because every match is either a win or a loss the total number of outcomes is
+					$$
+					2^{\frac{n(n - 1)}{2}}.
+					$$
+				\end{itemize}
+			\item How many games are played in total?
+				\begin{itemize}
+					\item As mentioned in the first part, it's $\frac{n(n - 1)}{2}$.
+				\end{itemize}
+		\end{enumerate}
+	\item A knock-out tournament is being held with 2n tennis players. This means that for each round, the winners move on to the next round and the losers are eliminated, until only one person remains. For example, if initially there are 24 = 16 players, then there are 8 games in the first round, then the 8 winners move on to round 2, then the 4 winners move on to round 3, then the 2 winners move on to round 4, the winner of which is declared the winner of the tournament. (There are various systems for determining who plays whom within a round, but these do not matter for this problem.)
+		\begin{enumerate}
+			\item How many rounds are there?
+				\begin{itemize}
+					\item We half the amount of players remaining in every step so there are $\log_2(2^n) = n$ rounds. 
+				\end{itemize}
+			\item Count how many games in total are played, by adding up the numbers of games played in each round.
+				\begin{itemize}
+					\item If there are $2^k$ players in a round then $2^{k - 1}$ games have been played, as such the total number of games is
+					$$
+					\sum_{k = 1}^n 2^{k - 1} = 2^n - 1.
+					$$
+				\end{itemize}
+			\item Count how many games in total are played, this time by directly thinking about it without doing almost any calculation.
+				\begin{itemize}
+					\item We filtered everybody but one person, every game filters exactly one person (the loser of the 1v1), as such there have to be $2^{n - 1}$ matches.
+				\end{itemize}
+		\end{enumerate}
+	\item There are 20 people at a chess club on a certain day. They each find opponents and start playing. How many possibilities are there for how they are matched up, assuming that in each game it does matter who has the white pieces (in a chess game, one player has the white pieces and the other player has the black pieces)?
+		\begin{itemize}
+			\item Imagine we have 20 cells and the $2k$th person plays with the $2k + 1$st person. Then the problem becomes how many unique assigments do we have. The important thing is not in what cell the person is, but with whom they are in a double-cell with and if they are in the odd or even position (corresponding to white / black pieces). There are $20!$ ways to assign the people, there are $10!$ arrangement of the cells, as such the answer is
+			$$
+			\frac{20!}{10!} = 670442572800.
+			$$
+		\end{itemize}
+	\item Two chess players, A and B, are going to play 7 games. Each game has three possible outcomes: a win for A (which is a loss for B), a draw (tie), and a loss for A (which is a win for B). A win is worth 1 point, a draw is worth 0.5 points, and a loss is worth 0 points.
+		\begin{enumerate}
+			\item How many possible outcomes for the individual games are there, such that overall player A ends up with 3 wins, 2 draws, and 2 losses?
+				\begin{itemize}
+					\item There are $7!$ total permutations, and we have to remove the $3!$ for the wins, and $2!$ for the draws and losses individually, as such
+					$$
+					\frac{7!}{3!2!2!} = 210.
+					$$
+				\end{itemize}
+			\item How many possible outcomes for the individual games are there, such that A ends up with 4 points and B ends up with 3 points?
+				\begin{itemize}
+					\item Note that a game always increases the total points by $1$, just varies up the distribution. Because $4 + 3 = 7$ are the total points there have been $7$ matches played. The number of ties has to be even because the players have even points, meaning we only have to consider the cases where $\#\text{ties} \ini \{0, 2, 4, 6\}$. If $2k, 0 \leq k \leq 3$ is the number of ties then (3 - k, 2k, 4 - k) is a valid outcome, and those are the only ones. In total this means the number of outcomes is
+					$$
+					|\{0, 2, 4, 6\}| = 4.
+					$$
+				\end{itemize}
+			\item Now assume that they are playing a best-of-7 match, where the match will end when either player has 4 points or when 7 games have been played, whichever is first. For example, if after 6 games the score is 4 to 2 in favor of A, then A wins the match and they don’t play a 7th game. How many possible outcomes for the individual games are there, such that the match lasts for 7 games and A wins by a score of 4 to 3?
+				\begin{itemize}
+					\item The only possible arrangement for this outcome is if the $6$th round was a $3$ to $3$ and $A$ wins the last round. As such we are interested in the number of ways to get to $3$ to $3$. We can draw out a binary tree for this and simply count the number of leafs. Note that once one of the players reaches $3$ the tree can be cut there because there is only one possible solition. With this method we get the result of $17$.
+				\end{itemize}
+		\end{enumerate}
+	\item
+		\begin{enumerate}
+			\item How many ways are there to split a dozen people into 3 teams, where one team has 2 people, and the other two teams have 5 people each?
+			\item How many ways are there to split a dozen people into 3 teams, where each team has 4 people?
+		\end{enumerate}
+	\item
+		\begin{enumerate}
+			\item How many paths are there from the point (0, 0) to the point (110, 111) in the plane such that each step either consists of going one unit up or one unit to the right?
+				\begin{itemize}
+					\item Denote by $C((a, b), (x, y))$ where $(a, b) \leq (x, y)$ (elementwise) the number of such paths starting from $(a, b)$ and ending on $(x, y)$. Note that $C((a, b), (x, y)) = C((a + 1, b), (x, y)) + C((a, b + 1), (x, y))$ and $C((a, b), (x, y)) = C((b, a), (y, x))$. Furthermore for $(a, b) \leq (x', y') \leq (x, y)$ we have
+					$$
+					C((a, b), (x, y)) = C((a, b), (x', y')) + C((x', y'), (a, b)).
+					$$
+				\end{itemize}
+			\item How many paths are there from (0, 0) to (210, 211), where each step consists of going one unit up or one unit to the right, and the path has to go through (110, 111)?
+				\begin{itemize}
+					\item We can split this into a sum of two counts, first the number of paths from (0, 0) to (110, 111) and then from (110, 111) to (210, 211). Note that the second path is equivalent to counting the number of paths from (0, 0) to (100, 100).
+				\end{itemize}
+		\end{enumerate}
+\end{enumerate}
+
 \end{document}
