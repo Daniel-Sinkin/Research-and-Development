@@ -14,7 +14,7 @@
 \begin{document}
 
 \section{Probability and Counting}
-\subsection*{Counting}
+\subsection{Counting}
 \begin{enumerate}
 	\item How many ways are there to permute the letters in the word MISSISSIPPI?
 		\begin{itemize}
@@ -107,7 +107,7 @@
 				\end{itemize}
 			\item How many possible outcomes for the individual games are there, such that A ends up with 4 points and B ends up with 3 points?
 				\begin{itemize}
-					\item Note that a game always increases the total points by $1$, just varies up the distribution. Because $4 + 3 = 7$ are the total points there have been $7$ matches played. The number of ties has to be even because the players have even points, meaning we only have to consider the cases where $\#\text{ties} \ini \{0, 2, 4, 6\}$. If $2k, 0 \leq k \leq 3$ is the number of ties then (3 - k, 2k, 4 - k) is a valid outcome, and those are the only ones. In total this means the number of outcomes is
+					\item Note that a game always increases the total points by $1$, just varies up the distribution. Because $4 + 3 = 7$ are the total points there have been $7$ matches played. The number of ties has to be even because the players have even points, meaning we only have to consider the cases where $\#\text{ties} \in \{0, 2, 4, 6\}$. If $2k, 0 \leq k \leq 3$ is the number of ties then (3 - k, 2k, 4 - k) is a valid outcome, and those are the only ones. In total this means the number of outcomes is
 					$$
 					|\{0, 2, 4, 6\}| = 4.
 					$$
@@ -136,6 +136,93 @@
 					\item We can split this into a sum of two counts, first the number of paths from (0, 0) to (110, 111) and then from (110, 111) to (210, 211). Note that the second path is equivalent to counting the number of paths from (0, 0) to (100, 100).
 				\end{itemize}
 		\end{enumerate}
+\end{enumerate}
+
+\subsection{Story proofs}
+\begin{enumerate}
+	\item Give a story proof that
+	$$
+	\sum_{k = 0}^n \binom{n}{k} = 2^n.
+	$$
+	\item Show that for all positive integers $n$ and $k$ with $n \geq k$,
+	$$
+	\binom{n}{k} + \binom{n}{k - 1} = \binom{n + 1}{k},
+	$$
+	doing this in two ways: (a) algebraically and (b) with a story giving an interpretation for why both sides count the same thing.
+
+	Hint for the story proof: Imagine an organization consisting of $n + 1$ people, with one of them pre-designated as the president of the organization.
+	\item Give a story proof that
+	$$
+	\sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}
+	$$
+	for all positive integers $n$.
+	\item Give a story proof that
+	$$
+	\frac{(2n)!}{2^n \cdot n!} = (2n - 1) (2n - 3) \cdot \dots \cdot 3 \cdot 1.
+	$$
+\end{enumerate}
+
+\subsection{Naive Definition of Probability}
+\begin{enumerate}
+	\item A certain family has 6 children, consisting of 3 boys and 3 girls. Assuming that all birth orders are equally likely, what is the probability that the 3 eldest children are the 3 girls?
+		\begin{itemize}
+			\item There are $6!$ ways to arrange the three daughters (or equivalently the three sons) in the birth order. We don't care about the order of the boys or girls within their gender so the total number of arrangements is
+			$$
+			\frac{6!}{3! 3!} = 20.
+			$$
+			Of those permutations every single arrangement is equaly likely and there is only one we are interested in, so the probability is
+			$$
+			1/20 = 0.05\%.
+			$$
+		\end{itemize}
+	\item  A college has 10 (non-overlapping) time slots for its courses, and blithely assigns courses to time slots randomly and independently. A student randomly chooses 3 of the courses to enroll in (for the PTP, to avoid getting fined). What is the probability that there is a conflict in the student’s schedule?
+		\begin{itemize}
+			\item The first course doesn't cause overlap, the second course has a $10\%$ to cause an overlap and the second course has a $20\%$ chance to cause an overlap. So the chance that there is overlap is $1 - (1 - 0.1)(1 - 0.2) = 0.28 = 28\%$.
+		\end{itemize}
+	\item A city with 6 districts has 6 robberies in a particular week. Assume the robberies are located randomly, with all possibilities for which robbery occurred where equally likely. What is the probability that some district had more than 1 robbery?
+		\begin{itemize}
+			\item Let the first robber choose a district randomly. The second robber has a $5/6$ chance to hit a new district, the third one has a chance of $4/6$ and so on. In total the chance of no overlap is
+			$$
+			\frac{5}{6} \frac{4}{6} \frac{3}{6} \frac{2}{6} \frac{1}{6} = \frac{5!}{6^5} = \frac{6!}{6^6}.
+			$$
+			A such the probability of having an overlap is the complement of this
+			$$
+			1 - \frac{6!}{6^6} \cong 0.9846.
+			$$
+		\end{itemize}
+	\item Elk dwell in a certain forest. There are $N$ elk, of which a simple random sample of size $n$ are captured and tagged (“simple random sample” means that all $\binom{N}{n}$ sets of $n$ elk are equally likely). The captured elk are returned to the population, and then a new sample is drawn, this time with size $m$. This is an important method that is widely-used in ecology, known as capture-recapture.
+
+	What is the probability that exaclty $k$ of the $m$ elk in the new sample were previously tagged? (Assume that an elk that was captured before doesn’t become more or less likely to be captured again.)
+		\begin{itemize}
+			\item Let $X$ be the set of elks that have been captured before, $|X| = n$ and $Y$ be the set of elks captured now, $|Y| = m$. The set of all elks is denoted by $Z$ and $|Z| = N$. Note that $Z = X \cup X^c$. We are interested in the probability that $|X \cap Y| = k$, or equivalently that $|Y \backslash X| = m - k$.
+
+			Let's pick a random elk $e \in Z$ then the probability that $e \in X$ is equal to $\frac{n}{N}$. For there to be exactly $k$ elks from $X$ we have to pick $k$ elks from $X$ and $m - k$ elks from $X^c$, which has probability
+			$$
+			\left(\frac{n}{N}\right)^k \left(\frac{N - n}{N}\right)^{m - k}
+			$$
+			There are a total of $\binom{N}{k}$ choices like this so the probability is
+			$$
+			\binom{N}{k} \left(\frac{n}{N}\right)^k \left(\frac{N - n}{N}\right)^{m - k}.
+			$$
+			Note that this is simply the hypergeometric distribution.
+		\end{itemize}
+	\item A jar contains $r$ red balls and $g$ green balls, where $r$ and $g$ are fixed positive integers. A ball is drawn from the jar randomly (with all possibilities equally likely), and then a second ball is drawn randomly.
+		\begin{enumerate}
+			\item Explain intuitively why the probability of the second ball being green is the same as the probability of the first ball being green.
+				\begin{itemize}
+					\item If we are returning the ball after picking it then the state after and before picking it up is the same, so the probabilities don't change.
+				\end{itemize}
+			\item Define notation for the sample space of the problem, and use this to compute the probabilities from (a) and show that they are the same.
+				\begin{itemize}
+					$P(\text{green}) = \frac{g}{g + r}$, after picking the ball up and putting it back the probabilities don't change.
+				\end{itemize}
+			\item Suppose that there are 16 balls in total, and that the probability that the two balls are the same color is the same as the probability that they are different colors. What are $r$ and $g$ (list all possibilities)?
+		\end{enumerate}
+(b) Define notation for the sample space of the problem, and use this to compute
+the probabilities from (a) and show that they are the same.
+(c) Suppose that there are 16 balls in total, and that the probability that the two
+balls are the same color is the same as the probability that they are di↵erent colors.
+What are r and g (list all possibilities)?
 \end{enumerate}
 
 \end{document}
