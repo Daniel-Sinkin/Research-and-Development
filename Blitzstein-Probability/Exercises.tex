@@ -124,7 +124,7 @@
 		\end{enumerate}
 	\item
 		\begin{enumerate}
-			\item How many paths are there from the point (0, 0) to the point (110, 111) in the plane such that each step either consists of going one unit up or one unit to the right?
+			\item How many paths are there from the point $(0, 0)$ to the point $(110, 111)$ in the plane such that each step either consists of going one unit up or one unit to the right?
 				\begin{itemize}
 					\item Denote by $C((a, b), (x, y))$ where $(a, b) \leq (x, y)$ (elementwise) the number of such paths starting from $(a, b)$ and ending on $(x, y)$. Note that $C((a, b), (x, y)) = C((a + 1, b), (x, y)) + C((a, b + 1), (x, y))$ and $C((a, b), (x, y)) = C((b, a), (y, x))$. Furthermore for $(a, b) \leq (x', y') \leq (x, y)$ we have
 					$$
@@ -147,7 +147,11 @@
 				\begin{itemize}
 					\item
 					$$
-					C((0, 0), (110, 111)) \cdot C((110, 111), (210, 211)) = C((0, 0), (110, 111)) \cdot C((0, 0), (100, 100)) = \frac{221!}{110!111!} \cdot \frac{200!}{100!100!}
+					\begin{aligned}
+					&\ C((0, 0), (110, 111)) \cdot C((110, 111), (210, 211)) \\
+					=&\ C((0, 0), (110, 111)) \cdot C((0, 0), (100, 100)) \\
+					=&\ \frac{221!}{110!111!} \cdot \frac{200!}{100!100!}
+					\end{aligned}
 					$$
 				\end{itemize}
 		\end{enumerate}
@@ -421,7 +425,7 @@
 				\end{itemize}
 			\item Congratulations: you won the first game! Given this information, what is the probability that you will also win the second game (assume that, given the skill level of your opponent, the outcomes of the games are independent)?
 				\begin{itemize}
-					\item Recall that $P(X_i|W) = P(W|X_i) \frac{P(X_i)}{P(W)}$ holds, and note that $\frac{P(X_i)}{P(W)} = \frac{\frac{1}{3}}{\frac{1.7}{3}} = \frac{10}{17}. With that we can then calculate
+					\item Recall that $P(X_i|W) = P(W|X_i) \frac{P(X_i)}{P(W)}$ holds, and note that $\frac{P(X_i)}{P(W)} = \frac{\frac{1}{3}}{\frac{1.7}{3}} = \frac{10}{17}$. With that we can then calculate
 					$$
 					\begin{aligned}
 					P(X_1|W) = \frac{9}{17},&&P(X_2|W) = \frac{5}{17},&&P(X_3|W) = \frac{3}{17}.
