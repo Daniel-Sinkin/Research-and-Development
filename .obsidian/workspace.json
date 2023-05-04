@@ -1,0 +1,180 @@
+{
+  "main": {
+    "id": "bf103b7922e86183",
+    "type": "split",
+    "children": [
+      {
+        "id": "4f473a53055ee1c9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "17e1322f47e76920",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f5c7f10d57661c4c",
+    "type": "split",
+    "children": [
+      {
+        "id": "364107608b72cfef",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cef1cd1a1aed2369",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "3438eeacacbe6ed3",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e1bd8bf2c53ad79a",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "3a9908c8b26da96d",
+    "type": "split",
+    "children": [
+      {
+        "id": "b4ef146310898599",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4e304554bdb8e542",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "498daa60f973779d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c1da79311d6cc1d4",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "68c991ffd93d3428",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "cef1cd1a1aed2369",
+  "lastOpenFiles": [
+    "Blitzstein-Probability/Flashcards/Chapter 13",
+    "Blitzstein-Probability/Flashcards/Chapter 12",
+    "Blitzstein-Probability/Flashcards/Chapter 11",
+    "Blitzstein-Probability/Flashcards/Chapter 10",
+    "Blitzstein-Probability/Flashcards/Chapter 9",
+    "Blitzstein-Probability/Flashcards/Chapter 8",
+    "Blitzstein-Probability/Flashcards/Chapter 6/Probability Generating Function.md",
+    "Blitzstein-Probability/Flashcards/Chapter 8.md",
+    "Blitzstein-Probability/Flashcards/Chapter 7",
+    "Blitzstein-Probability/Flashcards/Chapter 6/Distribution - Weibull.md",
+    "Blitzstein-Probability/Flashcards/Chapter 6/Moment generating function.md",
+    "Blitzstein-Probability/Flashcards/Chapter 6/State and proof the Unbiasedness of sample variance Theorem.md",
+    "Blitzstein-Probability/Flashcards/Chapter 6/Mean and Variance of Sample Mean.md",
+    "Blitzstein-Probability/Flashcards/Chapter 6/Sample Moment.md",
+    "Blitzstein-Probability/Flashcards/Chapter 6/Kurtosis.md",
+    "Blitzstein-Probability/Flashcards/Chapter 6/Symmetric of Random Variables.md",
+    "Blitzstein-Probability/Flashcards/Chapter 6/Define Skewness.md",
+    "Blitzstein-Probability/Flashcards/Chapter 6/Define Moments.md",
+    "Blitzstein-Probability/Flashcards/Chapter 6/State and Prove Theorem 6.1.4 about error minimizers.md",
+    "Blitzstein-Probability/Flashcards/Chapter 6/Define Median, Mode.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5/Poisson Process.md",
+    "Blitzstein-Probability/Flashcards/Chapter 6",
+    "Blitzstein-Probability/Flashcards/Chapter 5/What does it mean for a distribution to have the memoryless property.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Exponential.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Normal, standard normal.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5/Standard Normal.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5/Survival Function.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Rayleigh.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5/State and Proof the Universality of the Uniform theorem.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5/Location-Scale Transformation.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Uniform.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5/LOTUS for continuous.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5/Expectation for continuous.md",
+    "Blitzstein-Probability/Flashcards/Chapter 5",
+    "Blitzstein-Probability/Flashcards/Chapter 4",
+    "Blitzstein-Probability/Flashcards/Chapter 3"
+  ]
+}

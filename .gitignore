@@ -9,5 +9,6 @@
 _minted-Exercises/
 __pycache__/
 
-# I'm not allowed to upload book pdfs
+# Ignore files I don't have copyright for
 Blitzstein-Probability/ProbBook.pdf
+Dive-into-Deep-Learning/d2l-en.pdf

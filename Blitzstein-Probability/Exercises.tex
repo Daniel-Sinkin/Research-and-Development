@@ -13,6 +13,8 @@
 
 \begin{document}
 
+\tableofcontents
+
 \section{Probability and Counting}
 \subsection{Counting}
 \begin{enumerate}
@@ -314,18 +316,36 @@
 			P(X_i = 0) = \frac{24}{30} \frac{23}{29} \frac{22}{28} \frac{21}{27} = \frac{26!}{30!} \frac{24}{20} = \frac{\binom{24}{7}}{\binom{30}{7}}
 			$$
 		\end{itemize}
+	\item A card player is dealt a 13-card hand from a well-shuffled, standard deck of cards. What is the probability that the hand is void in at least one suit (“void in a suit” means having no cards of that suit)?
+		\begin{itemize}
+			\item Denote by $X_i$ the number of cards of the $i$th suit then
+			$$
+			\begin{aligned}
+			P(X_i = 0) &= \frac{39}{52} \frac{38}{51} \cdot \dots \cdot \frac{26}{39} \\
+			&= \frac{38!}{52!} \frac{39!}{25!} \\
+			&= \frac{\frac{39!}{25!}}{\frac{52!}{38!}} \\
+			&= \frac{\frac{39!}{25!}}{\frac{52!}{38!}} \frac{14!}{14!} \\
+			&= \frac{\binom{39}{14}}{\binom{52}{14}}.
+			\end{aligned}
+			$$
+			Now we can apply inclusion exclusion to calculate teh desired probability
+			$$
+			\begin{aligned}
+			P(X_1 = 0 \cup X_2 = 0 \cup X_3 = 0 \cup X_4 = 0) &= \binom{4}{1} P(X_1 = 0) + \binom{4}{2} P(X_1 = 0, X_2 = 0) + \binom{4}{3} P(X_1 = 0, X_2 = 0, X_3 = 0)
+			\end{aligned}
+			$$
+			$P(X_1 = 0)$ we have already calculated above,
+			$$P(X_1 = 0, X_2 = 0) = \frac{}{},$$
+			and
+			$$
+			P(X_1 = 0, X_2 = 0, X_3 = 0)
+			$$
+			can be calculated similiarly.
+		\end{itemize}
 \end{enumerate}
 
 \subsection{Independence}
 \begin{enumerate}
-	\item Is it possible that an event is independent of itself? If so, when?
-		\begin{itemize}
-			\item Suppose $A$ is independent to itself, i.e., $P(A, A) = P(A)P(A)$. Of course $P(A, A) = P(A)$ so this condition becomes
-			$$
-			P(A)^2 = P(A)
-			$$
-			which is the case if and only if $P(A) \in \{0, 1\}$.
-		\end{itemize}
 	\item Is it always true that if A and B are independent events, then $A^c$ and $B^c$ are independent events? Show that it is, or give a counterexample.
 		\begin{itemize}
 			\item Suppose $A, B$ are independent, then
@@ -350,30 +370,6 @@
 \subsection{Thinking Conditionally}
 \begin{enumerate}
 	\item A bag contains one marble which is either green or blue, with equal probabilities. A green marble is put in the bag (so there are $2$ marbles now), and then a random marble is taken out. The marble taken out is green. What is the probability that the remaining marble is also green?
-	\item A spam filter is designed by looking at commonly occurring phrases in spam. Suppose that $80\%$ of email is spam. In $10\%$ of the spam emails, the phrase “free money” is used, whereas this phrase is only used in $1\%$ of non-spam emails. A new email has just arrived, which does mention “free money”. What is the probability that it is spam?
-		\begin{itemize}
-			\item Let $S$ denote if the email is spam, and $F$ is the phrase "free money" is contained in the email. We are interested in finding $P(S|F)$, to determine this note
-			$$
-			\begin{aligned}
-			P(S|F) &= \frac{P(S, F)}{P(F)} \\
-			&= \frac{1}{P(F)} P(F|S)P(S) \\
-			&= \frac{P(S)}{P(F)} P(F|S).
-			\end{aligned}
-			$$
-			We know that $P(S) = 0.8, P(F|S) = 0.1$ and $P(F|S^c) = 0.01$. This allows us to calculate
-			$$
-			\begin{aligned}
-			P(F) &= P(F, S) + P(F, S^c) \\
-			&= P(F|S)P(S) + P(F|S^c)P(S^c) \\
-			&= 0.1 \cdot 0.8 + 0.01 \cdot (1 - 0.8) \\
-			&= 0.1 \cdot 0.8 + 0.01 \cdot 0.2 = 0.082 = 8.2\%,
-			\end{aligned}
-			$$
-			so in total
-			$$
-			P(S|F) = \frac{P(S)}{P(F)} P(F|S) = \frac{0.8}{0.082} 0.1 \cong 0.9756 = 97.56\%.
-			$$
-		\end{itemize}
 	\item Let $G$ be the event that a certain individual is guilty of a certain robbery. In gathering evidence, it is learned that an event $E_1$ occurred, and a little later it is also learned that another event $E_2$ also occurred.
 		\begin{enumerate}
 			\item Is it possible that individually, these pieces of evidence increase the chance of guilt (so $P(G|E_1) > P (G)$ and $P(G|E_2) > P (G))$, but together they decrease the chance of guilt (so $P(G|E_1, E_2) < P(G)$)?
@@ -438,6 +434,71 @@
 				\end{itemize}
 			\item Explain the distinction between assuming that the outcomes of the games are independent and assuming that they are conditionally independent given the opponent’s skill level. Which of these assumptions seems more reasonable, and why?
 		\end{enumerate}
+\end{enumerate}
+
+\section{Conditional Probability}
+\subsection{Conditioning on evidence}
+\begin{enumerate}
+	\item A spam filter is designed by looking at commonly occurring phrases in spam. Suppose that $80\%$ of email is spam. In $10\%$ of the spam emails, the phrase “free money” is used, whereas this phrase is only used in $1\%$ of non-spam emails. A new email has just arrived, which does mention “free money”. What is the probability that it is spam?
+		\begin{itemize}
+			\item Let $S$ denote if the email is spam, and $F$ is the phrase "free money" is contained in the email. We are interested in finding $P(S|F)$, to determine this note
+			$$
+			\begin{aligned}
+			P(S|F) &= \frac{P(S, F)}{P(F)} \\
+			&= \frac{1}{P(F)} P(F|S)P(S) \\
+			&= \frac{P(S)}{P(F)} P(F|S).
+			\end{aligned}
+			$$
+			We know that $P(S) = 0.8, P(F|S) = 0.1$ and $P(F|S^c) = 0.01$. This allows us to calculate
+			$$
+			\begin{aligned}
+			P(F) &= P(F, S) + P(F, S^c) \\
+			&= P(F|S)P(S) + P(F|S^c)P(S^c) \\
+			&= 0.1 \cdot 0.8 + 0.01 \cdot (1 - 0.8) \\
+			&= 0.1 \cdot 0.8 + 0.01 \cdot 0.2 = 0.082 = 8.2\%,
+			\end{aligned}
+			$$
+			so in total
+			$$
+			P(S|F) = \frac{P(S)}{P(F)} P(F|S) = \frac{0.8}{0.082} 0.1 \cong 0.9756 = 97.56\%.
+			$$
+		\end{itemize}
+	\item According to the CDC (Centers for Disease Control and Prevention), men who smoke are 23 times more likely to develop lung cancer than men who don’t smoke. Also according to the CDC, $21.6\%$ of men in the U.S. smoke. What is the probability that a man in the U.S. is a smoker, given that he develops lung cancer?
+		\begin{itemize}
+			\item We write $p := P(L|S)$ and calculate
+			$$
+			\begin{aligned}
+			P(S|L) &= P(L|S) \frac{P(S)}{P(L)} \\
+			&= P(L|S) \frac{P(S)}{P(L|S)P(S) + P(L|S^c)P(S^c)} \\
+			&= P(L|S) \frac{0.216}{0.216p + \frac{p}{23}(1 - 0.216)} \\
+			&= p \frac{0.216}{0.216p + \frac{p}{23}(0.784)} \\
+			&\cong 0.8637 = 86.37\%.
+			\end{aligned}
+			$$
+		\end{itemize}
+\end{enumerate}
+
+\subsection{Independence and conditional independence}
+\begin{enumerate}
+	\item A family has 3 children, creatively named $A$, $B$, and $C$.
+		\begin{enumerate}
+			\item Discuss intuitively (but clearly) whether the event “$A$ is older than $B$” is independent of the event “$A$ is older than $C$.
+				\begin{itemize}
+					\item Note that there are $3! = 6$ different possible birth orders, if $A$ is older then $B$ then the possible birth orders are $\{BAC, BCA, CBA\}$. Out of those $A$ being older than $C$ occurs in $\frac{2}{3}$ of the cases, which is higher than it would be without that information (which of course has to be $1/2$ because the children are interchangeable).
+				\end{itemize}
+			\item Find the probability that $A$ is older than $B$, given that $A$ is older than $C$.
+				\begin{itemize}
+					\item $P(A > B | A > C) = \frac{2}{3}$ as discussed before.
+				\end{itemize}
+		\end{enumerate}
+	\item Is it possible that an event is independent of itself? If so, when?
+		\begin{itemize}
+			\item Suppose $A$ is independent to itself, i.e., $P(A, A) = P(A)P(A)$. Of course $P(A, A) = P(A)$ so this condition becomes
+			$$
+			P(A)^2 = P(A)
+			$$
+			which is the case if and only if $P(A) \in \{0, 1\}$.
+		\end{itemize}
 \end{enumerate}
 
 \end{document}
