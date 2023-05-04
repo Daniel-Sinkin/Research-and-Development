@@ -130,10 +130,25 @@
 					$$
 					C((a, b), (x, y)) = C((a, b), (x', y')) + C((x', y'), (a, b)).
 					$$
+					Note that to get from $(a, b)$ to $(x, y)$ we'll need exacty $y - b$ steps up and $x - a$ steps to the right. The only difference between different paths is the order of the steps. The total number of sets then is $n := (y - b) + (x - a)$. The number of total permutations of this is $n!$, but all of the right and up steps are the same, so we need to factor out those internal permutations, which are $(x - a)!$ and $(y - b)!$ respectively. As such
+					$$
+					C((a, b), (x, y)) = \frac{((y - b) + (x - a))!}{(y - b)!(x - a)!}
+					$$
+					As such
+					$$
+					C((0, 0), (110, 111)) = \frac{221!}{110!111!}.
+					$$
+					Note that this is exactly
+					$$
+					\binom{n}{n - (y - b)}.
+					$$
 				\end{itemize}
 			\item How many paths are there from (0, 0) to (210, 211), where each step consists of going one unit up or one unit to the right, and the path has to go through (110, 111)?
 				\begin{itemize}
-					\item We can split this into a sum of two counts, first the number of paths from (0, 0) to (110, 111) and then from (110, 111) to (210, 211). Note that the second path is equivalent to counting the number of paths from (0, 0) to (100, 100).
+					\item
+					$$
+					C((0, 0), (110, 111)) \cdot C((110, 111), (210, 211)) = C((0, 0), (110, 111)) \cdot C((0, 0), (100, 100)) = \frac{221!}{110!111!} \cdot \frac{200!}{100!100!}
+					$$
 				\end{itemize}
 		\end{enumerate}
 \end{enumerate}
@@ -156,10 +171,34 @@
 	\sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}
 	$$
 	for all positive integers $n$.
+		\begin{itemize}
+			\item When we want to consider the number of ways to pick $n$ elements of $\{1, 2, \dots, n, n + 1, \dots, 2n\}$ then for every permutation there exists a $0 \leq k \leq n$ such that it picks $k$ elements from $\{1, 2, \dots, n\}$ and $n - k$ elements from $\{n + 1, \dots, 2n\}$. For fixed $k$ there are
+			$$
+			\binom{n}{k} \binom{n}{n - k}
+			$$
+			such possibilities. This proves that $\binom{2n}{n} = \sum_{k = 0}^n \binom{n}{k} \binom{n}{n - k}$. Note that picking $n - k$ elements from $k$ is equivalent to picking the other $k$ elements, as such
+			$$
+			\binom{n}{k} = \binom{n}{n - k}.
+			$$
+			In total we have shown that
+			$$
+			\binom{2n}{n} = \sum_{k = 0}^n \binom{n}{k} \binom{n}{n - k} = \sum_{k = 0}^n \binom{n}{k}^2.
+			$$
+		\end{itemize}
 	\item Give a story proof that
 	$$
 	\frac{(2n)!}{2^n \cdot n!} = (2n - 1) (2n - 3) \cdot \dots \cdot 3 \cdot 1.
 	$$
+		\begin{itemize}
+			\item Suppose we are given $2n$ people and we want to count the number of pairs.
+
+			To see that the right hand side describes this note that the first person has $2n - 1$ people to choose, the second person has $2n - 3$ people to choose and so on, until we are left with two people and then there is only one choise.
+
+			On the other hand we could also just line up the people, there are $(2n)!$ ways to do this and pair the people such that $2k$ and $2k + 1$ are paired up. For every pair we can swap the arrangement of people so we overcount by $2$ in each pair, for a total of $2^n$. On the other hand the order of the pairs in the line also doesn't matter. There are $n!$ ways to arrange those pairs, as such the total number of pairings is
+			$$
+			\frac{(2n)!}{2^n \cdot n!}.
+			$$
+		\end{itemize}
 \end{enumerate}
 
 \subsection{Naive Definition of Probability}
@@ -214,15 +253,187 @@
 				\end{itemize}
 			\item Define notation for the sample space of the problem, and use this to compute the probabilities from (a) and show that they are the same.
 				\begin{itemize}
-					$P(\text{green}) = \frac{g}{g + r}$, after picking the ball up and putting it back the probabilities don't change.
+					\item $P(\text{green}) = \frac{g}{g + r}$, after picking the ball up and putting it back the probabilities don't change.
 				\end{itemize}
 			\item Suppose that there are 16 balls in total, and that the probability that the two balls are the same color is the same as the probability that they are different colors. What are $r$ and $g$ (list all possibilities)?
 		\end{enumerate}
-(b) Define notation for the sample space of the problem, and use this to compute
-the probabilities from (a) and show that they are the same.
-(c) Suppose that there are 16 balls in total, and that the probability that the two
-balls are the same color is the same as the probability that they are di↵erent colors.
-What are r and g (list all possibilities)?
+	\item A norepeatword is a sequence of at least one (and possibly all) of the usual 26 letters a,b,c,. . . ,z, with repetitions not allowed. For example, “course” is a norepeatword, but “statistics” is not. Order matters, e.g., “course” is not the same as “source”. A norepeatword is chosen randomly, with all norepeatwords equally likely. Show that the probability that it uses all 26 letters is very close to 1/e.
+		\begin{itemize}
+			\item Let's fix $1 \leq k \leq 26$. To compute the number of nonrepeat words of length $k$, which we denote by $n_k \in \mathbb{N}$. We first have to select $k$ out of $26$ letters, there are $\binom{26}{k}$ possibilities for this. Then Every single permutation of those letters is a new valid norepeatword. There are $k!$ permutations like that, as such
+			$$
+			n_k = \binom{26}{k} k! = \frac{26!}{(26 - k)!k!} k! = \frac{26!}{(26 - k)!}.
+			$$
+			We are interested in the number
+			$$
+			p = \frac{n_{26}}{\sum_{k = 1}^{25} n_k} = \frac{26!}{\sum_{k = 1}^{25} \frac{26!}{(26 - k)!}} = \frac{1}{\sum_{k = 1}^{25} \frac{1}{(26 - k)!}}.
+			$$
+			Recall that
+			$$
+			e = \lim_{n \rightarrow \infty} \sum_{k = 0}^n \frac{1}{k!}
+			$$
+			so that
+			$$
+			e \sim \sum_{k = 0}^{25} \frac{1}{k!} = \sum_{k = 1}^{25} \frac{1}{(26 - k)!}
+			$$
+			Note that we are missing $n_0 = 1$.
+		\end{itemize}
+\end{enumerate}
+
+\subsection{Inclusion-Exclusion}
+\begin{enumerate}
+	\item For a group of 7 people, find the probability that all 4 seasons (winter, spring, summer, fall) occur at least once each among their birthdays, assuming that all seasons are equally likely.
+		\begin{itemize}
+			\item Let $X_i$ denote the number of times the $i$th season appears. We are interested in $P(X_1 > 0, X_2 > 0, X_3 > 0, X_4 > )$ note that this is the same as
+			$$
+			1 - P(X_1 = 0 \cup X_2 = 0 \cup X_3 = 0 \cup X_4 = 0).
+			$$
+			Using the principle of inclusion exclusion and noting that because $\sum_{i = 1}^4 X_i = 7$ we can't have $X_i = 0$ for all $1 \leq i \leq 4$, we can calculate
+			$$
+			\begin{aligned}
+			\sum_{i = 1}^4 P(X_i = 0) -&\ \sum_{i \neq j} P(X_i = 0, X_j = 0) \\
+			+&\ \sum_{1 \leq i, j, k \leq \text{p.w. disjoint}} P(X_i = 0, X_j = 0, X_k = 0),
+			\end{aligned}
+			$$
+			noting that the order of the elements doesn't matter we have
+			$$
+			\binom{4}{1} P(X_1 = 0) - \binom{4}{2} P(X_1 = 0, X_2 = 0) + \binom{4}{3} P(X_1 = 0, X_2 = 0, X_3 = 0).
+			$$
+			Note that $P(X_1 = 0) = \left(\frac{3}{4}\right)^4$, $P(X_1 = 0, X_2 = 0) = \left( \frac{1}{2} \right)^7$ and $P(X_1 = 0, X_2 = 0, X_3 = 0) = \left( \frac{1}{4} \right)^7$. In total this means the desired probability is
+			$$
+			1 - \left( 4 \left(\frac{3}{4}\right)^7 - 6 \left( \frac{1}{2} \right)^7 + 4 \left( \frac{1}{4} \right)^7 \right) \cong 0.513.
+			$$
+		\end{itemize}
+	\item Alice attends a small college in which each class meets only once a week. She is deciding between 30 non-overlapping classes. There are 6 classes to choose from for each day of the week, Monday through Friday. Trusting in the benevolence of randomness, Alice decides to register for 7 randomly selected classes out of the 30, with all choices equally likely. What is the probability that she will have classes every day, Monday through Friday? (This problem can be done either directly using the naive definition of probability, or using inclusion-exclusion.)
+		\begin{itemize}
+			\item Let $X_i$ denote the number of courses in the $i$th day chosen. We know $\sum_{i = 1}^5 X_i = 30$. Similiarly to before
+			$$
+			P(X_i = 0) = \frac{24}{30} \frac{23}{29} \frac{22}{28} \frac{21}{27} = \frac{26!}{30!} \frac{24}{20} = \frac{\binom{24}{7}}{\binom{30}{7}}
+			$$
+		\end{itemize}
+\end{enumerate}
+
+\subsection{Independence}
+\begin{enumerate}
+	\item Is it possible that an event is independent of itself? If so, when?
+		\begin{itemize}
+			\item Suppose $A$ is independent to itself, i.e., $P(A, A) = P(A)P(A)$. Of course $P(A, A) = P(A)$ so this condition becomes
+			$$
+			P(A)^2 = P(A)
+			$$
+			which is the case if and only if $P(A) \in \{0, 1\}$.
+		\end{itemize}
+	\item Is it always true that if A and B are independent events, then $A^c$ and $B^c$ are independent events? Show that it is, or give a counterexample.
+		\begin{itemize}
+			\item Suppose $A, B$ are independent, then
+			$$
+			P(A, B) = P(A)P(B).
+			$$
+			Note that $P(A^c)P(B^c) = (1 - P(A))(1 - P(B)) = 1 - P(A) - P(B) + P(A)P(B) = 1 - P(A) - P(B) + P(A, B)$. By DeMorgan $P(A^c, B^c) = P((A \cup B)^c) = 1 - P(A \cup B) = 1 - P(A) - P(B) + P(A, B)$.
+		\end{itemize}
+	\item Give an example of 3 events A, B, C which are pairwise independent but not independent. Hint: find an example where whether C occurs is completely determined if we know whether A occurred and whether B occurred, but completely undetermined if we know only one of these things.
+	\item Give an example of $3$ events $A, B, C$ which are not independent, yet satisfy $P(A \cap B \cap C) = P(A)P(B)P(C)$. Hint: consider simple and extreme cases.
+		\begin{itemize}
+			\item First note that $P(X) \neq 0$ for $X \in \{A, B, C\}$, otherwise the remainding variables would have to be independent. Let $A = C$ then
+			$$
+			P(A, B) = P(A, B, A) = P(A)^2 P(B)
+			$$
+			as such $P(A, B) \neq P(A)P(B)$. Of course $A$ and $C = A$ are not independent. And also $P(C, B) = P(A, B)$ is not independent.
+
+			Alternatively we could have $P(A) = 0$ then $P(A, B, C) = P(A)P(B)P(C) = 0$. For any $B, C$ independent such that $P(B) \neq 0$ we then have the desired form.
+		\end{itemize}
+\end{enumerate}
+
+\subsection{Thinking Conditionally}
+\begin{enumerate}
+	\item A bag contains one marble which is either green or blue, with equal probabilities. A green marble is put in the bag (so there are $2$ marbles now), and then a random marble is taken out. The marble taken out is green. What is the probability that the remaining marble is also green?
+	\item A spam filter is designed by looking at commonly occurring phrases in spam. Suppose that $80\%$ of email is spam. In $10\%$ of the spam emails, the phrase “free money” is used, whereas this phrase is only used in $1\%$ of non-spam emails. A new email has just arrived, which does mention “free money”. What is the probability that it is spam?
+		\begin{itemize}
+			\item Let $S$ denote if the email is spam, and $F$ is the phrase "free money" is contained in the email. We are interested in finding $P(S|F)$, to determine this note
+			$$
+			\begin{aligned}
+			P(S|F) &= \frac{P(S, F)}{P(F)} \\
+			&= \frac{1}{P(F)} P(F|S)P(S) \\
+			&= \frac{P(S)}{P(F)} P(F|S).
+			\end{aligned}
+			$$
+			We know that $P(S) = 0.8, P(F|S) = 0.1$ and $P(F|S^c) = 0.01$. This allows us to calculate
+			$$
+			\begin{aligned}
+			P(F) &= P(F, S) + P(F, S^c) \\
+			&= P(F|S)P(S) + P(F|S^c)P(S^c) \\
+			&= 0.1 \cdot 0.8 + 0.01 \cdot (1 - 0.8) \\
+			&= 0.1 \cdot 0.8 + 0.01 \cdot 0.2 = 0.082 = 8.2\%,
+			\end{aligned}
+			$$
+			so in total
+			$$
+			P(S|F) = \frac{P(S)}{P(F)} P(F|S) = \frac{0.8}{0.082} 0.1 \cong 0.9756 = 97.56\%.
+			$$
+		\end{itemize}
+	\item Let $G$ be the event that a certain individual is guilty of a certain robbery. In gathering evidence, it is learned that an event $E_1$ occurred, and a little later it is also learned that another event $E_2$ also occurred.
+		\begin{enumerate}
+			\item Is it possible that individually, these pieces of evidence increase the chance of guilt (so $P(G|E_1) > P (G)$ and $P(G|E_2) > P (G))$, but together they decrease the chance of guilt (so $P(G|E_1, E_2) < P(G)$)?
+			\item Show that the probability of guilt given the evidence is the same regardless of whether we update our probabilities all at once, or in two steps (after getting the first piece of evidence, and again after getting the second piece of evidence). That is, we can either update all at once (computing $P(G|E_1, E_2)$ in one step), or we can first update based on $E_1$, so that our new probability function is $P_{\operatorname{new}}(A) = P (A|E_1)$, and then update based on $E_2$ by computing $P_{\operatorname{new}}(G|E 2)$.
+				\begin{itemize}
+					\item This problem asks if $P((A|B)|C) = P(A|B, C)$.
+					$$
+					\begin{aligned}
+					P_{\operatorname{new}}(G|E_2) &= \frac{P_{\operatorname{new}}(G, E_2)}{P_{\operatorname{new}}(E_2)} \\
+					&= \frac{P(G, E_2|E_1)}{P(E_2|E_1)} \\
+					&= \frac{\frac{P(G, E_1, E_2)}{P(E_1)}}{\frac{P(E_1, E_2)}{P(E_1)}}. \\
+					&= \frac{P(G, E_1, E_2)}{P(E_1, E_2)} = P(G|E_1, E_2).
+					\end{aligned}
+					$$
+				\end{itemize}
+		\end{enumerate}
+	\item A crime is committed by one of two suspects, A and B. Initially, there is equal evidence against both of them. In further investigation at the crime scene, it is found that the guilty party had a blood type found in $10\%$ of the population. Suspect A does match this blood type, whereas the blood type of Suspect B is unknown.
+		\begin{enumerate}
+			\item Given this new information, what is the probability that $A$ is the guilty party?
+				\begin{itemize}
+					\item Denote by $A$ that $A$ is guilty and by $\beta$ that $A$ has the given blood type, then
+					$$
+					\begin{aligned}
+					P(A|\beta) &= P(\beta|A) \frac{P(A)}{P(\beta)} \\
+					&= \frac{P(\beta|A)P(A)}{P(\beta|A)P(A) + P(\beta|B)P(B)}.
+					\end{aligned}
+					$$
+					Note that $P(\beta|A) = 1$ because the guilty party needs to have that blood type, also $P(A) = 0.5$. Now note that $P(\beta|B) = 0.1$ because if $B$ is the guilty party then the probability of $A$ having that blood type is just the average. $P(B) = 1 - P(A) = 0.5$. In total this shows that
+					$$
+					P(A|\beta) = \frac{10}{11}.
+					$$
+				\end{itemize}
+			\item Given this new information, what is the probability that B’s blood type matches that found at the crime scene?
+				\begin{itemize}
+					\item Note that $P(\beta'|A^c) = 1$ and $P(\beta'|A) = 0.1$. As such we are interested in
+					$$
+					P(\beta'|\beta) = P(A|\beta)P(\beta'|A) + P(A^c|\beta)P(\beta'|A^c) = \frac{10}{11} \frac{1}{10} + \frac{1}{11} \cdot 1 = \frac{2}{11}.
+					$$
+				\end{itemize}
+		\end{enumerate}
+	\item You are going to play 2 games of chess with an opponent whom you have never played against before (for the sake of this problem). Your opponent is equally likely to be a beginner, intermediate, or a master. Depending on which, your chances of winning an individual game are $90\%$, $50\%$, or $30\%$, respectively.
+		\begin{enumerate}
+			\item What is your probability of winning the first game?
+				\begin{itemize}
+					\item Let $X = 1, 2, 3$ be the skill of my opponent, then $P(X = i) = \frac{1}{3}, i = 1, 2, 3$ and let $W$ denote whether I win or not $P(W|X_1) = 0.9, P(W|X_2) = 0.5$ and $P(W|X_3) = 0.3$. The total win chance is then simply
+					$$
+					P(W) = \sum_{i = 1}^3 P(W|X_i)P(X_i) = \frac{1}{3} \left(0.9 + 0.5 + 0.3 \right) = \frac{1.7}{3} = \frac{17}{30}.
+					$$
+				\end{itemize}
+			\item Congratulations: you won the first game! Given this information, what is the probability that you will also win the second game (assume that, given the skill level of your opponent, the outcomes of the games are independent)?
+				\begin{itemize}
+					\item Recall that $P(X_i|W) = P(W|X_i) \frac{P(X_i)}{P(W)}$ holds, and note that $\frac{P(X_i)}{P(W)} = \frac{\frac{1}{3}}{\frac{1.7}{3}} = \frac{10}{17}. With that we can then calculate
+					$$
+					\begin{aligned}
+					P(X_1|W) = \frac{9}{17},&&P(X_2|W) = \frac{5}{17},&&P(X_3|W) = \frac{3}{17}.
+					\end{aligned}
+					$$
+					With that the probability of winning again is then
+					$$
+					P(W_2) = \frac{9}{17} \cdot 0.9 + \frac{5}{17} \cdot 0.5 + \frac{3}{17} \cdot 0.3 = \frac{23}{34}.
+ 					$$
+				\end{itemize}
+			\item Explain the distinction between assuming that the outcomes of the games are independent and assuming that they are conditionally independent given the opponent’s skill level. Which of these assumptions seems more reasonable, and why?
+		\end{enumerate}
 \end{enumerate}
 
 \end{document}
