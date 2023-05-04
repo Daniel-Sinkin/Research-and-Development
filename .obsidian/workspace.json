@@ -11,8 +11,12 @@
             "id": "17e1322f47e76920",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Wasserman-Statistics/Flashcards/State and prove Bayes' Theorem.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Wasserman-Statistics/Flashcards/State and prove Bayes' Theorem.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Wasserman-Statistics/Flashcards/State and prove Bayes' Theorem.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Wasserman-Statistics/Flashcards/State and prove Bayes' Theorem.md"
+              }
             }
           }
         ]
@@ -138,17 +146,24 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cef1cd1a1aed2369",
+  "active": "17e1322f47e76920",
   "lastOpenFiles": [
+    "Wasserman-Statistics/Exercises.aex",
+    "Wasserman-Statistics/Exercises.w18",
+    "Wasserman-Statistics/Exercises.toc",
+    "Wasserman-Statistics/Exercises.pdf",
+    "Wasserman-Statistics/Exercises.out",
+    "Wasserman-Statistics/Exercises.aux",
+    "Wasserman-Statistics/_minted-Exercises",
+    "Wasserman-Statistics/Exercises.log",
+    "Wasserman-Statistics/Exercises.tex",
+    "Wasserman-Statistics/Flashcards/State the Law of Total Probability.md",
+    "Wasserman-Statistics/Flashcards/State and prove Bayes' Theorem.md",
+    "Wasserman-Statistics/Flashcards/State and prove the Continuity Theorem for Probabilities.md",
     "Blitzstein-Probability/Flashcards/Chapter 13",
     "Blitzstein-Probability/Flashcards/Chapter 12",
-    "Blitzstein-Probability/Flashcards/Chapter 11",
-    "Blitzstein-Probability/Flashcards/Chapter 10",
-    "Blitzstein-Probability/Flashcards/Chapter 9",
-    "Blitzstein-Probability/Flashcards/Chapter 8",
     "Blitzstein-Probability/Flashcards/Chapter 6/Probability Generating Function.md",
     "Blitzstein-Probability/Flashcards/Chapter 8.md",
-    "Blitzstein-Probability/Flashcards/Chapter 7",
     "Blitzstein-Probability/Flashcards/Chapter 6/Distribution - Weibull.md",
     "Blitzstein-Probability/Flashcards/Chapter 6/Moment generating function.md",
     "Blitzstein-Probability/Flashcards/Chapter 6/State and proof the Unbiasedness of sample variance Theorem.md",
@@ -161,7 +176,6 @@
     "Blitzstein-Probability/Flashcards/Chapter 6/State and Prove Theorem 6.1.4 about error minimizers.md",
     "Blitzstein-Probability/Flashcards/Chapter 6/Define Median, Mode.md",
     "Blitzstein-Probability/Flashcards/Chapter 5/Poisson Process.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6",
     "Blitzstein-Probability/Flashcards/Chapter 5/What does it mean for a distribution to have the memoryless property.md",
     "Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Exponential.md",
     "Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Normal, standard normal.md",
@@ -169,12 +183,6 @@
     "Blitzstein-Probability/Flashcards/Chapter 5/Survival Function.md",
     "Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Rayleigh.md",
     "Blitzstein-Probability/Flashcards/Chapter 5/State and Proof the Universality of the Uniform theorem.md",
-    "Blitzstein-Probability/Flashcards/Chapter 5/Location-Scale Transformation.md",
-    "Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Uniform.md",
-    "Blitzstein-Probability/Flashcards/Chapter 5/LOTUS for continuous.md",
-    "Blitzstein-Probability/Flashcards/Chapter 5/Expectation for continuous.md",
-    "Blitzstein-Probability/Flashcards/Chapter 5",
-    "Blitzstein-Probability/Flashcards/Chapter 4",
-    "Blitzstein-Probability/Flashcards/Chapter 3"
+    "Blitzstein-Probability/Flashcards/Chapter 5/Location-Scale Transformation.md"
   ]
 }
