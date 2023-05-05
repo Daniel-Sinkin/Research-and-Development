@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Wasserman-Statistics/Flashcards/State and prove Bayes' Theorem.md",
+                "file": "Wasserman-Statistics/Flashcards/Distribution - Exponential.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Wasserman-Statistics/Flashcards/State and prove Bayes' Theorem.md",
+                "file": "Wasserman-Statistics/Flashcards/Distribution - Exponential.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Wasserman-Statistics/Flashcards/State and prove Bayes' Theorem.md",
+                "file": "Wasserman-Statistics/Flashcards/Distribution - Exponential.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Wasserman-Statistics/Flashcards/State and prove Bayes' Theorem.md"
+                "file": "Wasserman-Statistics/Flashcards/Distribution - Exponential.md"
               }
             }
           }
@@ -148,6 +148,8 @@
   },
   "active": "17e1322f47e76920",
   "lastOpenFiles": [
+    "Wasserman-Statistics/Flashcards/State and prove Bayes' Theorem.md",
+    "Wasserman-Statistics/Flashcards/Distribution - Exponential.md",
     "Wasserman-Statistics/Exercises.aex",
     "Wasserman-Statistics/Exercises.w18",
     "Wasserman-Statistics/Exercises.toc",
@@ -158,10 +160,8 @@
     "Wasserman-Statistics/Exercises.log",
     "Wasserman-Statistics/Exercises.tex",
     "Wasserman-Statistics/Flashcards/State the Law of Total Probability.md",
-    "Wasserman-Statistics/Flashcards/State and prove Bayes' Theorem.md",
     "Wasserman-Statistics/Flashcards/State and prove the Continuity Theorem for Probabilities.md",
     "Blitzstein-Probability/Flashcards/Chapter 13",
-    "Blitzstein-Probability/Flashcards/Chapter 12",
     "Blitzstein-Probability/Flashcards/Chapter 6/Probability Generating Function.md",
     "Blitzstein-Probability/Flashcards/Chapter 8.md",
     "Blitzstein-Probability/Flashcards/Chapter 6/Distribution - Weibull.md",

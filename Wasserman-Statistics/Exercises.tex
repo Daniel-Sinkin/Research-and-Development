@@ -513,29 +513,245 @@ Ex2_2(draw = False, save = False)
 	$$
 		\begin{enumerate}
 			\item Find the cumulative distribution function of $X$.
+				\begin{itemize}
+					\item We can obtain the CDF $F$ of $f$ by integration:
+					$$
+					F(t) := \int_{-\infty}^t f(x) dx,
+					$$
+					For $t \leq 0$ we have $F(t) = 0$. Let $t \in (0, 1)$ then
+					$$
+					F(t) = \int_0^t \frac{1}{4} dx = \frac{t}{4}.
+					$$
+					For $t \in [1, 3]$ we have
+					$$
+					F(t) = \int_0^1 f(x) dx = \frac{1}{4}.
+					$$
+					Now let $t \in (3, 5)$ then
+					$$
+					\begin{aligned}
+					F(t) &= \int_0^1 f(x) dx + \int_3^t f(x) dx \\
+					&= \frac{1}{4} + (t - 3) \frac{3}{8}.
+					\end{aligned}
+					$$
+					And for $t \geq 5 : F(t) = 1$. In total this shows that
+					$$
+					F(t) = 
+					\begin{cases} 
+					0, & \text{if } t \leq 0, \\
+					\frac{t}{4}, & \text{if } t \in (0, 1), \\
+					\frac{1}{4}, & \text{if } t \in [1, 3], \\
+					\frac{1}{4} + \frac{3}{8}(t - 3), & \text{if } t \in (3, 5), \\
+					1, & \text{if } t \geq 5.
+					\end{cases}
+					$$
+				\end{itemize}
 			\item Let $Y = 1 / X$. Find the probability density function $f_Y(y)$ for $Y$. Hint. Consider three cases: $\frac{1}{5} \leq y \leq \frac{1}{3}$, $\frac{1}{3} \leq y \leq 1$, and $y \geq 1$.
+				\begin{itemize}
+					\item First of all, note that $0 < X < 5$, as such $\frac{1}{5} < Y$. This means that
+					$$
+					P(Y \leq y) = P\left(\frac{1}{5} < Y \leq y \right)
+					$$
+					Now suppose $y \in \left(\frac{1}{5}, \frac{1}{3} \right)$, then
+					$$
+					P\left(Y \leq y\right) = P\left( \frac{1}{5} < Y \leq y \right)
+					$$
+					By definition
+					$$
+					\frac{1}{5} < Y \leq y \iff \frac{1}{y} \leq \frac{1}{Y} < 5 \iff \frac{1}{y} \leq X < 5.
+					$$
+					Then
+					$$
+					P\left(Y \leq y\right) = P\left(\frac{1}{y} \leq X < 5\right) = F(5) - F\left( \frac{1}{y} \right).
+					$$
+					This can then be computed by noting that $F(5) = 1$ and $F(1 / y) = \frac{1}{4} + \frac{3}{8}(\frac{1}{y} - 3)$.
+
+					For $\frac{1}{3} \leq y \leq 1$ we have
+					$$
+					P\left(Y \leq y\right) = F(3) - F\left(\frac{1}{y}\right)
+					$$
+					and this is equal to $\frac{1}{4}$. For $y \geq 1$ we have $\frac{1}{y} \leq 1$ and
+					$$
+					\frac{1}{4} - \frac{1}{4y}.
+					$$
+					In total this means [TODO: Finish this].
+				\end{itemize}
 		\end{enumerate}
 	\item Let $X$ and $Y$ be discrete random variables. Show that $X$ and $Y$ are independent if and only if $f_{X, Y}(x, y) = f_X(x)f_Y(y)$ for all $x$ and $y$.
-	\item 
-	\item 
-	\item 
+	\item Let $X$ have distribution $F$ and density function $f$ and let $A$ be a subset of $\mathbb{R}$. Denote by $I_A(x)$ the indicator function for $A$. Let $Y = I_A(X)$. Find an expression for the cumulative distribution of $Y$. Hint: first find the probability mass function for $Y$.
+		\begin{itemize}
+			\item Denote the CDF of $Y$ by $G$. Note that $Y$ either takes $0$ or $1$ as its value. The PDF $g$ of $Y$ is $g(t) = 1$ if $X(t) \in A$ and $0$ else. This means that the CDF for $y < 0$ is just $0$, for $0 \leq y < 1$, $G(y) = P(X \in A)$ and $G(y) = 1$ for all $y \geq 1$. Note that
+			$$
+			P(X \notin A) = 1 - P(X \in A) = 1 - \int_A f(x) dx.
+			$$
+		\end{itemize}
+	\item Let $X$ and $Y$ be independent and suppose that each has a $\operatorname{Uniform}(0, 1)$ distribution. Let $Z = \min\{X, Y\}$. Find the density $f_Z(z)$ for $Z$. Hint: It might be easier to first find $P(Z > z)$.
+		\begin{itemize}
+			\item By definition we have 
+			$$
+			P(Z > z) = P(\min{X, Y} > z) = P(X > z, Y > z),$$
+			because $X$ and $Y$ are independent it follows that this is equal to $P(X > z)P(Y > z)$, because both of those have the same distribution those two probabilities are the same:
+			$$
+			P(X > z)P(Y > z) = P(X > z)^2 = (1 - P(X \leq z))^2 = (1 - z)^2.
+			$$
+			As such
+			$$
+			P(Z \leq z) = 1 - p(Z > z) = 1 - (1 - z)^2 = 2z - z^2.
+			$$
+			Differentiating this yields the PDF
+			$$
+			f_Z(z) = 2 - 2z.
+			$$
+		\end{itemize}
+	\item Let $X$ have CDF $F$. Find the CDF of $X^+ = \max{0, X}$.
+		\begin{itemize}
+			\item Note that for $y \leq 0$ we have $P(X^+ \leq y) = F(0)$. For $x > 0$ we have
+			$$
+			\begin{aligned}
+			F(X^+ \leq x) &= F(X^+ \leq 0) + P(0 < X^+ \leq x) \\
+			&= F(0) + P(0 < X \leq x) \\
+			&= F(0) + F(x) - F(0) \\
+			&= F(x).
+			\end{aligned}
+			$$
+		\end{itemize}
 	\item Let $X \sim \operatorname{Exp}(\beta)$. Find $F(x)$ and $F^{-1}(q)$.
+		\begin{itemize}
+			\item The PDF of $f$ is given by $f(x) = \frac{1}{\beta} e^{- x / \beta}$ for $x > 0$ and $0$ for $x \leq 0$. We obtain the CDF of $X$ by integrating. For $t \leq 0$ we have F(t) and for $t > 0$
+			$$
+			F(t) = \int_{-\infty}^t f(x) dx = \int_0^t \frac{1}{\beta} e^{-x / \beta} dx.
+			$$
+			Recall that the antiderivative of $e^{Ax}$ is $\frac{1}{A} e^{Ax}$ as such
+			$$
+			\begin{aligned}
+			F(t) &= \left. \frac{1}{\beta} \frac{1}{-\frac{1}{\beta}} e^{-x / \beta} \right|_{x = 0}^{x = t} \\
+			&= - e^{-t / \beta} + e^{-0 / \beta}.
+			\end{aligned}
+			$$
+			As such
+			$$
+			F(t) = 1 - e^{-t / \beta}.
+			$$
+			Per definition $F^{-1}(q) = \inf \{x : F(x) > q\}$ for $q \in [0, 1]$. For a continuous and monotone increasing function $F$ (which is the case for the exponential distribution) this is simply
+			$$
+			x = F^{-1}(q).
+			$$
+			As such we want to solve $F(x) = q$ for $x$, this is a straightforward computation:
+			$$
+			\begin{aligned}
+			&& q &= 1 - e^{-x / \beta} \\
+			\iff&& e^{-t / \beta} &= 1 - q \\
+			\iff&& -t/\beta &= \log(1 - q) \\
+			\iff&& t &= -\beta \log(1 - q).
+			\end{aligned}
+			$$
+		\end{itemize}
 	\item Let $X$ and $Y$ be independent. Show that $g(X)$ is independent of $h(Y)$ where $g$ and $h$ are functions.
-	\item 
+	\item Suppose we toss a coin once and let $p$ be the probability of heads. Let $X$ denote the number of heads and let $Y$ denote the number of tails.
+		\begin{enumerate}
+			\item Prove that $X$ and $Y$ are dependent.
+				\begin{itemize}
+					\item Suppose $p \in (0, 1)$ then $P(X = 1) = p$ and $P(Y = 1) = 1 - p$ but $P(X = 1, Y = 1) = 0$, as such $X$ and $Y$ can't be independent.
+				\end{itemize}
+			\item Let $N \sim \operatorname{Poisson}(\lambda)$ and suppose we toss a coin $N$ times. Let $X$ and $Y$ be the number of heads and tails. Show that $X$ and $Y$ are independent.
+		\end{enumerate}
 	\item Prove Theorem 2.33
 	\item Let $X \sim \mathcal{N}(0, 1)$ and let $Y = e^X$.
 		\begin{enumerate}
 			\item Find the PDF for $Y$. Plot it.
+				\begin{itemize}
+					\item Note that $P(Y \leq t) = P(e^X \leq t) = P(X \leq \log(t))$. We can obtain the PDF $g$ of $Y$ by differentiation:
+					$$
+					\frac{d}{dt} F(\log(t)) = \frac{1}{\sqrt{2\pi} t} e^{- \frac{\log(t)^2}{2}}.
+					$$
+					\begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.arange(start = 0.01, stop = 7, step = 0.01)
+y = np.exp(- np.log(x)**2 * 0.5) * 0.5 / x
+y = y / np.sqrt(2 * np.pi)
+plt.plot(x, y)
+
+plt.savefig('Ex2_13a.png')
+					\end{minted}
+					\begin{center}
+						\includegraphics[width=\linewidth]{2-Random_Variables/Ex2_13a.png}
+					\end{center}
+				\end{itemize}
 			\item (Computer Experiment) Generate a vector $x = (x_1, \dots, x_{10000})$ consisting of $10000$ random standard Normals. Let $y = (y_1, \dots, y_{10000})$ where $y_i = e^{x_i}$. Draw a histogram of $y$ and compare it to the PDF you found in part $(a)$.
+				\begin{itemize}
+					\item
+					\begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.random.randn(10000)
+y = np.exp(x)
+
+plt.hist(y, bins=50)
+plt.savefig('Ex2_13b.png', dpi=300)
+					\end{minted}
+					\begin{center}
+						\includegraphics[width=\linewidth]{2-Random_Variables/Ex2_13b.png}
+					\end{center}
+				\end{itemize}
 		\end{enumerate}
 	\item Let $(X, Y)$ be uniformly distributed on the unit disk $\{(x, y) : x^2 + y^2 \leq 1\}$. Let $R = \sqrt{X^2 + Y^2}$. Find the CFD and PDF of $R$.
-	\item 
-	\item 
+	\item Let $X$ have a continuous, strictly increasing CDF $F$. Let $Y = F(X)$. Find the density of $Y$. This is called the probability integral transform. Now, let $U \sim \operatorname{Uniform}(0,1)$ and let $X = F^{-1}(U)$. Show that $X \sim F$. Now write a program that takes Uniform $(0,1)$ random variables and generates random variables from an Exponential $(\lambda)$ distribution.
+	\item Let $X \sim \operatorname{Poisson}(\lambda)$ and $Y \sim \operatorname{Poisson}(\mu)$ and assume that $X$ and $Y$ are independent. Show that the dstribution of $X$ given that $X + Y = n$ is $\operatorname{Binomial}(n, \pi)$ where $\pi = \frac{\lambda}{\lambda + \mu}$.
+	Hint 1: You may use the following fact: If $X \sim \operatorname{Poisson}(\lambda)$ and $Y \sim \operatorname{Poisson}(\mu)$, and $X$ and $Y$ are independent, then $X + Y \sim \operatorname{Poisson}(\lambda + \mu)$.
+	Hint 2: Note that $\{X = x, X + Y = n\} = \{X = x, Y = n - x\}$.
+		\begin{itemize}
+			\item Recall that
+			$$
+			P(X = x|X + Y = n) = \frac{P(X = x, X + Y = n)}{P(X + Y = n)}.
+			$$
+			By the first hint $P(X + Y = n) = \frac{(\lambda + \mu)^n}{n!} e^{-\lambda -\mu}$. Using the second hint we obtain
+			$$
+			P(X = x, X + Y = n) = P(X = x, Y = n - x),
+			$$
+			using the independence of $X$ and $Y$ this becomes
+			$$
+			P(X = x)P(Y = n - x) = \frac{\lambda^x}{x!} e^{-\lambda} \frac{\mu^{n - x}}{(n - x)!}e^{-\mu}.
+			$$
+			Combining everything then yields
+			$$
+			\begin{aligned}
+			P(X = x|X + Y = n) &= \frac{\frac{\lambda^x}{x!} e^{-\lambda} \frac{\mu^{n - x}}{(n - x)!}e^{-\mu}}{\frac{(\lambda + \mu)^n}{n!} e^{-\lambda-\mu}} \\
+			&= \frac{\lambda^x \mu^{n - x}}{(\lambda + \mu)^n} \frac{n!}{x! (n - x)!}
+			&= \frac{\lambda^x \mu^{n - x}}{(\lambda + \mu)^n} \binom{n}{x}.
+			\end{aligned}
+			$$
+			Note that if $Z \sim \operatorname{Bin}\left(n, \frac{\lambda}{\lambda + \mu}\right)$ then
+			$$
+			\begin{aligned}
+			P(Z = k) &= \binom{n}{k} \left(\frac{\lambda}{\lambda + \mu}\right)^k \left( 1 - \frac{\lambda}{\lambda + \mu} \right)^{n - k} \\
+			&= \binom{n}{k} \left(\frac{\lambda}{\lambda + \mu}\right)^k \left( \frac{\mu}{\lambda + \mu}\right)^{n - k} \\
+			&= \frac{n!}{k!(n - k)!} \left(\frac{\lambda}{\lambda + \mu}\right)^k \left( \frac{\mu}{\lambda + \mu}\right)^{n - k}.
+			\end{aligned}
+			$$
+			As such we have shown that $X|X + Y = n \sim \operatorname{Bin}\left(n, \frac{\lambda}{\lambda + \mu}\right)$.
+		\end{itemize}
 	\item 
 	\item 
 	\item Prove formula (2.12)
-	\item
-	\item
+	\item Let $X, Y \sim \operatorname{Uniform}(0, 1)$ be independent. Find the PDF for $X - Y$ and $X / Y$.
+	\item Let $X_1, \dots, X_n \sim \operatorname{Exp}(\beta)$ be iid. Let $Y = \max\{X_1, \dots, X_n\}$. Find the PDF of $Y$. Hint: $Y \leq y$ if and only if $X_i \leq y$ for all $i = 1, \dots, n$.
+		\begin{itemize}
+			\item To compute the PDF of $Y$, we first determine the CDF of $Y$:
+			$$
+			\begin{aligned}
+			P(Y \leq y) &= P(X_1 \leq y, \dots, X_n \leq y) \\
+			&\overset{1}{=} \prod_{i = 1}^n P(X_i \leq y) \\
+			&\overset{2}{=} P(X_1 \leq y)^n \\
+			&= \left(1 - e^{- \frac{- y}{\beta}}\right),
+			\end{aligned}
+			$$
+			where we have used (1) that the $X_i$ are independent and (2) that they are identically distributed. Differentiating this with respect to $y$ yields
+			$$
+			\frac{d}{dy} P(Y \leq y) = n (1 - e^{- y / \beta})^{n - 1} \frac{1}{\beta} e^{- y / \beta}.
+			$$
+		\end{itemize}
 \end{enumerate}
 
 \subsection{Expectation}
@@ -550,9 +766,36 @@ Ex2_2(draw = False, save = False)
 	\item Prove Theorem 3.17
 	\item (Computer Experiment) Let $X_1, X_2, \dots, X_n$ be $\mathcal{N}(0, 1)$ random variables and let
 	$$
-	\overline{X}_n = \frac{1}{n} \sum_{i = 1}^n.
+	\overline{X}_n = \frac{1}{n} \sum_{i = 1}^n X_i.
 	$$
 	Plot $\overline{X}_n$ versus $n$ for $n = 1, \dots, 10000$. Repeat for $X_1, X_2, \dots, X_n \sim \operatorname{Cauchy}$. Explain why there is such a difference.
+		\begin{itemize}
+			\item
+			\begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+n = 10000
+
+samples = np.random.normal(size = n)
+samples_cauchy = np.random.standard_cauchy(size = n)
+
+x = (np.arange(n) + 1)
+
+mean = np.cumsum(samples) / x
+mean_cauchy = np.cumsum(samples_cauchy) / x
+
+plt.plot(x, mean, label='Normal Mean')
+plt.plot(x, mean_cauchy, label='Cauchy Mean')
+
+plt.legend(loc='upper right')
+
+plt.savefig("Ex3_9.png")
+			\end{minted}
+			\begin{center}
+				\includegraphics[width=\linewidth]{3-Expectation/Ex3_9.png}
+			\end{center}
+		\end{itemize}
 	\item 
 	\item (Computer Experiment: Simulating the Stock Market). Let $Y_1, Y_2, \dots$ be independent random variables such that $P(Y_i = 1) = P(Y_i = -1) = \frac{1}{2}$. Let $X_n = \sum_{i = 1}^n Y_i$. Think of $Y_i = 1$ as "the stock market increased by one dollar", $Y_i = -1$ as "the stock market decreased by one dollar", and $X_n$ as the value of the stock on day $n$.
 		\begin{enumerate}
