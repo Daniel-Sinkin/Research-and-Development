@@ -7,6 +7,8 @@
 
 \usepackage{graphicx}
 
+\usepackage{subcaption}
+
 \usepackage{minted}
 
 \usepackage{hyperref}
@@ -297,6 +299,114 @@ Ex1_23(A, B)
 	\item Prove Lemma 2.15.
 	\item 
 	\item Let $X$ and $Y$ be discrete random variables. Show that $X$ and $Y$ are independent if and only if $f_{X, Y}(x, y) = f_X(x)f_Y(y)$ for all $x$ and $y$.
+	\item 
+	\item 
+	\item 
+	\item Let $X \sim \operatorname{Exp}(\beta)$. Find $F(x)$ and $F^{-1}(q)$.
+	\item Let $X$ and $Y$ be independent. Show that $g(X)$ is independent of $h(Y)$ where $g$ and $h$ are functions.
+	\item 
+	\item Prove Theorem 2.33
+	\item Let $X \sim \mathcal{N}(0, 1)$ and let $Y = e^X$.
+		\begin{enumerate}
+			\item Find the PDF for $Y$. Plot it.
+			\item (Computer Experiment) Generate a vector $x = (x_1, \dots, x_{10000})$ consisting of $10000$ random standard Normals. Let $y = (y_1, \dots, y_{10000})$ where $y_i = e^{x_i}$. Draw a histogram of $y$ and compare it to the PDF you found in part $(a)$.
+		\end{enumerate}
+	\item Let $(X, Y)$ be uniformly distributed on the unit disk $\{(x, y) : x^2 + y^2 \leq 1\}$. Let $R = \sqrt{X^2 + Y^2}$. Find the CFD and PDF of $R$.
+	\item 
+	\item 
+	\item 
+	\item 
+	\item Prove formula (2.12)
+	\item
+	\item
+\end{enumerate}
+
+\section{Expectation}
+\begin{enumerate}
+	\item 
+	\item 
+	\item
+	\item 
+	\item
+	\item Prove Theorem 3.6 for discrete random variables
+	\item 
+	\item Prove Theorem 3.17
+	\item (Computer Experiment) Let $X_1, X_2, \dots, X_n$ be $\mathcal{N}(0, 1)$ random variables and let
+	$$
+	\overline{X}_n = \frac{1}{n} \sum_{i = 1}^n.
+	$$
+	Plot $\overline{X}_n$ versus $n$ for $n = 1, \dots, 10000$. Repeat for $X_1, X_2, \dots, X_n \sim \operatorname{Cauchy}$. Explain why there is such a difference.
+	\item 
+	\item (Computer Experiment: Simulating the Stock Market). Let $Y_1, Y_2, \dots$ be independent random variables such that $P(Y_i = 1) = P(Y_i = -1) = \frac{1}{2}$. Let $X_n = \sum_{i = 1}^n Y_i$. Think of $Y_i = 1$ as "the stock market increased by one dollar", $Y_i = -1$ as "the stock market decreased by one dollar", and $X_n$ as the value of the stock on day $n$.
+		\begin{enumerate}
+			\item Find $E(X_n)$ and $Var(X_n)$.
+				\begin{itemize}
+					\item By linearity $E(X_n) = \sum_{i = 1}^n E(Y_i) = \sum_{i = 1}^n (-1)\frac{1}{2} + (1) \frac{1}{2} = 0.$ Note that $E(X_n)^2 = 0$, as such $Var(X_n) = E(X_n^2)$. To calculate this note that
+					$$
+					X_n^2 = \left( \sum_{i = 1}^n Y_i \right)^2 = \sum_{i = 1}^n Y_i^2 + 2 \sum_{i < j} Y_i Y_j.
+					$$
+					Because $Y_i \in \{-1, 1\}$ it follows that $E(Y_i^2) = 1$ and as such
+					$$
+					E(X_n^2) = n + 2 \sum_{i < j} E(Y_i Y_j) = n + 2 \sum_{i < j} P(Y_i Y_j = +1) - P(Y_i Y_j = -1).
+					$$
+					Note that $Y_i Y_j = 1$ if and only if $(Y_i, Y_j) \in \{(1, 1), (-1, -1)\}$ and $Y_i Y_j = -1$ if and only if $(Y_i, Y_j) \in \{(-1, 1), (1, -1)\}$, as such both of those are equally liked. In total this means that
+					$$
+					V(X_n) = E(X_n^2) = n.
+					$$
+				\end{itemize}
+			\item Simulate $X_n$ and plot $X_n$ versus $n$ for $n = 1, 2, \dots, 10000$. Repeat the whole simulation several times. Notice two things. First, it's easy to "see" patterns in the sequence even though it is random. Second, you will find that the four runs look very different even though they were generated the same way. How do the calculations in (a) explain the second observation?
+				\begin{itemize}
+					\item
+\begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def Ex3_11(n = 10000, draw = True, save = False, i = 0):
+    # 2*0 - 1 = -1, 2 * 1 -1 = 1
+    rand = 2 * np.random.randint(low = 0, high = 2, size = n) - 1
+
+    fig, ax = plt.subplots()
+    ax.plot(range(0, n), np.cumsum(rand))
+
+    if draw:
+        plt.show()
+
+    if save:
+        fig.savefig(f"Ex3_11-{i}.png")
+
+for i in range(4):
+    Ex3_11(draw = True, save = True, i = i)
+\end{minted}
+\begin{figure}
+  \centering
+  \begin{tabular}{cc}
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{3-Expectation/Ex3_11-0.png}
+      \caption{}
+    \end{subfigure}
+    &
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{3-Expectation/Ex3_11-1.png}
+      \caption{}
+    \end{subfigure}
+    \\
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{3-Expectation/Ex3_11-2.png}
+      \caption{}
+    \end{subfigure}
+    &
+    \begin{subfigure}{0.45\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{3-Expectation/Ex3_11-3.png}
+      \caption{}
+    \end{subfigure}
+  \end{tabular}
+\end{figure}
+				\end{itemize}
+		\end{enumerate}
 \end{enumerate}
 
 \end{document}
