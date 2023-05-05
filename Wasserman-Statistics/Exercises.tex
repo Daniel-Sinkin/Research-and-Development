@@ -73,12 +73,23 @@
 	\item Let $\{A_i : i \in I\}$ be a collection of events where $I$ is an arbitrary index set. Show that
 	$$
 	\begin{aligned}
-	\left( \bigcup_{i \in I} \right)^c = \bigcap_{i \in I} A_i^c, && \left( \bigcap_{i \in I} A_i \right)^c = \bigcup_{i \in I} A_i^c
+	\left( \bigcup_{i \in I} A_i \right)^c = \bigcap_{i \in I} A_i^c, && \left( \bigcap_{i \in I} A_i \right)^c = \bigcup_{i \in I} A_i^c
 	\end{aligned}
 	$$
 	holds.
 
 	Hint: First prove this for $I = \{1, 2, \dots, n\}$.
+		\begin{itemize}
+			\item I guess they want us to show it using induction in the hint, I'll just do it directly.
+			$$
+			\begin{aligned}
+			\bigcap_i A_i^c &= \{x : \forall i : x \notin A_i\} \\
+			&= \left\{x : \neg \left( \exists i : x \in A_i \right)\right\} \\
+			&= \{x : \exists i : x \in A_i\}^c = \left( \bigcup_{i \in I} A_i \right)^c
+			\end{aligned}
+			$$
+			The other direction is analogous.
+		\end{itemize}
 	\item Suppose we toss a fair coin until we get exactly two heads. Describe the sample space S. What is the probability that exactly k tosses are required?
 	\item Let $\Omega = \{0, 1, \dots \}$. Prove that there does not exist a uniform distribution on $\Omega$ (i.e., if $P(A) = P(B)$ whenever $|A| = |B|$, then $P$ cannot satisfy the axioms of probability.)
 		\begin{itemize}
@@ -103,9 +114,42 @@
 	$$
 	P\left( \bigcap_{i = 1}^\infty A_i \right) = 1.
 	$$
+		\begin{itemize}
+			\item Note that $P(A_i^c) = 1 - P(A_i) = 0$ and that
+			$$
+			P\left( \bigcap_{i = 1}^\infty A_i \right) = 1 - P\left( \bigcup_{i = 1}^\infty A_i^c \right).
+			$$
+			The latter can be calculated as follows:
+			$$
+			\begin{aligned}
+			0 &\leq P\left( \bigcup_{i = 1}^\infty A_i^c \right) \\
+			&\leq \sum_{i = 1}^\infty P(A_i^c) = 0
+			\end{aligned}
+			$$
+			where we have used that probability measures are subadditive. As such $P\left( \bigcup_{i = 1}^\infty A_i^c \right) = 0$ and therefore
+			$$
+			P\left( \bigcap_{i = 1}^\infty A_i \right) = 1.
+			$$
+		\end{itemize}
 	\item For fixed $B$ such that $P(B) > 0$, show that $P(\cdot|B)$ satisfies the axioms of probability.
-	\item You have probably heard it before. Now you can solve it rigorously. It is called the "Monty Hall Problem." A prize is placed at random behind one of three doors. You pick a door. To be concrete, let's suppose you always pick door $1$. Now Monty Hall chooses one of the other two doors, opens it and shows you that it is empty. He then gives you the opportunity to keep your door or switch to the other unopened door.Should you stay or switch? Intuition suggests it doesn't matter. The correct answer is that you should switch. Prove it. It will help to specify he sample space and the relevant events carefully. Thus write $\Omega = \{(Wl,W2): \omega_i \in \{1,2,3\}\}$ where $\omega_1$ is where the prize is and $\omega_2$ is the door Monty opens.
-	\item Suppose that $A$ and $B$ are independentt events. Show that $A^c$ and $B^c$ are independent events.
+		\begin{itemize}
+			\item[Axiom 1:] Let $A$ be arbitrary then $P(A|B) = \frac{P(A, B)}{P(B)} \geq P(A, B) \geq 0$.
+			\item[Axiom 2:] $P(\Omega|B) = \frac{P(\Omega, B)}{P(B)} = \frac{P(B)}{P(B)} = 1$.
+			\item[Axiom 3:]
+			$$
+			\begin{aligned}
+			P\left(\left.\bigcup_{i = 1}^\infty A_i \right| B\right) &= \frac{1}{P(B)} P\left(\bigcup_{i = 1}^\infty A_i, \right) \\
+			&= \frac{1}{P(B)} \sum_{i = 1}^\infty P(A_i, B) \\
+			&= \sum_{i = 1}^\infty P(A_i|B).
+			\end{aligned}
+			$$
+		\end{itemize}
+	\item You have probably heard it before. Now you can solve it rigorously. It is called the "Monty Hall Problem." A prize is placed at random behind one of three doors. You pick a door. To be concrete, let's suppose you always pick door $1$. Now Monty Hall chooses one of the other two doors, opens it and shows you that it is empty. He then gives you the opportunity to keep your door or switch to the other unopened door.Should you stay or switch? Intuition suggests it doesn't matter. The correct answer is that you should switch. Prove it. It will help to specify he sample space and the relevant events carefully. Thus write $\Omega = \{(\omega_1, \omega_2): \omega_i \in \{1,2,3\}\}$ where $\omega_1$ is where the prize is and $\omega_2$ is the door Monty opens.
+		\begin{itemize}
+			\item Note that $\{(1, 1), (2, 2), (3, 3)\}$ are invalid because he'll never open the door with the price. The staying strategy wins on $\{(1, 2), (1, 3)\}$, the switching strategy wins on $\{(2, 3), (3, 2)\}$. Note that this means, if $\omega_1 \neq 1$, then we are guaranteed to win. As such we win whenever $\omega_1 \in \{2, 3\}$, as such the winning probability is $2/3$ for the switching strategy.
+			\item This is a pretty subtle problem, the intuition is that him opening a door does not grant new information. If $\omega_1 = 1$ then his reveal is arbitrary and we lose on switching. If $\omega_1 = 2, 3$ then he's forced to reveal the nonempty door, as such either the remaining door is the price or $\omega_1 = 1$. As such when we switch we are guaranteed to win whenever $\omega_1 = 2, 3$.
+		\end{itemize}
+	\item Suppose that $A$ and $B$ are independent events. Show that $A^c$ and $B^c$ are independent events.
 		\begin{itemize}
 			\item
 			$$
@@ -127,10 +171,20 @@
 		\end{enumerate}
 	\item Show that if $P(A) = 0$ or $p(A) = 1$ then $A$ is independent of every other event. Show that if A is independent of itself then $P(A)$ is either $0$ or $1$.
 		\begin{itemize}
-			\item 
 			\item $P(A) = P(A, A) = P(A)P(A) = P(A)^2 \iff P(A)(P(A) - 1).$
 		\end{itemize}
-	\item
+	\item The probability that a child has blue eyes is $1 / 4$. assume independence between children. Consider a family with $3$ children.
+		\begin{enumerate}
+			\item If it is known that at least one child has blue eyes, what ist he probability that at least two children have blue eyes?
+				\begin{itemize}
+					\item Assuming that having blue eyes is independent from the other children then the chance that none of the siblings have blue eyes is $\left(\frac{3}{4}\right)^2 = \frac{9}{16}$. As such the probability is $7 / 16$. 
+				\end{itemize}
+			\item If it is known that the youngest child has blue eyes, what is the probability that at least two children have blue eyes?
+				\begin{itemize}
+					\item While this doesn't seem intuitive this actually changes the probabilities. To see this note that in the first problem the arrangements of having at least 2 blue eyed children were $BBB$, $BBG$, $BGB$, $GBB$ where the children are ordered by age. But now we disregard the case $GBB$ as such the probability becomes smaller.
+					\item The probability is then $\left(\frac{1}{4}\right)^2 + \frac{1}{4} \frac{3}{4} + \frac{3}{4}\frac{1}{4}$
+				\end{itemize}
+		\end{enumerate}
 	\item Prove Lemma 1.14.
 		\begin{itemize}
 			\item
@@ -151,12 +205,101 @@
 	$$
 	P(A, B, C) = P(A|BC)P(B|C)P(C).
 	$$
-	\item
-	\item 
-	\item 
+	\item Suppose $k$ events form a partition of the sample space $\Omega$, i.e., they are disjoint and 
+	$$
+	\bigcup_{i = 1}^k A_i = \Omega.
+	$$
+	Assume that $P(B) > O$. Prove that if $P(A_1|B) < P(A_1)$ then $P(A_i|B) > P(A_i)$ for some $i = 2, \dots, k$.
+		\begin{itemize}
+			\item Suppose this statement is wrong, i.e. $P(A_1|B) < P(A_1)$ and for all $i = 2, \dots, k$ we have $P(A_i|B) \leq P(A_i)$. It then follows that
+			$$
+			\begin{aligned}
+			\sum_{i = 1}^k P(A_i|B) &= \underbrace{P(A_1|B)}_{< P(A_1)} + \sum_{i = 2}^k \underbrace{P(A_i|B)}_{\leq P(A_i)} \\
+			&< P(A_1) + \sum_{i = 1}^k P(A_i) = 1.
+			\end{aligned}
+			$$
+			Multiplying $\sum_{i = 1}^n P(A_i|B) < 1$ by $P(B) > 0$ yields
+			$$
+			\sum_{i = 1}^n P(A_i|B)P(B) < P(B).
+			$$
+			This is a contradiction because $\sum_{i = 1}^n P(A_i|B)P(B) = \sum_{i = 1}^n P(A_i, B) = P\left(\bigcup_{i = 1}^n A_i , B\right) = P(\Omega, B) = P(B)$.
+		\end{itemize}
+	\item Suppose that $30\%$ of computer owners use a Macintosh, $50\%$ use Windows, and $20\%$ use Linux. Suppose that $65\%$ of the Mac users have succumbed to a computer virus, $82\%$ of the Windows users get the virus, and $50\%$ of the Linux users get the virus. We select a person at random and learn that her system was infected with the virus. What is the probability that she is a Windows user?
+		\begin{itemize}
+			\item Denote the operating systems by $M, W, L$ and having the virus by $V$. Using this notation we obtain $P(M) = 0.3$, $P(W) = 0.5$ and $P(L) = 0.2$. Furthermore $P(V|M) = 0.65$, $P(V|W) = 0.82$ and $P(V|L) = 0.5$ We can use the law of total probability to calculate the probability of a random person having a virus as being
+			$$
+			\begin{aligned}
+			P(V) &= P(V, M) + P(V, W) + P(V, L) \\
+			&= P(V|M)P(M) + P(V|W)P(W) + P(V|L)P(L) \\
+			&= 0.65 \cdot 0.3 + 0.82 \cdot 0.5 + 0.5 \cdot 0.2 \\
+			&= 0.705 = 70.5\%.
+			\end{aligned}
+			$$
+			Now we can use Bayes' Theorem to calculate
+			$$
+			P(W|V) = P(V|W) \frac{P(W)}{P(V)} = 0.82 \frac{0.5}{0.705} = 0.5816 = 58.16\%
+			$$
+		\end{itemize}
+	\item A box contains 5 coins and each has a different probability of showing heads. Let $P_1, P_2, P_3, P_4, P_5$ denote the probability of heads on each coin. Suppose that
+	$$
+	\begin{aligned}
+	p_1 = 0,&& p_2 = 1/4,&& p_3 = 1/2,&& p_4 = 3/4,&& p_5 = 1.
+	\end{aligned}
+	$$
+	Let $H$ denote "heads is obtained" and let $C_i$ denote the event that coin $i$ is selected.
+	\begin{enumerate}
+		\item Select a coin at random and toss it. Suppose a head is obtained. What is the posterior probability that coin $i$ was selected ($i = 1, ..., 5$)? In other words, find $P(C_i|H)$ for $i = 1, ..., 5$.
+			\begin{itemize}
+				\item Note that $P(C_i) = \frac{1}{5}$ and $P(H|C_i) = p_i$. The total probability of gettings heads is
+				$$
+				\begin{aligned}
+				P(H) &= \sum_{i = 1}^5 P(H|C_i)P(C_i) \\
+				&= \frac{1}{5} \sum_{i = 1}^5 P(H|C_i) \\
+				&= \frac{1}{5} \sum_{i = 1}^5 p_i \\
+				&= \frac{1}{5} (0 + 1/4 + 1/2 + 3/4 + 1) \\
+				&= 0.5 = 50\%.
+				\end{aligned}
+				$$
+				We can use Bayes' theorem to calculate
+				$$
+				\begin{aligned}
+				P(C_i|H) &= P(H|C_i) \frac{P(C_i)}{P(H)} \\
+				&= P(H|C_i) \frac{\frac{1}{5}}{0.5} \\
+				&= P(H|C_i) \frac{2}{5}.
+				\end{aligned}
+				$$
+				Using  this we obtain
+				\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|}
+				\hline
+				$i$ & 1 & 2 & 3 & 4 & 5 \\ 
+				\hline
+				$P(C_i|H)$ & 0 & 1/10 & 1/5 & 3/10 & 2/5 \\
+				\hline
+				\end{tabular}
+				\end{center}
+			\end{itemize}
+		\item Toss the coin again. What is the probability of another head? In other words find $P(H_2|H_1)$ where $H_j$ = "heads on toss $j$."
+			\begin{itemize}
+				\item Suppose we have chosen the $ith$ coin then the probability of getting heads is $P(H|C_i)$. The probabilities of the individual coins have been calculated before and we just have to take the weighted sum over those.
+\begin{minted}{python}
+import numpy as np
+
+mC = np.array([0, 1/10, 1/5, 3/10, 2/5])
+mP = np.array([0, 0.25, 0.5, 0.75, 1])
+np.dot(mC, mP)
+
+> 0.75
+\end{minted}
+			\end{itemize}
+		\item Find $P(C_i|B_4)$ where $B_4$ = "first head is obtained on toss $4$."
+			\begin{itemize}
+				\item We are interested in $P(H_1^c, H_2^c, H_3^c, H^4)$. Note that $P(H_2|H_1) = \frac{3}{4}$ and $P(H_1) = \frac{1}{2}$ as such $P(H_2, H_1) = P(H_2|H_1)P(H_1) = \frac{3}{4}\frac{1}{2} = \frac{3}{8}$.
+			\end{itemize}
+	\end{enumerate}
 	\item (Computer Experiment.) Suppose a coin has probability $p$ of falling heads up. If we flip the coin many times, we would expect the proportion of heads to be near $p$. We will make this formal later. Take $p = 0.3$ and $n = 1000$ and simulate $n$ coin flips. Plot the proportion of heads as a function of n. Repeat for $p = 0.03$.
 		\begin{itemize}
-			\item
+			\item 
 \begin{minted}{python}
 import numpy as np
 import matplotlib.pyplot as plt
@@ -289,7 +432,7 @@ Ex1_23(A, B)
 		\end{itemize}
 \end{enumerate}
 
-\section{Random Variables}
+\subsection{Random Variables}
 \begin{enumerate}
 	\item Show that
 	$$
@@ -321,7 +464,7 @@ Ex1_23(A, B)
 	\item
 \end{enumerate}
 
-\section{Expectation}
+\subsection{Expectation}
 \begin{enumerate}
 	\item 
 	\item 
@@ -407,6 +550,7 @@ for i in range(4):
 \end{figure}
 				\end{itemize}
 		\end{enumerate}
+	\item
 \end{enumerate}
 
 \end{document}
