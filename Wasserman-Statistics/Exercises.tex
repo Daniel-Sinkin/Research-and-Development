@@ -152,9 +152,139 @@
 	\item
 	\item 
 	\item 
-	\item (Computer Experiment.) Suppose a coin has probability P of falling heads up. If we flip the coin many times, we would expect the proportion of heads to be near p. We will make this formal later. Take P = .3 and n = 1,000 and simulate n coin flips. Plot the proportion of heads as a function of n. Repeat for P = .03.
-	\item (Computer Experiment.) Suppose we flip a coin n times and let P denote the probability of heads. Let X be the number of heads. We call X a binomial random variable, which is discussed in the next chapter. Intuition suggests that X will be close to n p. To see if this is true, we can repeat this experiment many times and average the X values. Carry out a simulation and compare the average of the X's to n p . Try this for p =.3 and n = 10, n = 100, and n = 1,000.
-	\item (Computer Experiment.) Here we will get some experience simulating conditional probabilities. Consider tossing a fair die. Let A = {2, 4, 6} and B = {l, 2, 3, 4}. Then, lP'(A) = 1/2, lP'(B) = 2/3 and lP'(AB) = 1/3. Since lP'(AB) = lP'(A)lP'(B), the events A and B are independent. Simulate draws from the sample space and verify that P(AB) = P(A)P(B) where P(A) is the proportion of times A occurred in the simulation and similarly for P(AB) and P(B). Now find two events A and B that are not independent. Compute P(A),P(B) and P(AB). Compare the calculated values to their theoretical values. Report your results and interpret.
+	\item (Computer Experiment.) Suppose a coin has probability $p$ of falling heads up. If we flip the coin many times, we would expect the proportion of heads to be near $p$. We will make this formal later. Take $p = 0.3$ and $n = 1000$ and simulate $n$ coin flips. Plot the proportion of heads as a function of n. Repeat for $p = 0.03$.
+		\begin{itemize}
+			\item
+\begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+
+def Ex1_21(p = 0.3, n = 1000, draw = True, save = False):
+    rand = np.random.random(size = 1000)
+    _range = np.arange(1, n + 1)
+
+    result = np.cumsum(rand < p) / _range
+
+    fig, ax = plt.subplots()
+
+    ax.plot(_range, result)
+
+    if draw:
+        plt.show()
+
+    if save:
+        # p = 0.213, n = 1000 -> 21pct_1000
+        str_form = f"{math.floor(p * 100)}pct_{n}"
+        fig.savefig(f"Ex1_21-{str_form}.png")
+
+Ex1_21(p = 0.3, draw = True, save = True)
+Ex1_21(p = 0.03, draw = True, save = True)
+\end{minted}
+		\begin{tabular}{cc}
+			\includegraphics[width=0.45\textwidth]{1-Probability/Ex1_21-30pct_1000.png} &
+			\includegraphics[width=0.45\textwidth]{1-Probability/Ex1_21-3pct_1000.png} \\
+			(a) 30\% Probability & (b) 3\% Probability \\
+		\end{tabular}
+		\end{itemize}
+	\item (Computer Experiment.) Suppose we flip a coin n times and let P denote the probability of heads. Let X be the number of heads. We call X a binomial random variable, which is discussed in the next chapter. Intuition suggests that X will be close to n p. To see if this is true, we can repeat this experiment many times and average the X values. Carry out a simulation and compare the average of the X's to n p . Try this for $p = 0.3$ and $n = 10$, $n = 100$, and $n = 1000$.
+		\begin{itemize}
+			\item 
+\begin{minted}{python}
+import numpy as np
+
+def Ex1_22(p = 0.3, n = 1000, num_iter = 100):
+    sum = 0
+    for i in range(num_iter):
+        rand = np.random.random(size = n)
+        sum += np.sum(rand < p)
+
+    mean = sum / num_iter
+    expected = n * p
+    delta = abs(mean - expected) / (expected)
+    print(f"mean = {mean}, delta = {delta * 100:.2f}%")
+
+for n in [10, 100, 1000]:
+    Ex1_22(n = n)
+
+> mean = 2.93, delta = 2.33%
+> mean = 30.2, delta = 0.67%
+> mean = 297.83, delta = 0.72%
+\end{minted}
+		\end{itemize}
+	\item (Computer Experiment.) Here we will get some experience simulating conditional probabilities. Consider tossing a fair die. Let $A = \{2, 4, 6\}$ and $B = \{1, 2, 3, 4\}$. Then, $P(A) = 1/2$, $P(B) = 2/3$ and $P(AB) = 1/3$. Since $P(AB) = P(A)P(B)$, the events $A$ and $B$ are independent. Simulate draws from the sample space and verify that $\hat{P}(AB) = \hat{P}(A)\hat{P}(B)$ where $\hat{P}(A)$ is the proportion of times $A$ occurred in the simulation and similarly for $\hat{P}(AB)$ and $\hat{P}(B)$. Now find two events $A$ and $B$ that are not independent. Compute $\hat{P}(A)$,$\hat{P}(B)$ and $\hat{P}(AB)$. Compare the calculated values to their theoretical values. Report your results and interpret.
+	\begin{itemize}
+		\item
+\begin{minted}{python}
+import numpy as np
+
+labels = ['P(A)', 'P(B)', 'P(A, B)', 'P(A)P(B)', 
+          'P(A, B) - P(A)P(B)']
+pct_str = lambda x : f"{x * 100:.2f}%"
+
+def Ex1_23_helper(probabilities):
+    for label, prob in zip(labels, probabilities):
+        print(f"\t{label}: {pct_str(prob)}")
+
+def Ex1_23(A, B, n = 10000):
+    cap = A.intersection(B)
+
+    # rand does [) so I need to increment high to get 6
+    rand = np.random.randint(low = 1, high = 6 + 1, size = n)
+    prob_A = sum(np.isin(rand, list(A))) / n
+    prob_B = sum(np.isin(rand, list(B))) / n
+    prob_cap = sum(np.isin(rand, list(cap))) / n
+
+    prob_prod = prob_A * prob_B
+
+    probabilities = [prob_A, prob_B, prob_cap, prob_prod,
+                     prob_cap - prob_prod]
+
+    print("Experimental Values")
+    Ex1_23_helper(probabilities)
+
+A, B = {2, 4, 6}, {1, 2, 3, 4}
+print(f"A = {A}, B = {B}, AB = {A.intersection(B)}")
+print("Theoretical Values")
+Ex1_23_helper([1/2, 2/3, 1/3, 1/3, 0])
+Ex1_23(A, B)
+print()
+
+A, B = {1, 2, 3}, {3, 4, 5, 6}
+print(f"A = {A}, B = {B}, AB = {A.intersection(B)}")
+print("Theoretical Values")
+Ex1_23_helper([1/2, 2/3, 1/6, 1/3, -1/6])
+Ex1_23(A, B)
+
+> A = {2, 4, 6}, B = {1, 2, 3, 4}, AB = {2, 4}
+> Theoretical Values
+> 	P(A): 50.00%
+> 	P(B): 66.67%
+> 	P(A, B): 33.33%
+> 	P(A)P(B): 33.33%
+> 	P(A, B) - P(A)P(B): 0.00%
+> Experimental Values
+> 	P(A): 50.18%
+> 	P(B): 67.42%
+> 	P(A, B): 33.70%
+> 	P(A)P(B): 33.83%
+> 	P(A, B) - P(A)P(B): -0.13%
+> 
+> A = {1, 2, 3}, B = {3, 4, 5, 6}, AB = {3}
+> Theoretical Values
+> 	P(A): 50.00%
+> 	P(B): 66.67%
+> 	P(A, B): 16.67%
+> 	P(A)P(B): 33.33%
+> 	P(A, B) - P(A)P(B): -16.67%
+> Experimental Values
+> 	P(A): 50.20%
+> 	P(B): 66.30%
+> 	P(A, B): 16.50%
+> 	P(A)P(B): 33.28%
+> 	P(A, B) - P(A)P(B): -16.78%
+\end{minted}
+		\end{itemize}
 \end{enumerate}
 
 \section{Random Variables}
