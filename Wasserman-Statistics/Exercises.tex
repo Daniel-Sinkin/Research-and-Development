@@ -1069,4 +1069,74 @@ plt.savefig("Ex4_4c.png")
 	\item Construct an example where $X_n \leadsto X$ and $Y_n \leadsto Y$ but $X_n + Y_n$ does not converge in distribution to $X + Y$.
 \end{enumerate}
 
+\section{Statistics}
+\subsection{Models, Statistical Inference and Learning}
+\begin{enumerate}
+\item Let $X_1, \dots, X_n \sim \operatorname{Poisson}(\lambda)$ and let $\hat{\lambda} = \frac{1}{n} \sum_{i = 1}^n$. Find the bias, se, and mse of this estimator.
+	\begin{itemize}
+		\item Recall that $E_\lambda$ is linear and that the expected value of $X \sim \operatorname{Po}(\lambda)$ is $\lambda$. As such
+		$$
+		E_\lambda(\hat{\lambda}_n) = \frac{1}{n} \sum_{i = 1}^n E(X_i) = \frac{1}{n} n \lambda = \lambda.
+		$$
+		This means that $bias = 0$, i.e., this estimator is unbiased.
+		\item Similiarly, the variance of $X \sim \operatorname{Po}(\lambda)$ is equal to $\lambda$, as such $se^2 = \lambda / n$. To see this note that $Var(aX) = a^2Var(X)$, i.e.,
+		$$
+		se = \sqrt{\lambda / n}.
+		$$
+		\item By Theorem 6.9 the mean square error is equal to
+		$$
+		MSE = bias^2(\hat{\lambda}_n) + se^2(\hat{\lambda}_n) = \frac{\lambda}{n}.
+		$$
+	\end{itemize}
+\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{theta} = \max\{X_1, \dots, X_n\}$. Find the bias, se, and mse of this estimator.
+	\begin{itemize}
+		\item We begin by determining the CDF of $\hat{\theta}$.
+		$$
+		\begin{aligned}
+		F_{\hat{\theta}}(x) &= F(\hat{\theta} \leq x) \\ 
+		&= F(\max\{X_1, \dots, X_n\} \leq x) \\
+		&= F(X_1 \leq x, X_2 \leq x, \dots, X_n \leq x) \\
+		&\overset{1}{=} \prod_{i = 1}^n F(X_i \leq x) \\
+		&\overset{2}{=} (F(X_i \leq x))^n \\
+		&= \left( \frac{x}{\theta} \right)^n \\
+		&= \frac{x^n}{\theta^n}.
+		\end{aligned}
+		$$
+		To obtain the PDF we differentiate with respect to $\theta$ to obtain
+		$$
+		\begin{aligned}
+		f_{\hat{\theta}}(x) &= \frac{\partial}{\partial \theta} F_{\hat{\theta}}(x) \\
+		&= \frac{\partial}{\partial \theta} \frac{x^n}{\theta^n} \\
+		&= - n \frac{x^n}{\theta^{-n - 1}}.
+		\end{aligned}
+		$$
+		With that we can now calculate the expected value
+		$$
+		\begin{aligned}
+		E_\theta(\hat{\theta}) &= \int_0^\theta x (-n x^n / \theta^{n + 1}) dx \\
+		&= -n \int_0^\theta \frac{x^{n + 1}}{\theta^{n + 1}} \\
+		&= -\frac{n}{\theta^{n + 1}} \int_0^\theta x^{n + 1} \\
+		&= -\frac{n}{\theta^{n + 1}} \frac{n + 2}{\theta^{n + 2}} \\
+		&= - \frac{n}{n + 2} \theta.
+		\end{aligned}
+		$$
+		As such $bias = - \frac{n}{n + 2} \theta - \theta = - \frac{2n + 2}{n + 2} \theta$.
+	\end{itemize}
+\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta} = 2 \overline{X}_n$. Find the bias, se, and mse of this estimator.
+\end{enumerate}
+
+\subsection{Estimating the CDF and Statistical Functionals}
+\begin{enumerate}
+	\item Prove Theorem 7.3
+	\item 
+	\item (Computer Experiment)
+	\item
+	\item
+	\item
+	\item Data on the magnitudes of earthquakes near Fiji are available on the website for this book. Estimate the CDF F(x). Compute and plot a 95 percent confidence envelope for F (as described in the appendix). Find an approximate 95 percent confidence interval for F(4.9) - F(4.3).
+	\item Get the data on eruption times and waiting times between eruptions of the Old Faithful geyser from the website. Estimate the mean waiting time and give a standard error for the estimate. Also, give a 90 percent confidence interval for the mean waiting time. Now estimate the median waiting time. In the next chapter we will see how to get the standard error for the median.
+	\item
+	\item
+\end{enumerate}
+
 \end{document}
