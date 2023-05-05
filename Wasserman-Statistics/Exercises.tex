@@ -39,7 +39,10 @@
 			\bigcup_{i = 1}^\infty A_i = \bigcup_{i = 1}^\infty B_i
 			$$
 			holds is identical to the finite case, an element is part of the (countably) infinite union if there exists some minimual $i$ such that ...
-			\item For the monotone decreasing case we instead want to define $B_n := A_n \backslash \bigcup_{i > n} A_i$.
+			\item For the monotone decreasing case we instead want to define
+			$$
+			B_n := A_n \backslash \bigcup_{i > n} A_i.
+			$$
 		\end{itemize}
 	\item Prove the statements in equation (1.1).
 		\begin{itemize}
@@ -88,14 +91,18 @@
 			&= \{x : \exists i : x \in A_i\}^c = \left( \bigcup_{i \in I} A_i \right)^c
 			\end{aligned}
 			$$
-			The other direction is analogous.
+			The other equality can be proven analogously.
 		\end{itemize}
 	\item Suppose we toss a fair coin until we get exactly two heads. Describe the sample space S. What is the probability that exactly k tosses are required?
 	\item Let $\Omega = \{0, 1, \dots \}$. Prove that there does not exist a uniform distribution on $\Omega$ (i.e., if $P(A) = P(B)$ whenever $|A| = |B|$, then $P$ cannot satisfy the axioms of probability.)
 		\begin{itemize}
 			\item Note that $P(\{0\}) \neq 0$ because otherwise $P = 0$, which would mean $P$ is not a probability function. But then it follows for all $n \in \mathbb{N}$:
 			$$
-			P(\{0, \dots, n\}) = P\left(\bigcup_{k = 0}^n \{k\} \right) = \sum_{k = 0}^n P(\{k\}) = (n + 1)P(\{0\}) \rightarrow \infty
+			\begin{aligned}
+			P(\{0, \dots, n\}) &= P\left(\bigcup_{k = 0}^n \{k\} \right) \\
+			&= \sum_{k = 0}^n P(\{k\}) \\
+			&= (n + 1)P(\{0\}) \rightarrow \infty
+			\end{aligned}
 			$$
 			for $n \rightarrow \infty$, which is a contradiction to $P(\Omega) = +1$.
 		\end{itemize}
@@ -133,8 +140,11 @@
 		\end{itemize}
 	\item For fixed $B$ such that $P(B) > 0$, show that $P(\cdot|B)$ satisfies the axioms of probability.
 		\begin{itemize}
-			\item[Axiom 1:] Let $A$ be arbitrary then $P(A|B) = \frac{P(A, B)}{P(B)} \geq P(A, B) \geq 0$.
-			\item[Axiom 2:] $P(\Omega|B) = \frac{P(\Omega, B)}{P(B)} = \frac{P(B)}{P(B)} = 1$.
+			\item[Axiom 1:] Let $A$ be arbitrary then
+			$$
+			P(A|B) = \frac{P(A, B)}{P(B)} \geq P(A, B) \geq 0.
+			$$
+			\item[Axiom 2:] $$P(\Omega|B) = \frac{P(\Omega, B)}{P(B)} = \frac{P(B)}{P(B)} = 1.$$
 			\item[Axiom 3:]
 			$$
 			\begin{aligned}
@@ -222,7 +232,14 @@
 			$$
 			\sum_{i = 1}^n P(A_i|B)P(B) < P(B).
 			$$
-			This is a contradiction because $\sum_{i = 1}^n P(A_i|B)P(B) = \sum_{i = 1}^n P(A_i, B) = P\left(\bigcup_{i = 1}^n A_i , B\right) = P(\Omega, B) = P(B)$.
+			This is a contradiction because
+			$$
+			\begin{aligned}
+			\sum_{i = 1}^n P(A_i|B)P(B) &= \sum_{i = 1}^n P(A_i, B) \\
+			&= P\left(\bigcup_{i = 1}^n A_i , B\right) \\
+			&= P(\Omega, B) = P(B).
+			\end{aligned}
+			$$
 		\end{itemize}
 	\item Suppose that $30\%$ of computer owners use a Macintosh, $50\%$ use Windows, and $20\%$ use Linux. Suppose that $65\%$ of the Mac users have succumbed to a computer virus, $82\%$ of the Windows users get the virus, and $50\%$ of the Linux users get the virus. We select a person at random and learn that her system was infected with the virus. What is the probability that she is a Windows user?
 		\begin{itemize}
@@ -296,7 +313,11 @@ np.dot(mC, mP)
 			\begin{itemize}
 				\item First note that $P(C_i) = P(C_i, H_1) + P(C_i, H_1^c)$ as such
 				$$
-				P(C_i, H_1^c) = P(C_i) - P(C_i, H_1) = P(C_i) - P(C_i|H_1)P(H_1) = \frac{1}{5} - P(C_i|H_1) \frac{1}{2}
+				\begin{aligned}
+				P(C_i, H_1^c) &= P(C_i) - P(C_i, H_1) \\
+				&= P(C_i) - P(C_i|H_1)P(H_1) \\
+				&= \frac{1}{5} - P(C_i|H_1) \frac{1}{2}
+				\end{aligned}
 				$$
 				as such
 				\begin{center}
@@ -480,7 +501,7 @@ import matplotlib.pyplot as plt
 def Ex2_2(draw = True, save = False):
     x = np.arange(start=0, stop = 6, step = 0.2)
     F = (x >= 2) * 0.1 + (x >= 3) * 0.1 + (x >= 5) * 0.8
-    #plt.step(x, F, where='post')
+    plt.step(x, F, where='post')
 
     if save:
         plt.savefig("Ex2_2.png")
@@ -868,6 +889,184 @@ for i in range(4):
 				\end{itemize}
 		\end{enumerate}
 	\item
+\end{enumerate}
+
+\subsection{Inequalities}
+\begin{enumerate}
+	\item Let $X \sim \operatorname{Exp}(\beta)$. Find $P(|X - \mu_X| \geq k \sigma_X)$ for $k > 1$. Compare this to the bound you get from Chebyshev's inequality.
+	\item Let $X \sim \operatorname{Po}(\lambda)$. Use Chebyshev's inequality to show that $P(X \geq 2\lambda) \leq \frac{1}{\lambda}$.
+	\item Let $X_1, \dots, X_n \sim \operatorname{Bernoulli}(p)$ (note this is just $\operatorname{Bin}(1, p)$) and
+	$$
+	\overline{X}_n = \frac{1}{n} \sum_{i = 1}^n X_i.
+	$$
+	Bound $P(|\overline{X}_n - p| > \varepsilon)$ using Chebychev's inequality and using Hoeffding's inequality. Show that, when $n$ is large, the bound from Hoeffding's inequality is smaller than the bound from Chebychev's inequality.
+	\item Let $X_1, \dots, X_n \sim \operatorname{Bernoulli}(p)$.
+		\begin{enumerate}
+			\item Let $\alpha > 0$ be fixed and define
+			$$
+			\varepsilon_n = \sqrt{\frac{1}{2n}\log\left(\frac{2}{\alpha}\right)}.
+			$$
+			Let $\overline{X}_n = \frac{1}{n}\sum_{i = 1}^n X_i$. Define $C_n = (\overline{X}_n - \varepsilon, \overline{X}_n + \varepsilon)$. Use Hoeffding's inequality to show that
+			$$
+			P(C_n\text{ contains }p) \geq 1 - \alpha.
+			$$
+			In practice, we truncate the interval so it does not go below $0$ or above 1.
+				\begin{itemize}
+					\item Let
+					$$
+					\varepsilon_n = \sqrt{\frac{1}{2n} \log\left(\frac{2}{\alpha}\right)},
+					$$
+					then
+					$$
+					\varepsilon_n^2 = \frac{1}{2n} \log\left(\frac{2}{\alpha}\right).
+					$$
+					With that we can then calculate
+					$$
+					\begin{aligned}
+					e^{-2n\varepsilon^2} &= e^{- 2n \frac{1}{2n} \log\left( \frac{2}{\alpha} \right)} \\
+					&= e^{- \log \left( \frac{2}{\alpha} \right)} \\
+					&= e^{\log\left( \frac{\alpha}{2} \right)} \\
+					&= \frac{\alpha}{2}.
+					\end{aligned}
+					$$
+					Recall that Hoeffding's inequality (the bernoulli case) states that
+					$$
+					P(|\overline{X}_n - p| > \varepsilon_n) \leq 2e^{-2n \varepsilon_n^2}.
+					$$
+					As such
+					$$
+					P(|\overline{X} - p| > \varepsilon_n) \leq \alpha.
+					$$
+					The left hand side is
+					$$
+					\begin{aligned}
+					1 - P(|\overline{X}_n - p| &\leq \varepsilon_n) \\
+					&= 1 - P(\overline{X}_n - \varepsilon \leq p \leq \overline{X}_n + \varepsilon) \\
+					&= 1 - P(p \in C_n) = 1 - P(C_n\text{ contains }p).
+					\end{aligned}
+					$$
+					Putting everything together yields
+					$$
+					1 - \alpha \leq P(C_n\text{ contains }p).
+					$$
+				\end{itemize}
+			\item (Computer Experiment) Let's examine the properties of this confidence interval. Let $\alpha = 0.05$ and $p = 0.4$. Conduct a simulation study to see how often the interval contains $p$ (called the coverage). Do this for various values of $n$ between $1$ and $10000$. Plot the coverage versus $n$.
+			\begin{itemize}
+				\item For code see the next subproblem.
+				\begin{center}
+					\includegraphics[width=\linewidth]{4-Probability_Inequalities/Ex4_4b.png}
+				\end{center}
+			\end{itemize}
+			\item Plot the length of the interval versus $n$. Suppose we want the length of the interval to be no more than $0.05$. How large should $n$ be?
+				\begin{itemize}
+					\item 
+					\begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+n_list = np.arange(start=1, step=250, stop=10000, dtype=int)
+alpha = 0.05
+p = 0.4
+
+coverages, lengths = {}, {}
+for n in n_list:
+    eps = np.sqrt(np.log(2 / alpha) / (2 * n))
+
+    coverage, length = 0, []
+    for i in range(100):
+        X = np.random.binomial(n = 1, p = p, size = n)
+        mean = np.mean(X)
+        
+        if (p < (mean - eps)) or (p > (mean + eps)):
+            coverage += 1
+
+        length.append(2 * eps) 
+
+    coverages[n] = coverage
+    lengths[n] = np.mean(length)
+
+x = list(coverages.keys())
+y_cov = list(coverages.values())
+y_len = list(lengths.values())
+
+plt.scatter(x, y)
+plt.savefig("Ex4_4b.png")
+plt.cla()
+plt.plot(x[1:], y_len[1:]) # First length skews the plot heavily
+plt.plot(x[1:], [0.05]*(len(x[1:]))) # Horizontal Line
+plt.savefig("Ex4_4c.png")
+					\end{minted}
+					\begin{center}
+						\includegraphics[width=\linewidth]{4-Probability_Inequalities/Ex4_4c.png}
+					\end{center}
+				\end{itemize}
+		\end{enumerate}
+	\item Prove Mill's Inequality, Theorem 4.7. Hint. Note that $P(|Z| > t) = 2P(Z > t)$. Now write out what $P(Z > t)$ means and note that $x / t > 1$ whenever $x > t$.
+	\item Let $Z \sim N(0, 1)$. Find $P(|Z| > t)$ and plot this as a function of $t$. From Markov's inequality, we have the bound
+	$$
+	P(|Z| > t) \leq \frac{E(|Z|^k)}{t^k}
+	$$
+	for any $k > 0$. Plot these bounds for $k = 1, \dots, 5$ and compare them to the true value of $P(|Z| > t)$. Also, plot the bound from Mill's inequality.
+	\item Let $X_1, \dots, X_n \sim N(0, 1)$. Bound $P(|\overline{X}_n| > t)$ using Mill's inequality, where
+	$$
+	\overline{X}_n = \frac{1}{n} \sum_{i = 1}^n X_i.
+	$$
+	Compare to teh Chebyshev bound.
+\end{enumerate}
+
+\subsection{Convergence of Random Variable}
+\begin{enumerate}
+	\item
+	\item Let $X_1, X_2, \dots$ be a sequence of random variables.Show that $X_n \overset{qm}{\longrightarrow} b$ if and only if
+	$$
+	\begin{aligned}
+	\lim_{n \rightarrow \infty} E(X_n) = b,&&\lim_{n \rightarrow \infty}V(X_n) = 0.
+	\end{aligned}
+	$$
+	\item Let $X_1, \dots, X_n$ be IID and let $\mu := E(X_1)$. Suppose that the variance is finite. Show that $\overline{X}_n \overset{qm}{\longrightarrow} \mu$
+	\item Let $X_1, X_2, \dots$ be a sequence of random variables such that
+	$$
+	\begin{aligned}
+	P\left(X_n = \frac{1}{n}\right) = 1 - \frac{1}{n^2},&& P(X_n = n) \frac{1}{n^2}
+	\end{aligned}
+	$$
+	Does $X_n$ converge in probability? Does $X_n$ converge in quadratic mean?
+	\item Let $X_1, \dots, X_n \sim \operatorname{Bernoulli}(p)$. Prove that
+	$$
+	\begin{aligned}
+	\frac{1}{n} \sum_{i = 1}^n X_i^2 \overset{P}{\longrightarrow} p,&& \frac{1}{n}\sum_{i = 1}^n X_i^2 \overset{qm}{\longrightarrow} p.
+	\end{aligned}
+	$$
+	\item Suppose that the height of men has mean $68$ inches and standard deviation $2.6$ inches. We draw $100$ men at random. Find (approximately) the probability that the average height of men in our sample will be at least $68$ inches.
+	\item Let $\lambda_n = 1 / n$ for $n = 1, 2, \dots$. Let $X_n \sim \operatorname{Poisson}(\lambda_n)$.
+		\begin{enumerate}
+			\item Show that $X_n \overset{P}{\longrightarrow} 0$.
+			\item Let $Y_n = nX_n$. Show that $Y_n \overset{P}{\longrightarrow} 0$.
+		\end{enumerate}
+	\item Suppose we have a computer program consisting of $n = 100$ pages of code. Let $X_i$ be the number of errors on the $i$th page of code. Suppose that the $X_i$ are Poisson with mean $1$ and that they are independent. Let
+	$$
+	Y = \sum_{i = 1}^n X_i
+	$$
+	be the total number of errors. Use the central limit theorem to approximate
+	$$
+	P(Y < 90).
+	$$
+	\item
+	\item Let $Z \sim N(0, 1)$. Let $t > 0$. Show that, for any $k > 0$,
+	$$
+	P(|Z| > t) \leq \frac{E|Z|^k}{t^k}.
+	$$
+	Compare this to Mill's inequality in Chapter 4.
+	\item Suppose that $X_n \sim N(0, 1/n)$ and let $X$ be a random variable with distribution $F(x) = 0$ if $x < 0$ and $F(x) = 1$ if $x \geq 1$. Does $X_n$ converge to $X$ in probability? (Prove or disprove). Does $X_n$ converge to $X$ in distribution? (Prove or disprove).
+	\item Let $X, X_1, X_2, X_3, \dots$ be random variables that are positive and integer valued. Show that $X_n \leadsto X$ if and only if
+	$$
+	\lim_{n \rightarrow \infty} P(X_n = k) = P(X = k)
+	$$
+	for every integer $k$.
+	\item
+	\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, 1)$. Let $Y_n = \overline{X}_n^2$. Find the limiting distribution of $Y_n$.
+	\item
+	\item Construct an example where $X_n \leadsto X$ and $Y_n \leadsto Y$ but $X_n + Y_n$ does not converge in distribution to $X + Y$.
 \end{enumerate}
 
 \end{document}
