@@ -294,7 +294,21 @@ np.dot(mC, mP)
 			\end{itemize}
 		\item Find $P(C_i|B_4)$ where $B_4$ = "first head is obtained on toss $4$."
 			\begin{itemize}
-				\item We are interested in $P(H_1^c, H_2^c, H_3^c, H^4)$. Note that $P(H_2|H_1) = \frac{3}{4}$ and $P(H_1) = \frac{1}{2}$ as such $P(H_2, H_1) = P(H_2|H_1)P(H_1) = \frac{3}{4}\frac{1}{2} = \frac{3}{8}$.
+				\item First note that $P(C_i) = P(C_i, H_1) + P(C_i, H_1^c)$ as such
+				$$
+				P(C_i, H_1^c) = P(C_i) - P(C_i, H_1) = P(C_i) - P(C_i|H_1)P(H_1) = \frac{1}{5} - P(C_i|H_1) \frac{1}{2}
+				$$
+				as such
+				\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|}
+				\hline
+				$i$ & 1 & 2 & 3 & 4 & 5 \\ 
+				\hline
+				$P(C_i|H_i^c)$ & 0.2 & 0.15 & 0.1 & 0.05 & 0 \\
+				\hline
+				\end{tabular}
+				\end{center}
+				$P(H_1, H_2) = P(H_2|H_1)P(H_1) = \frac{3}{4}$
 			\end{itemize}
 	\end{enumerate}
 	\item (Computer Experiment.) Suppose a coin has probability $p$ of falling heads up. If we flip the coin many times, we would expect the proportion of heads to be near $p$. We will make this formal later. Take $p = 0.3$ and $n = 1000$ and simulate $n$ coin flips. Plot the proportion of heads as a function of n. Repeat for $p = 0.03$.
@@ -438,9 +452,69 @@ Ex1_23(A, B)
 	$$
 	P(X = x) = F(x^+) - F(x^-).
 	$$
-	\item Let $X$ be such that $P(X = 2) = P(X = 3) = 1 / 10$ and $P(X = 5) = 8 / 10$. Plot the CDF $F$. Use $F$ to find $P(2 \leq X \leq 4.8)$ and $P(2 \leq X \leq 4.8)$.
+		\begin{itemize}
+			\item Note that $(\infty, x)$ and $\{x\}$ are disjoint as such
+			$$
+			P(X \leq x) = P(X < x) + P(X = x).
+			$$
+			This allows us to calculate:
+			$$
+			\begin{aligned}
+			P(X = x) &= P(X \leq x) - P(X < x) \\
+			&= F(x) - P(X < x) \\
+			&= F(x) - \lim_{\varepsilon \searrow 0} P(X \leq x - \varepsilon) \\
+			&= F(x) - \lim_{y \searrow x} P(X \leq y) \\
+			&= F(x) - \lim_{y \searrow x} F(y) \\
+			&= F(x^+) - F(x^-),
+			\end{aligned}
+			$$
+			where we have used that $F(x) = F^+(x)$ by definition of CDFs.
+		\end{itemize}
+	\item Let $X$ be such that $P(X = 2) = P(X = 3) = 1 / 10$ and $P(X = 5) = 8 / 10$. Plot the CDF $F$. Use $F$ to find $P(2 < X \leq 4.8)$ and $P(2 \leq X \leq 4.8)$.
+		\begin{itemize}
+			\item
+			\begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def Ex2_2(draw = True, save = False):
+    x = np.arange(start=0, stop = 6, step = 0.2)
+    F = (x >= 2) * 0.1 + (x >= 3) * 0.1 + (x >= 5) * 0.8
+    #plt.step(x, F, where='post')
+
+    if save:
+        plt.savefig("Ex2_2.png")
+    if draw:
+        plt.show()
+
+    right = np.where(abs(x - 4.8) < 0.1)[0]
+    left = np.where(abs(x - 2) < 0.1)[0]
+    print("P(2 <  X <= 4.8) = ", (F[right] - F[left])[0])
+    print("P(2 <= X <= 4.8) = ", (F[right] - F[left - 1])[0])
+
+Ex2_2(draw = False, save = False)
+
+> P(2 <  X <= 4.8) =  0.1
+> P(2 <= X <= 4.8) =  0.2
+			\end{minted}
+			\begin{center}
+				\includegraphics[width=\linewidth]{2-Random_Variables/Ex2_2.png}
+			\end{center}
+		\end{itemize}
 	\item Prove Lemma 2.15.
-	\item 
+	\item Let $X$ have probability density function
+	$$
+		f(x) = 
+	\begin{cases} 
+	\frac{1}{4} & \text{if } 0 < x < 1 \\
+	\frac{3}{8} & \text{if } 3 < x < 5 \\
+	0 & \text{otherwise}
+	\end{cases}
+	$$
+		\begin{enumerate}
+			\item Find the cumulative distribution function of $X$.
+			\item Let $Y = 1 / X$. Find the probability density function $f_Y(y)$ for $Y$. Hint. Consider three cases: $\frac{1}{5} \leq y \leq \frac{1}{3}$, $\frac{1}{3} \leq y \leq 1$, and $y \geq 1$.
+		\end{enumerate}
 	\item Let $X$ and $Y$ be discrete random variables. Show that $X$ and $Y$ are independent if and only if $f_{X, Y}(x, y) = f_X(x)f_Y(y)$ for all $x$ and $y$.
 	\item 
 	\item 
