@@ -1123,7 +1123,7 @@ plt.savefig("Ex4_4c.png")
 	$$
 	\overline{X}_n = \frac{1}{n} \sum_{i = 1}^n X_i.
 	$$
-	Compare to teh Chebyshev bound.
+	Compare to the Chebyshev bound.
 \end{enumerate}
 
 \subsection{Convergence of Random Variable}
@@ -1534,6 +1534,67 @@ print(f"(mu-z*se, mu+z*se) = ({mu - z * sigma:.2f}, {mu + z * sigma:.2f})")
 		\end{itemize}
 	\item $100$ people are given a standard antibiotic to treat an infection and another $100$ are given a new antibiotic. In the first group, $90$ people recover; in the second group, $85$ people recover. Let $p_1$ be the probability of recovery under the standard treatment and let P2 be the probability of recovery under the new treatment. We are interested in estimating $\theta = p_1 - p_2$. Provide an estimate, standard error, an $80$ percent confidence interval, and a $95$ percent confidence interval for $B$.
 	\item 
+\end{enumerate}
+
+\section{Statistical Models and Methods}
+\subsection{Linear and Logistic Regression}
+\begin{enumerate}
+	\item Prove Theorem 13.4.
+	\item Prove the formulas for the standard errors in Theorem 13.8. You should regard the $X_i$ as fixed constants.
+	\item Consider the regression through the origin model:
+	$$
+	Y_i = \beta X_i + \varepsilon.
+	$$
+	Find the least squares estimate for $\beta$. Find the standard error of the estimate. Find conditions that guarantee that the estimate is consistent.
+	\item Prove equation (13.25)
+	\item In teh simple linear regression model, construct a Wald test for $H_0 : \beta_1 = 17\beta_0$ versus $H_1 : \beta_1 \neq 17\beta_0$.
+	\item Get the passenger car mileage data from
+	\texttt{http://lib.stat.cmu.ed u/DASL /Datafiles/ carmpgdat.html}
+		\begin{enumerate}
+			\item Fit a simple linear regression model to predict $\operatorname{MPG}$ (miles per gallon) from $\operatorname{HP}$ (horsepower). Summarize your analysis including a plot of teh data with teh fitted line.
+			\item Repeat the analysis but use $\log(\operatorname{MPG})$ as the response. Compare teh analyses.
+		\end{enumerate}
+	\item Get the passenger car mileage data from
+	\texttt{http://lib.stat.cmu.edu/DASL/Datafiles/carmpgdat.html}
+		\begin{enumerate}
+			\item Fit a multiple linear regression model to predict $\operatorname{MPG}$ (miles per gallon) from the other variables. Summarize your analysis.
+			\item Use Mallow $C_p$ to select a best sub-model. To search through the models try (i) forward stepwise, (ii) backward stepwise. Summarize your findings.
+			\item Use the Zheng-Loh model selection method and compare to (b).
+			\item Perform all possible regressions. Compare $C_p$ and $\operatorname{BIC}$. Compare the results.
+		\end{enumerate}
+	\item Assume a linear regression model with Normal errors. Take $\sigma$ known. Show that the model with highest $\operatorname{AIC}$ (equation (13.27)) is the model with teh lowest Mallows $C_p$ statistic.
+	\item 
+	\item In this question we take a closer look at prediction intervals. Let
+	$$
+	\theta = \beta_0 + \beta_1 X_*,
+	$$
+	and let
+	$$
+	\hat{\theta} = \hat{\beta}_0 + \hat{\beta}_1 X_*.
+	$$
+	Thus, $\hat{Y}_* = \hat{\theta}$ while $Y_* = \theta + \varepsilon$. Now, $\hat{\theta} \approx \mathcal{N}(\theta, \se^2)$, where
+	$$
+	\se^2 = V(\hat{\theta}) = V(\hat{beta}_0 + \hat{\beta}_1 x_*).
+	$$
+	Note that $V(\hat{\theta})$ is the same as $V(\hat{Y}_*)$. Now, $\hat{\theta} \pm 2 \sqrt{V(\hat{\theta})}$ is an approximate $95\%$ percent confidence interval for $\theta = \beta_0 + \beta_1 + x_*$ using the usual argument for a confidence interval. But, as you shall now show, it is not a valid confidence interval for $Y_*$.
+		\begin{enumerate}
+			\item Let $s = \sqrt{V(\hat{Y}_*)}$. Show that
+			$$
+			\begin{aligned}
+			P(\hat{Y}_* - 2s < Y_* < \hat{Y}_* + 2 s) &\approx P\left( -2 < \mathcal{N}\left(0, 1 + \frac{\sigma^2}{s^2}\right) < 2\right) \\
+			&\neq 0.95.
+			\end{aligned}
+			$$
+			\item The problem is that the quantity of interest $Y_*$ is equal to a paramter $\theta$ plus a random variable. We can fix this by defining
+			$$
+			\xi_n^2 = V(\hat{Y}_*) + \sigma^2 = \left(\frac{\sum_i (x_i - x_*)^2}{n \sum_i (x_i - \overline{x})} + 1\right)\sigma^2.
+			$$
+			In practice, we can substitute $\hat{\sigma}$ for $\sigma$ and we denote the resulting quantity by $\hat{\xi}_n$. Now consider the interval $\hat{Y}_* \pm 2 \hat{\xi}_n$. Show that
+			$$
+			P(\hat{Y}_* - 2\hat{\xi}_n < Y_* < \hat{Y}_* + 2 \hat{\xi}_n) \approx P(-2 < \mathcal{N}(0, 1) < 2) \approx 0.95.
+			$$
+		\end{enumerate}
+	\item Get the Coronary Risk-Factor Study (CORIS) data from the book web site. Use backward stepwise logistic regression based on AIC to select a model. Summarize your results.
 \end{enumerate}
 
 \end{document}
