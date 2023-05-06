@@ -777,13 +777,80 @@ plt.savefig('Ex2_13b.png', dpi=300)
 
 \subsection{Expectation}
 \begin{enumerate}
-	\item 
-	\item 
-	\item
-	\item 
-	\item
+	\item Suppose we playa game where we start with $c$ dollars. On each play of the game you either double or halve your money, with equal probability. What is your expected fortune after $n$ trials?
+		\begin{itemize}
+			\item Let $X_n$ be your money after $n$ trials. Note that
+			$$
+			E(X_n|X_{n - 1} = k) = \frac{1}{2}(2k + k / 2) = 1.25k,
+			$$
+			as such
+			$$
+			E(X_n) = 1.25^n c.
+			$$
+		\end{itemize}
+	\item Show that $Var(X) = 0$ if and only if there is a constant $c$ such that
+	$$
+	P(X = c) = 1.
+	$$
+	\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, 1)$ and let $Y_n = \max \{X_1, \dots, X_n\}$. Find $E(Y_n)$.
+		\begin{itemize}
+			\item We begin by calculating the CDF of $Y$:
+			$$
+			\begin{aligned}
+				F_Y(y) &= P(\max\{X_1, \dots, X_n\} \leq y) \\
+				&= P(X_1 \leq s, \dots, X_n \leq x) \\
+				&\overset{1}{=} \prod{i = 1}^n P(X_i \leq s) \\
+				&\overset{2}{=} P(X_1 \leq s)^n \\
+				&= s^n,
+			\end{aligned}
+			$$
+			where we have used (1) that the $X_1, \dots, X_n$ are independent and (2) that they are identically distributed. To obtain the PDF of $Y$ we differentiate this function:
+			$$
+			f(y) = F_Y'(y) = n s^{n - 1}.
+			$$
+			Now we can compute the expected value of $Y$ as follows:
+			$$
+			\int_0^1 x f(x) dx = \int_0^1 x n x^{n - 1} dx = n \int_0^1 x^n dx = \frac{n}{n + 1}. 
+			$$
+		\end{itemize}
+	\item A particle starts at the origin of the real line and moves along the line in jumps of one unit. For each jump the probability is $p$ that the particle will jump one unit to the left and the probability is $1-p$ that the particle
+	will jump one unit to the right. Let $X_n$ be the position of the particle after $n$ units. Find $E(X_n)$ and $V(X_n)$. (This is known as a random walk.)
+		\begin{itemize}
+			\item Note that
+			$$
+			\begin{aligned}
+			E(X_n|X_{n - 1} = k) &= p(k - 1) + (1 - p)(k + 1) \\
+			&= (pk - p + k + 1 - pk - p) \\
+			&= k + (1 - 2p),
+			\end{aligned}
+			$$
+			as such
+			$$
+			E(X_n) = n(1 - 2p).
+			$$
+			[TODO: Do the Variance calculation]
+		\end{itemize}
+	\item A fair coin is tossed until a head is obtained. What is the expected number of tosses that will be required?
+		\begin{itemize}
+			\item Note this follows a geometric distribution.
+			\item Let $X = k$ denote that the first head appeared on the kth flip. Note that every flip itself is a Bernoulli experiment with $p = 1 - p = 1/2$ as such the probability of heads is always $1/2$. This means that
+			$$
+			P(X = k) = (1 - 1/2)^{k - 1}(1 / 2) = 2^{-k}.
+			$$
+			With that we can calculate
+			$$
+			E(X) = \sum_{k \geq 1} k P(X = k) = \sum_{k \geq 1} k 2^{-k} = 2.
+			$$
+		\end{itemize}
 	\item Prove Theorem 3.6 for discrete random variables
-	\item 
+	\item Let $X$ be a continuous random variable with CDF $F$. Suppose that $P(X > 0) = 1$ and that $E(X)$ exists. Show that
+	$$
+	E(X) = \int_0^\infty P(X > x) dx.
+	$$
+	Hint: Consider integrating by parts. The following fact is helpful: if $E(X)$ exists then
+	$$
+	\lim_{x \rightarrow \infty} x [1 - F(x)] = 0.
+	$$
 	\item Prove Theorem 3.17
 	\item (Computer Experiment) Let $X_1, X_2, \dots, X_n$ be $\mathcal{N}(0, 1)$ random variables and let
 	$$
@@ -888,7 +955,44 @@ for i in range(4):
 \end{figure}
 				\end{itemize}
 		\end{enumerate}
+	\item Prove the formulas given in the table at the beginning of Section $3.4$ for the Bernoulli, Poisson, Uniform, Exponential, Gamma, and Beta. Here are some hints. For the mean of the Poisson, use the fact that
+	$$
+	e^a = \sum_{x = 0}^\infty \frac{a^x}{x!}.
+	$$
+	To compute the variance, first compute $E(X(X -1))$. For the mean of the Gamma, it will help to multiply and divide by$\Gamma(\alpha + 1)/\beta^{\alpha + 1}$ and use the fact that a Gamma density integrates to $1$. For the Beta, multiply and divide by
+	$$
+	\frac{\Gamma(\alpha + 1) \Gamma(\beta)}{\Gamma(\alpha + \beta + 1)}.
+	$$
+	\item 
+	\item Let $X_1, \dots, X_m$ and $Y_i, \dots, Y_n$ be random variables and let $a_1, \dots, a_m$ and $b_1, \dots, b_n$ be constants. Show that
+	$$
+	\operatorname{Cov}\left( \sum_{i = 1}^m a_i X_i, \sum_{j = 1}^n b_j Y_j \right) = \sum_{i = 1}^m \sum_{j = 1}^n a_i b_j \operatorname{Cov}(X_i, Y_j)
+	$$
+	\item Let
+	$$
+	f_{X, Y}(x, y) =
+	\begin{cases}
+	\frac{1}{3}(x + y) & 0 \leq 0 \leq 1, 0 \leq y \leq 2 \\
+	0 & \text{otherwise}
+	\end{cases}
+	$$
+	Find $V(2X - 3Y + 8)$.
+	\item Let $r(x)$ be a function of $x$ and let $s(y)$ be a function of $y$. Show that
+	$$
+	E(r(X)s(Y)|X) = r(X)E(s(Y)|X).
+	$$
+	Also, show that $E(r(X)|X) = r(X)$.
+	\item 
+	\item Show that if $E(X|Y = y) = c$ for some constant $c$, then $X$ and $Y$ are uncorrelated.
+	\item 
+	\item Prove Lemma 3.21.
+	\item Let $X$ and $Y$ be random variables. Suppose that $E(Y|X) = X$. Show that $\operatorname{Cov}(X, Y) = V(x)$.
 	\item
+	\item Find the moment generating function for the Poisson, Normal, and Gamma distributions.
+	\item Let $X_1, \dots, X_n \sim \operatorname{Exp}(\beta)$. Find the moment generating function of $X_i$. Prove that
+	$$
+	\sum_{i = 1}^n X_i \sim \operatorname{Gamma}(n, \beta).
+	$$
 \end{enumerate}
 
 \subsection{Inequalities}
@@ -1127,16 +1231,76 @@ plt.savefig("Ex4_4c.png")
 
 \subsection{Estimating the CDF and Statistical Functionals}
 \begin{enumerate}
-	\item Prove Theorem 7.3
-	\item 
-	\item (Computer Experiment)
-	\item
-	\item
-	\item
+	\item Prove Theorem 7.3.
+		\begin{itemize}
+			\item First of all note that
+			$$
+			E(I(X_i \leq x)) = 1 \cdot P(X_i \leq x) + 0 \cdot P(X_i > 0) = F(x)
+			$$
+			holds, with that we can calculate
+			$$
+			\begin{aligned}
+			E(\hat{F}_n(x)) &= \frac{1}{n} \sum_{i = 1}^n E(I(X_i \leq x)) \\
+			&= \frac{1}{n} \sum_{i = 1}^n F(x) = F(x).
+			\end{aligned}
+			$$
+			\item To compute the variance we first want to calculate the second moment of $\hat{F}_n(X)$. First of all note that $I(X_i \leq x)^2 = I(X_i \leq x) = F(x)$. Using this we now calculate the second moment:
+			$$
+			\begin{aligned}
+			E(\hat{F}_n^2(X)) &= E\left( \frac{1}{n^2} \left( \sum_{i = 1}^n I(x_i \leq x) \right)\right) \\
+			&= E\left( \frac{1}{n^2} \sum_{i = 1}^n I(x_i \leq x)^2 + \frac{1}{n^2} \sum_{i < j} I(X_i \leq x)I(X_j \leq x) \right) \\
+			&= \frac{1}{n} E\left( \frac{1}{n} \sum_{i = 1}^n I(X_i \leq x)) \right) + \frac{1}{n^2} \sum_{i < j} E(I(X_i \leq x)I(X_j \leq x)) \\
+			&= \frac{F(x)}{n} + \frac{1}{n^2} \sum_{i < j} P(I(X_i \leq x)I(X_j \leq x) = 1) \\
+			&= \frac{F(x)}{n} + \frac{1}{n^2} \sum_{i < j} P(I(X_i \leq x) = 1, P(I(X_j \leq x) = 1) \\
+			&= \frac{F(x)}{n} + \frac{1}{n^2} \sum_{i < j} P(X_i \leq x)P(X_j \leq x) \\
+			&= \frac{F(x)}{n} + \frac{1}{n^2} \sum_{i < j} F(x)^2 \\
+			&= \frac{F(x)}{n} + \frac{1}{n^2} \frac{n(n - 1)}{2} F(x)^2 \\
+			&= \frac{F(x)}{n}\left(1 + \frac{n - 1}{2} F(x)^2 \right).
+			\end{aligned}
+			$$
+			We have already computed the expected value of $\hat{F}_n$. In total the variance then is
+			$$
+			\begin{aligned}
+			V(\hat{F}_n(x)) &= E(\hat{F}_n^2(x)) - E(\hat{F}_n(x))^2 \\
+			&= \frac{F(x)}{n}\left(1 + \frac{n - 1}{2} F(x)^2 \right) - F(x)^2 \\
+			&= \frac{F(x)(1 - F(x))}{n}.
+			\end{aligned}
+			$$
+			\item Note that the bias is equal to $0$, as such by Theorem 6.9
+			$$
+			MSE(\hat{F}_n(x)) = V(\hat{F}_n(x)).
+			$$
+			\item We want to show that for all $\varepsilon > 0$
+			$$
+			P(|\hat{F}_n(x) - F(x)| > \varepsilon) \rightarrow 0
+			$$
+			as $n \rightarrow \infty$. Note that $F(x) = E(\hat{F}_n(x))$. Applying Theorem 4.2 (Chebyshev's Inequality) we get
+			$$
+			P(|\hat{F}_n(x) - F(x)| > \varepsilon) \leq \frac{V(\hat{F}_n(x)}{\varepsilon^2}
+			$$
+			and by including the variance
+			$$
+			P(|\hat{F}_n(x) - F(x)| > \varepsilon) \leq \frac{\frac{F(x)(1 - F(x))}{n}}{\varepsilon^2},
+			$$
+			which is equivalent to
+			$$
+			P(|\hat{F}_n(x) - F(x)| > \varepsilon) \leq \frac{1}{n} \frac{F(x)(1 - F(x))}{\varepsilon^2} \rightarrow 0
+			$$
+			as $n \rightarrow \infty$. As such $\hat{F}_n(x) \overset{P}{\rightarrow} F(x)$.
+		\end{itemize}
+	\item Let $X_1, \dots, X_n \sim \operatorname{Bernoulli}(p)$ and let $Y_1 , ... , Y_m \sim \operatorname{Bernoulli}(q)$. Find the plug-in estimator and estimated standard error for $p$. Find an approximate $90$ percent confidence interval for $p$. Find the plug-in estimator and estimated standard error for $p - q$. Find an approximate $90$ percent confidence interval for $p - q$.
+	\item (Computer Experiment) Generate $100$ observations from a N(O,l) dis- tribution. Compute a $95$ percent confidence band for the CDF $F$ (as described in the appendix). Repeat this $1000$ times and see how often the confidence band contains the true distribution function. Repeat using data from a Cauchy distribution.
+	\item Let $X_1, \dots, X_n \sim F$ and let $\hat{F}(x)$ be the empirical distribution function. For a fixed $x$, use the central limit theorem to find the limiting distribution of $\hat{F}_n(x)$.
+	\item Let $x$ and $y$ be two distinct points. Find $\operatorname{Cov}(\hat{F}_n(x), \hat{F}_n((y)))$.
+	\item Let $X_1, \dots, X_n \sim F$ and let $\hat{F}$ be the empirical distribution function. Let $a < b$ be fixed numbers and define
+	$$
+	\theta = T(F) = F(b) - F(a).
+	$$
+	Let $\hat{\theta} = T(\hat{F}_n) = \hat{F}_n(b) - \hat{F}_n(a))$. Find the estimated standard error of $\hat{\theta}$. Find an expression for an approximate $1 - \alpha$ confidence interval for $\theta$.
 	\item Data on the magnitudes of earthquakes near Fiji are available on the website for this book. Estimate the CDF F(x). Compute and plot a 95 percent confidence envelope for F (as described in the appendix). Find an approximate 95 percent confidence interval for F(4.9) - F(4.3).
 	\item Get the data on eruption times and waiting times between eruptions of the Old Faithful geyser from the website. Estimate the mean waiting time and give a standard error for the estimate. Also, give a 90 percent confidence interval for the mean waiting time. Now estimate the median waiting time. In the next chapter we will see how to get the standard error for the median.
-	\item
-	\item
+	\item $100$ people are given a standard antibiotic to treat an infection and another $100$ are given a new antibiotic. In the first group, $90$ people recover; in the second group, $85$ people recover. Let $p_1$ be the probability of recovery under the standard treatment and let P2 be the probability of recovery under the new treatment. We are interested in estimating $\theta = p_1 - p_2$. Provide an estimate, standard error, an $80$ percent confidence interval, and a $95$ percent confidence interval for $B$.
+	\item 
 \end{enumerate}
 
 \end{document}

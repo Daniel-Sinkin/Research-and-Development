@@ -158,6 +158,9 @@
   },
   "active": "17e1322f47e76920",
   "lastOpenFiles": [
+    "Wasserman-Statistics/Exercises.pyg",
+    "Wasserman-Statistics/Exercises.aex",
+    "Wasserman-Statistics/Exercises.w18",
     "Wasserman-Statistics/4-Probability_Inequalities/_4.md",
     "Blitzstein-Probability/Flashcards/Chapter 3/Conditional PMF.md",
     "Dive-into-Deep-Learning/03-Linear_Neural_Networks_for_Regression/3 Synthetic Regression Data.md",
@@ -169,8 +172,6 @@
     "Wasserman-Statistics/Flashcards/Theorem Continuity Theorem for Probabilities.md",
     "Wasserman-Statistics/Flashcards/Theorem Bayes.md",
     "Wasserman-Statistics/Exercises.pdf",
-    "Wasserman-Statistics/Exercises.aex",
-    "Wasserman-Statistics/Exercises.w18",
     "Wasserman-Statistics/Exercises.toc",
     "Wasserman-Statistics/Exercises.out",
     "Wasserman-Statistics/Exercises.aux",
@@ -192,7 +193,6 @@
     "Blitzstein-Probability/Flashcards/Chapter 6/State and Prove Theorem 6.1.4 about error minimizers.md",
     "Blitzstein-Probability/Flashcards/Chapter 6/Define Median, Mode.md",
     "Blitzstein-Probability/Flashcards/Chapter 5/Poisson Process.md",
-    "Blitzstein-Probability/Flashcards/Chapter 5/What does it mean for a distribution to have the memoryless property.md",
-    "Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Exponential.md"
+    "Blitzstein-Probability/Flashcards/Chapter 5/What does it mean for a distribution to have the memoryless property.md"
   ]
 }
