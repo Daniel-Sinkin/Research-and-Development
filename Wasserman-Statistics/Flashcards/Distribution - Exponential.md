@@ -2,7 +2,7 @@ We say that a random variable is exponentially distributed with parameter $\beta
 $$
 f(x) = \frac{1}{\beta} e^{- x / \beta},
 $$
-for $x > 0$. Its CDF (See exercise 1.2.9) is given by
+for $x > 0$. Its CDF (see exercise 1.2.9) is given by
 $$
 F(t) = 1 - e^{-t / \beta}.
 $$

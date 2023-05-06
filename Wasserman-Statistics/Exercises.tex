@@ -3,6 +3,14 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
+\newcommand{\mse}{\operatorname{mse}}
+\newcommand{\bias}{\operatorname{bias}}
+\newcommand{\se}{\operatorname{se}}
+\newcommand{\Bernoulli}{\operatorname{Bernoulli}}
+\newcommand{\Bin}{\operatorname{Bin}}
+\newcommand{\Poisson}{\operatorname{Poisson}}
+\newcommand{\Exp}{\operatorname{Exp}}
+
 \usepackage{enumitem}
 
 \usepackage{graphicx}
@@ -1176,23 +1184,23 @@ plt.savefig("Ex4_4c.png")
 \section{Statistics}
 \subsection{Models, Statistical Inference and Learning}
 \begin{enumerate}
-\item Let $X_1, \dots, X_n \sim \operatorname{Poisson}(\lambda)$ and let $\hat{\lambda} = \frac{1}{n} \sum_{i = 1}^n$. Find the bias, se, and mse of this estimator.
+\item Let $X_1, \dots, X_n \sim \operatorname{Poisson}(\lambda)$ and let $\hat{\lambda} = \frac{1}{n} \sum_{i = 1}^n$. Find the $\bias$, $\se$, and $\mse$ of this estimator.
 	\begin{itemize}
 		\item Recall that $E_\lambda$ is linear and that the expected value of $X \sim \operatorname{Po}(\lambda)$ is $\lambda$. As such
 		$$
 		E_\lambda(\hat{\lambda}_n) = \frac{1}{n} \sum_{i = 1}^n E(X_i) = \frac{1}{n} n \lambda = \lambda.
 		$$
-		This means that $bias = 0$, i.e., this estimator is unbiased.
+		This means that $\bias = 0$, i.e., this estimator is unbiased.
 		\item Similiarly, the variance of $X \sim \operatorname{Po}(\lambda)$ is equal to $\lambda$, as such $se^2 = \lambda / n$. To see this note that $Var(aX) = a^2Var(X)$, i.e.,
 		$$
 		se = \sqrt{\lambda / n}.
 		$$
 		\item By Theorem 6.9 the mean square error is equal to
 		$$
-		MSE = bias^2(\hat{\lambda}_n) + se^2(\hat{\lambda}_n) = \frac{\lambda}{n}.
+		\mse = \bias^2(\hat{\lambda}_n) + se^2(\hat{\lambda}_n) = \frac{\lambda}{n}.
 		$$
 	\end{itemize}
-\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{theta} = \max\{X_1, \dots, X_n\}$. Find the bias, se, and mse of this estimator.
+\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta} = \max\{X_1, \dots, X_n\}$. Find the $\bias$, $\se$, and $\mse$ of this estimator.
 	\begin{itemize}
 		\item We begin by determining the CDF of $\hat{\theta}$.
 		$$
@@ -1203,30 +1211,64 @@ plt.savefig("Ex4_4c.png")
 		&\overset{1}{=} \prod_{i = 1}^n F(X_i \leq x) \\
 		&\overset{2}{=} (F(X_i \leq x))^n \\
 		&= \left( \frac{x}{\theta} \right)^n \\
-		&= \frac{x^n}{\theta^n}.
+		&= \frac{x^n}{\theta^n},
 		\end{aligned}
 		$$
-		To obtain the PDF we differentiate with respect to $\theta$ to obtain
+		where we have used (1) the independence of the random variables and (2) the fact that they are identically distributed. To obtain the PDF we differentiate with respect to $x$ to obtain
 		$$
 		\begin{aligned}
-		f_{\hat{\theta}}(x) &= \frac{\partial}{\partial \theta} F_{\hat{\theta}}(x) \\
-		&= \frac{\partial}{\partial \theta} \frac{x^n}{\theta^n} \\
-		&= - n \frac{x^n}{\theta^{-n - 1}}.
+		f_{\hat{\theta}}(x) &= \frac{\partial}{\partial x} F_{\hat{\theta}}(x) \\
+		&= \frac{\partial}{\partial x} \frac{x^n}{\theta^n} \\
+		&= n \frac{x^{n - 1}}{\theta^n}.
 		\end{aligned}
 		$$
 		With that we can now calculate the expected value
 		$$
 		\begin{aligned}
-		E_\theta(\hat{\theta}) &= \int_0^\theta x (-n x^n / \theta^{n + 1}) dx \\
-		&= -n \int_0^\theta \frac{x^{n + 1}}{\theta^{n + 1}} \\
-		&= -\frac{n}{\theta^{n + 1}} \int_0^\theta x^{n + 1} \\
-		&= -\frac{n}{\theta^{n + 1}} \frac{n + 2}{\theta^{n + 2}} \\
-		&= - \frac{n}{n + 2} \theta.
+		E_\theta(\hat{\theta}) &= \int_0^\theta x (n x^{n-1} / \theta^n) dx \\
+		&= n \int_0^\theta \frac{x^{n}}{\theta^n} dx \\
+		&= \frac{n}{\theta^n} \int_0^\theta x^n dx \\
+		&= \frac{n}{\theta^n} \left[ \frac{x^{n+1}}{n+1} \right]_0^\theta \\
+		&= \frac{n}{n+1} \theta,
 		\end{aligned}
 		$$
-		As such $bias = - \frac{n}{n + 2} \theta - \theta = - \frac{2n + 2}{n + 2} \theta$.
+		and
+		$$
+		\begin{aligned}
+		\bias &= E_\theta(\hat{\theta}) - \theta \\
+		&= \frac{n}{n+1} \theta - \theta \\
+		&= \theta\left(\frac{n}{n+1} - 1\right) \\
+		&= -\frac{\theta}{n+1}.
+		\end{aligned}
+		$$
+		\item To compute the standard error we first calculate the second moment of $\hat{\theta}$:
+		$$
+		\begin{aligned}
+		E_\theta(\hat{\theta}^2) &= \int_0^\theta x^2 \frac{n x^{n - 1}}{\theta^n} dx \\
+		&= \frac{n}{\theta^n} \int_0^\theta x^{n + 1} dx \\
+		&= \frac{n}{\theta^n} \left. \frac{1}{n + 2} x^{n + 2} \right|_{x = 0}^{x = \theta} \\
+		&= \frac{n}{\theta^n} \frac{\theta^{n + 2}}{n + 2} \\
+		&= \frac{n}{n + 2} \theta^2.
+		\end{aligned}
+		$$
+		As such
+		$$
+		V(\hat{\theta}) = E_\theta(\hat{\theta}^2) - E_\theta(\hat{\theta})^2 = \frac{n}{n + 2} \theta^2 - \frac{\theta^2}{(n+1)^2}
+		$$
+		and
+		$$
+		\se(\hat{\theta}) = \sqrt{V(\hat{\theta})} = \sqrt{\frac{n}{n + 2} - \frac{1}{(n + 1)^2}}\theta.
+		$$
+		\item By Theorem 6.9 it follows
+		$$
+		\begin{aligned}
+		\mse(\hat{\theta}) &= \bias^2(\hat{\theta}) + V(\hat{\theta}) \\
+		&= \frac{\theta^2}{(n + 1)^2} + \frac{n}{n + 2}\theta^2 - \frac{\theta^2}{(n + 1)^2} \\
+		&= \frac{n}{n + 2}\theta^2.
+		\end{aligned}
+		$$
 	\end{itemize}
-\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta} = 2 \overline{X}_n$. Find the bias, se, and mse of this estimator.
+\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta} = 2 \overline{X}_n$. Find the $\bias$, $\se$, and $\mse$ of this estimator.
 \end{enumerate}
 
 \subsection{Estimating the CDF and Statistical Functionals}
@@ -1268,7 +1310,7 @@ plt.savefig("Ex4_4c.png")
 			$$
 			\item Note that the bias is equal to $0$, as such by Theorem 6.9
 			$$
-			MSE(\hat{F}_n(x)) = V(\hat{F}_n(x)).
+			\mse(\hat{F}_n(x)) = V(\hat{F}_n(x)).
 			$$
 			\item We want to show that for all $\varepsilon > 0$
 			$$
@@ -1288,7 +1330,87 @@ plt.savefig("Ex4_4c.png")
 			$$
 			as $n \rightarrow \infty$. As such $\hat{F}_n(x) \overset{P}{\rightarrow} F(x)$.
 		\end{itemize}
-	\item Let $X_1, \dots, X_n \sim \operatorname{Bernoulli}(p)$ and let $Y_1 , ... , Y_m \sim \operatorname{Bernoulli}(q)$. Find the plug-in estimator and estimated standard error for $p$. Find an approximate $90$ percent confidence interval for $p$. Find the plug-in estimator and estimated standard error for $p - q$. Find an approximate $90$ percent confidence interval for $p - q$.
+	\item Let $X_1, \dots, X_n \sim \Bernoulli(p)$ and let $Y_1 , ... , Y_m \sim \Bernoulli(q)$. Find the plug-in estimator and estimated standard error for $p$. Find an approximate $90$ percent confidence interval for $p$. Find the plug-in estimator and estimated standard error for $p - q$. Find an approximate $90$ percent confidence interval for $p - q$.
+		\begin{itemize}
+			\item Note that $Y_n := \sum_{i = 1}^n X_i \sim \Bin(n, p)$ and therefore $E(Y_n) = np$ and $V(Y_n) = np(1 - p)$. Furthermore note that the mean
+			$$
+			\overline{X}_n := \frac{1}{n} Y_n
+			$$
+			satisfies $E(\overline{X}_n) = \frac{1}{n}E(Y_n) = p$ by linearity. This is our plug-in estimator. The variance is
+			$$
+			V(\overline{X}_n) = \frac{p(1 - p)}{n},
+			$$
+			as such the standard error of this estimator is
+			$$
+			\se(\overline{X}_n) = \sqrt{\frac{p(1 - p)}{n}}.
+			$$
+			\item This allows us to define the (Normal-based) confidence interval by using (7.6):
+			$$
+			(p - z_{\alpha / 2} \se, p + z_{\alpha / 2} \se)
+			$$
+			and observing that for a $95\%$ confidence interval $z_{\alpha / 2} = z_{0.05/2} = 1.96 \approx 2$ we get
+			$$
+			\left(p - 2\sqrt{\frac{p(1 - p)}{n}}, p + 2\sqrt{\frac{p(1 - p)}{n}}\right).
+			$$
+			\item
+\begin{minted}{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from Scripts.plots import *
+
+def generateConfidence(n, p):
+    se = np.sqrt((p * (1 - p)) / n)
+    conf = [p - 2 * se, p + 2 * se]
+    inConf = lambda x : (x > conf[0]) & (x < conf[1])
+    return conf, inConf
+
+def countSamples(q_list, n = 50, p = 0.3, num_samples = 100000):
+    y = []
+    for q in q_list:
+        mu = np.random.binomial(n=n, p=q, size=num_samples) / n
+        count = np.sum(inConf(mu))
+        y.append(count / num_samples)
+    return y
+
+num_samples = 100000
+step_size = 0.02
+p_list = [0.1, 0.3, 0.5, 0.7, 0.95]
+for p in p_list:
+    n = 50
+    conf, inConf = generateConfidence(n = n, p = p)
+
+    q_list = np.arange(start=0, stop=1, step=step_size)
+    y = countSamples(n = n, p = 0, num_samples = num_samples, q_list = q_list)
+    plt.plot(q_list, y, label=f'p = {p}')
+
+plot7_2_1(save = True)
+
+n_list = [10, 25, 50, 100]
+p = 0.3
+for n in n_list:
+    conf, inConf = generateConfidence(n = n, p = p)
+
+    q_list = np.arange(start=0, stop=1, step=step_size)
+    y = countSamples(n = n, p = 0, num_samples = num_samples, q_list = q_list)
+
+    plt.plot(q_list, y, label=f'p = {p}')
+
+    plot7_2_2(save = True, n = n, p = p, conf = conf)
+\end{minted}
+		\item
+\begin{center}
+\begin{tabular}{cc}
+    \includegraphics[width=0.5\textwidth]{7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png} &
+    \includegraphics[width=0.5\textwidth]{7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-25.png} \\
+    \includegraphics[width=0.5\textwidth]{7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-50.png} &
+    \includegraphics[width=0.5\textwidth]{7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-100.png}
+\end{tabular}
+\end{center}
+
+\begin{center}
+\includegraphics[width=0.6\textwidth]{7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_1.png}
+\end{center}
+		\end{itemize}
 	\item (Computer Experiment) Generate $100$ observations from a N(O,l) dis- tribution. Compute a $95$ percent confidence band for the CDF $F$ (as described in the appendix). Repeat this $1000$ times and see how often the confidence band contains the true distribution function. Repeat using data from a Cauchy distribution.
 	\item Let $X_1, \dots, X_n \sim F$ and let $\hat{F}(x)$ be the empirical distribution function. For a fixed $x$, use the central limit theorem to find the limiting distribution of $\hat{F}_n(x)$.
 	\item Let $x$ and $y$ be two distinct points. Find $\operatorname{Cov}(\hat{F}_n(x), \hat{F}_n((y)))$.
