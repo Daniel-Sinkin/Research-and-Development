@@ -1411,7 +1411,84 @@ for n in n_list:
 \includegraphics[width=0.6\textwidth]{7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_1.png}
 \end{center}
 		\end{itemize}
-	\item (Computer Experiment) Generate $100$ observations from a N(O,l) dis- tribution. Compute a $95$ percent confidence band for the CDF $F$ (as described in the appendix). Repeat this $1000$ times and see how often the confidence band contains the true distribution function. Repeat using data from a Cauchy distribution.
+	\item (Computer Experiment) Generate $100$ observations from a $\mathcal{N}(0, 1)$ distribution. Compute a $95$ percent confidence band for the CDF $F$ (as described in the appendix). Repeat this $1000$ times and see how often the confidence band contains the true distribution function. Repeat using data from a Cauchy distribution.
+		\begin{itemize}
+			\item
+			\begin{minted}{python}
+import numpy as np
+import scipy
+import matplotlib.pyplot as plt
+# Allows to use Latex Code
+plt.rcParams.update({
+    "text.usetex": True
+})
+
+rng = np.random.default_rng()
+
+n, alpha = 100, 0.05
+samples = rng.normal(size = n)
+eps = np.sqrt(np.log(2 / alpha)  / (2 * n))
+
+F = lambda x : (sum(samples < x) / 100)
+L = lambda x : np.maximum(F(x) - eps, 0)
+U = lambda x : np.minimum(F(x) + eps, 1)
+N = scipy.stats.norm.cdf
+
+X = np.arange(start = -4, stop = 4, step = 0.1)
+yF = np.vectorize(F)(X)
+yL = np.vectorize(L)(X)
+yU = np.vectorize(U)(X)
+yN = np.vectorize(N)(X)
+
+plt.plot(X, yL, label = "L(x)")
+plt.plot(X, yF, label = r"$\hat{F}_n(x)$")
+plt.plot(X, yU, label = "U(x)")
+plt.plot(X, yN, linestyle='--', label = r"$\Phi(x)$")
+
+plt.legend()
+plt.legend(fontsize=14)
+
+plt.savefig("Ex7_3.png", dpi = 300)
+plt.show()
+			\end{minted}
+			\begin{center}
+				\includegraphics[width=\linewidth]{7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_3.png}
+			\end{center}
+			\begin{minted}{python}
+k, count, count_cauchy = 1000, 0, 0
+for i in range(k):
+    samples = rng.normal(size = n)
+    samples_cauchy = rng.standard_cauchy(size = n)
+
+    F = lambda x : (sum(samples < x) / 100)
+    F_cauchy = lambda x : (sum(samples_cauchy < x) / 100)
+    L = lambda x : np.maximum(F(x) - eps, 0)
+    U = lambda x : np.minimum(F(x) + eps, 1)
+
+    C = scipy.stats.cauchy.cdf
+
+    yF = np.vectorize(F)(X)
+    yC = np.vectorize(C)(X)
+    yL = np.vectorize(L)(X)
+    yU = np.vectorize(U)(X)
+
+    cmp = lambda x : (N(x) >= L(x) and N(x) <= U(x))
+    cmp_cauchy = lambda x : (C(x) >= L(x) and C(x) <= U(x))
+    contains = np.vectorize(cmp)(X)
+    contains_cauchy = np.vectorize(cmp_cauchy)(X)
+    if not contains.all():
+        count += 1
+
+    if not contains_cauchy.all():
+        count_cauchy += 1
+
+print(f"Normal : {count / k * 100:.2f}%")
+print(f"Cauchy : {count_cauchy / k * 100:.2f}%")
+
+> Normal : 2.30%
+> Cauchy : 84.60%
+			\end{minted}
+		\end{itemize}
 	\item Let $X_1, \dots, X_n \sim F$ and let $\hat{F}(x)$ be the empirical distribution function. For a fixed $x$, use the central limit theorem to find the limiting distribution of $\hat{F}_n(x)$.
 	\item Let $x$ and $y$ be two distinct points. Find $\operatorname{Cov}(\hat{F}_n(x), \hat{F}_n((y)))$.
 	\item Let $X_1, \dots, X_n \sim F$ and let $\hat{F}$ be the empirical distribution function. Let $a < b$ be fixed numbers and define
@@ -1420,7 +1497,41 @@ for n in n_list:
 	$$
 	Let $\hat{\theta} = T(\hat{F}_n) = \hat{F}_n(b) - \hat{F}_n(a))$. Find the estimated standard error of $\hat{\theta}$. Find an expression for an approximate $1 - \alpha$ confidence interval for $\theta$.
 	\item Data on the magnitudes of earthquakes near Fiji are available on the website for this book. Estimate the CDF F(x). Compute and plot a 95 percent confidence envelope for F (as described in the appendix). Find an approximate 95 percent confidence interval for F(4.9) - F(4.3).
-	\item Get the data on eruption times and waiting times between eruptions of the Old Faithful geyser from the website. Estimate the mean waiting time and give a standard error for the estimate. Also, give a 90 percent confidence interval for the mean waiting time. Now estimate the median waiting time. In the next chapter we will see how to get the standard error for the median.
+	\item Get the data on eruption times and waiting times between eruptions of the Old Faithful geyser from the website. Estimate the mean waiting time and give a  error for the estimate. Also, give a 90 percent confidence interval for the mean waiting time. Now estimate the median waiting time. In the next chapter we will see how to get the standard error for the median.
+		\begin{itemize}
+			\item \texttt{https://www.stat.cmu.edu/~larry/all-of-statistics/=data/faithful.dat}
+			\item I modified the text file, removing the text above the table before importing it.
+			\item
+				\begin{minted}{python}
+import numpy as np
+import pandas as pd
+import scipy
+
+file_path = "Data/faithful.dat"
+
+column_names = ['eruptions', 'waiting']
+df = pd.DataFrame(columns=column_names)
+
+with open(file_path, 'r') as file:
+    next(file)  # Skips the header row
+    for line in file:
+        _, eruptions, waiting = line.strip().split()
+        data_dict = {'eruptions': float(eruptions), 'waiting': int(waiting)}
+        df = df.append(data_dict, ignore_index=True)
+
+
+X = df["waiting"].values
+n = len(X)
+mu = np.mean(X)
+variance = np.dot(X - mu, X - mu) / (2 * n)
+sigma = np.sqrt(variance)
+
+print(f"mu = {mu:.2f}\nse = {sigma:.2f}")
+
+z = scipy.stats.norm.ppf(0.95)
+print(f"(mu-z*se, mu+z*se) = ({mu - z * sigma:.2f}, {mu + z * sigma:.2f})")
+				\end{minted}
+		\end{itemize}
 	\item $100$ people are given a standard antibiotic to treat an infection and another $100$ are given a new antibiotic. In the first group, $90$ people recover; in the second group, $85$ people recover. Let $p_1$ be the probability of recovery under the standard treatment and let P2 be the probability of recovery under the new treatment. We are interested in estimating $\theta = p_1 - p_2$. Provide an estimate, standard error, an $80$ percent confidence interval, and a $95$ percent confidence interval for $B$.
 	\item 
 \end{enumerate}
