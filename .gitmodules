@@ -1,0 +1,3 @@
+[submodule "algorithmic-trading"]
+	path = algorithmic-trading
+	url = https://github.com/Daniel-Sinkin/algorithmic-trading.git
