@@ -10,6 +10,8 @@
 \newcommand{\Bin}{\operatorname{Bin}}
 \newcommand{\Poisson}{\operatorname{Poisson}}
 \newcommand{\Exp}{\operatorname{Exp}}
+\newcommand{\MLE}{\operatorname{MLE}}
+
 
 \usepackage{enumitem}
 
@@ -1497,6 +1499,47 @@ print(f"Cauchy : {count_cauchy / k * 100:.2f}%")
 	$$
 	Let $\hat{\theta} = T(\hat{F}_n) = \hat{F}_n(b) - \hat{F}_n(a))$. Find the estimated standard error of $\hat{\theta}$. Find an expression for an approximate $1 - \alpha$ confidence interval for $\theta$.
 	\item Data on the magnitudes of earthquakes near Fiji are available on the website for this book. Estimate the CDF F(x). Compute and plot a 95 percent confidence envelope for F (as described in the appendix). Find an approximate 95 percent confidence interval for F(4.9) - F(4.3).
+		\begin{itemize}
+			\item 
+\begin{minted}{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+file_path = "Data/fijiquakes.dat"
+
+magnitude = pd.read_csv(file_path,
+                        sep=",",
+                        names=["Magnitude"],
+                        skiprows=1,
+                        usecols=[4]).values.reshape(-1)
+
+n = len(magnitude)
+F = lambda x : np.sum(magnitude <= x) / n
+
+alpha = 0.05
+eps = np.sqrt(np.log(2 / alpha) / (2 * n))
+
+L = lambda x : np.maximum(F(x) - eps, 0)
+U = lambda x : np.minimum(F(x) + eps, 1)
+
+x = np.arange(np.min(magnitude), np.max(magnitude), 0.05)
+y = list(map(F, x))
+y_L = list(map(L, x))
+y_U = list(map(U, x))
+
+plt.plot(x, y, color = "green", linestyle = "dotted")
+plt.plot(x, y_L, color = "blue", linestyle = "-")
+plt.plot(x, y_U, color = "blue", linestyle = "-")
+
+plt.savefig("Ex7_7.png")
+
+plt.show()
+\end{minted}
+			\begin{center}
+				\includegraphics[width=0.6\textwidth]{7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_7.png}
+			\end{center}
+		\end{itemize}
 	\item Get the data on eruption times and waiting times between eruptions of the Old Faithful geyser from the website. Estimate the mean waiting time and give a  error for the estimate. Also, give a 90 percent confidence interval for the mean waiting time. Now estimate the median waiting time. In the next chapter we will see how to get the standard error for the median.
 		\begin{itemize}
 			\item \texttt{https://www.stat.cmu.edu/~larry/all-of-statistics/=data/faithful.dat}
@@ -1536,6 +1579,55 @@ print(f"(mu-z*se, mu+z*se) = ({mu - z * sigma:.2f}, {mu + z * sigma:.2f})")
 	\item 
 \end{enumerate}
 
+\subsection{The Bootstrap}
+\begin{enumerate}
+	\item Consider the data in Example 8.6. Find the plug-in estimate of the correlation coefficient. Estimate the standard error using the bootstrap. Find a 95 percent confidence interval using the Normal, pivotal, and percentile methods.
+	\item (Computer Experiment.) Conduct a simulation to compare the various bootstrap confidence interval methods. Let $n = 50$ and let $T(F) = \int(x - \mu)^3 dF(x)/\sigma^3$ be the skewness. Draw $Y_1, \dots, Y_n \sim \mathcal{N}(O,1)$ and set $X_i = e^{Y_i}, i = 1, \dots, n$. Construct the three types of bootstrap $95$ percent intervals for $T(F)$ from the data $X_1, \dots, X_n$. Repeat this whole thing many times and estimate the true coverage of the three intervals.
+	\item Let
+	$$
+	X_1, \dots, X_n \sim t_3
+	$$
+	where $n = 25$. Let $\theta = T(F) = (q_{.75} - q_{.25}) / 1.34$ where $q_p$ denotes the $p$th quantile. Do a simulation to compare the coverage and the length of the following confidence intervals for $\theta$: (i) Normal interval with standard error from the bootstrap, (ii) bootstrap percentile interval, and (iii) pivotal bootstrap interval.
+	\item Let $X_1, \dots, X_n$ be distinct observations (no ties). Show that there are
+	$$
+	\binom{2n - 1}{n}
+	$$
+	distinct bootstrap samples.
+
+	Hint: Imagine putting $n$ balls into $n$ buckets.
+	\item Let $X_1, \dots, X_n$ be distinct observations (no ties). Let $X_1^*, \dots, X_n^*$ denote a bootstrap sample and let
+	$$
+	\overline{X}_n^* = \frac{1}{n} \sum_{i = 1}^n X_i^*.
+	$$
+	Find: $E(\overline{X}_n^* | X_1, \dots, X_n), V(\overline{X}_n^*|X_1, \dots, X_n), E(\overline{X}_n^*)$ and $V(\overline{X}_n^*)$.
+	\item (Computer Experiment.) Let $X_1, \dots, X_n \sim \mathcal{N}(\mu, 1)$. let $\theta = e^\mu$ and let $\hat{\theta} = e^{\overset{X}}$. Create a data set (using $\mu = 5$) consisting of $n = 100$ observations.
+		\begin{enumerate}
+			\item Use the bootstrap to get the $\se$ and $95\%$ confidence interval for $\theta$.
+			\item Plot a histogram of the bootstrap replications. This is an estimate of the distribution of $\hat{\theta}$. Compare this to teh true sampling distribution of $\hat{\theta}$.
+		\end{enumerate}
+	\item Let $X_1, \dots, X_n \sim U(0, \theta)$. Let $\hat{\theta} = X_{\max} = \max\{X_1, \dots, X_n\}$. Generate a data set of size $50$ with $\theta = 1$.
+		\begin{enumerate}
+			\item Find the distribution of $\hat{\theta}$. Compare the true distribution of $\hat{\theta}$ to the histograms from the bootstrap.
+			\item This is a case where the bootstrap does very poorly. In fact, we can prove that this is the case. Show thatt $P(\hat{\theta} = \hat{\theta}) = 0$ and yet $P(\hat{\theta}^* = \hat{\theta}) = 0.632.$ Hint: show that,
+			$$
+			P(\hat{\theta}^* = \hat{\theta}) = 1 - (1 - (1 / n))^n
+			$$
+			and then tkae the limit as $n$ gets large.
+		\end{enumerate}
+	\item Let $T_n = \overline{X}_n^2, \mu = E(X_1),$
+	$$
+	\alpha_k = \int |x - \mu|^k dF(x)
+	$$
+	and
+	$$
+	\hat{\alpha}_k = \frac{1}{n} \sum_{i = 1}^n |X_i - \overline{X}_n|^k.
+	$$
+	Show that
+	$$
+	v_{\operatorname{boot}} = \frac{4 \overline{X}_n^2 \hat{\alpha}_2}{n} + \frac{4 \overline{X}_n \hat{\alpha}_3}{n^2} + \frac{\hat{\alpha}_4}{n^3}.
+	$$
+\end{enumerate}
+
 \section{Statistical Models and Methods}
 \subsection{Linear and Logistic Regression}
 \begin{enumerate}
@@ -1547,14 +1639,73 @@ print(f"(mu-z*se, mu+z*se) = ({mu - z * sigma:.2f}, {mu + z * sigma:.2f})")
 	$$
 	Find the least squares estimate for $\beta$. Find the standard error of the estimate. Find conditions that guarantee that the estimate is consistent.
 	\item Prove equation (13.25)
-	\item In teh simple linear regression model, construct a Wald test for $H_0 : \beta_1 = 17\beta_0$ versus $H_1 : \beta_1 \neq 17\beta_0$.
+	\item In the simple linear regression model, construct a Wald test for $H_0 : \beta_1 = 17\beta_0$ versus $H_1 : \beta_1 \neq 17\beta_0$.
 	\item Get the passenger car mileage data from
+	
 	\texttt{http://lib.stat.cmu.ed u/DASL /Datafiles/ carmpgdat.html}
 		\begin{enumerate}
-			\item Fit a simple linear regression model to predict $\operatorname{MPG}$ (miles per gallon) from $\operatorname{HP}$ (horsepower). Summarize your analysis including a plot of teh data with teh fitted line.
-			\item Repeat the analysis but use $\log(\operatorname{MPG})$ as the response. Compare teh analyses.
+			\item Fit a simple linear regression model to predict $\operatorname{MPG}$ (miles per gallon) from $\operatorname{HP}$ (horsepower). Summarize your analysis including a plot of the data with the fitted line.
+				\begin{itemize}
+				\item
+				\begin{minted}{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def plotLine(x, y, color = "green", linestyle = "dotted"):
+    plt.plot(x, y, color = color, linestyle = linestyle)
+
+file_path = "Data/carmileage.dat"
+column_names = ["Vol", "HP", "MPG", "SP", "WT"]
+df = pd.read_csv(file_path,
+                 sep='\t',
+                 header=None,
+                 names=column_names,
+                 skiprows=1,
+                 usecols=[1, 2, 3, 4, 5])
+
+X, Y = df["HP"], df["MPG"]
+n = len(X)
+
+mu_X = np.mean(X)
+mu_Y = np.mean(Y)
+
+offsetNorm = np.dot(X - mu_X, X - mu_X)
+
+beta1 = np.dot(X - mu_X, Y - mu_Y) / offsetNorm
+beta0 = mu_Y - beta1 * mu_X
+
+lineFunc = lambda x : beta0 + beta1 * x
+x, y = [40, 350], [lineFunc(40), lineFunc(350)]
+
+rss = np.dot(Y - lineFunc(X), Y - lineFunc(X))
+var = rss / (len(X) - 2)
+sigma = np.sqrt(var)
+
+plt.scatter(X, Y)
+
+plotLine(x, y, color = "red", linestyle = "-")
+
+plotLine(x, y - sigma)
+plotLine(x, y + sigma)
+plotLine(x, y - 2 * sigma)
+plotLine(x, y + 2 * sigma)
+
+plt.xlabel("Horsepower")
+plt.ylabel("Miles per gallon")
+
+plt.savefig("Ex13_6.png")
+
+plt.show()
+				\end{minted}
+					\begin{center}
+					\includegraphics[width=0.6\textwidth]{13-Linear_And_Logistic_Regression/Ex13_6.png}
+					\end{center}
+				\end{itemize}
+			\item Repeat the analysis the use $\log(\operatorname{MPG})$ as the response. Compare the analyses.
 		\end{enumerate}
 	\item Get the passenger car mileage data from
+
 	\texttt{http://lib.stat.cmu.edu/DASL/Datafiles/carmpgdat.html}
 		\begin{enumerate}
 			\item Fit a multiple linear regression model to predict $\operatorname{MPG}$ (miles per gallon) from the other variables. Summarize your analysis.
@@ -1562,7 +1713,7 @@ print(f"(mu-z*se, mu+z*se) = ({mu - z * sigma:.2f}, {mu + z * sigma:.2f})")
 			\item Use the Zheng-Loh model selection method and compare to (b).
 			\item Perform all possible regressions. Compare $C_p$ and $\operatorname{BIC}$. Compare the results.
 		\end{enumerate}
-	\item Assume a linear regression model with Normal errors. Take $\sigma$ known. Show that the model with highest $\operatorname{AIC}$ (equation (13.27)) is the model with teh lowest Mallows $C_p$ statistic.
+	\item Assume a linear regression model with Normal errors. Take $\sigma$ known. Show that the model with highest $\operatorname{AIC}$ (equation (13.27)) is the model with the lowest Mallows $C_p$ statistic.
 	\item 
 	\item In this question we take a closer look at prediction intervals. Let
 	$$
@@ -1595,6 +1746,26 @@ print(f"(mu-z*se, mu+z*se) = ({mu - z * sigma:.2f}, {mu + z * sigma:.2f})")
 			$$
 		\end{enumerate}
 	\item Get the Coronary Risk-Factor Study (CORIS) data from the book web site. Use backward stepwise logistic regression based on AIC to select a model. Summarize your results.
+\end{enumerate}
+
+\subsection{Multivariate Models}
+\begin{enumerate}
+	\item Prove Theorem 14.1
+	\item Find the Fisher information matrix for the $\MLE$ of a Multinomial.
+	\item (Computer Experiment.) Write a function to generate nsim observations from a $\operatorname{Multinomial}(n, p)$ distribution.
+	\item (Computer Experiment.) Write a function to generate $\operatorname{nsim}$ observations from a Multivariate normal with given mean $\mu$ and covariance matrix $\Sigma$.
+	\item (Computer Experiment.) Generate $100$ random vectors from a $\mathcal{N}(\mu, \Sigma)$ distribution where
+	$$
+	\begin{aligned}
+	\mu = \begin{pmatrix} 3 \\ 8 \end{pmatrix},&&
+	\Sigma = \begin{pmatrix}
+	1 & 1 \\
+	1 & 2
+	\end{pmatrix}.
+	\end{aligned}
+	$$
+	Plot the simulation as a scatterplot. Estimate the mean and covariance matrix $\Sigma$. Find the correlation $\rho$ between $X_1$ and $X_2$. Comapre this with the sample correlations from your simulation. Find $95\%$ confidence interval for $\rho$. Use two methods: the bootstrap and Fisher's method. Compare.
+	\item (Computer Experiment.) Repeat the previous exercise $1000$ times. Compare teh coverage of the two confidence intervals for $\rho$.
 \end{enumerate}
 
 \end{document}
