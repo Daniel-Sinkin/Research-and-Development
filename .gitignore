@@ -10,7 +10,7 @@ _minted-Exercises/
 __pycache__/
 
 # Ignore files I don't have copyright for
-Blitzstein-Probability/ProbBook.pdf
-Dive-into-Deep-Learning/d2l-en.pdf
-Wasserman-Statistics/StatBook.pdf
-Wasserman-Statistics/Data/
+Books and CoursesBlitzstein-Probability/ProbBook.pdf
+Books and CoursesDive-into-Deep-Learning/d2l-en.pdf
+Books and CoursesWasserman-Statistics/StatBook.pdf
+Books and CoursesWasserman-Statistics/Data/
