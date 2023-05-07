@@ -633,6 +633,12 @@ Ex2_2(draw = False, save = False)
 				\end{itemize}
 		\end{enumerate}
 	\item Let $X$ and $Y$ be discrete random variables. Show that $X$ and $Y$ are independent if and only if $f_{X, Y}(x, y) = f_X(x)f_Y(y)$ for all $x$ and $y$.
+		\begin{itemize}
+			\item I think I might be missing in this exercise.
+			$$
+			f_{X, Y}(x, y)= P(X = x, Y = y) = P(X = x)P(Y = y) = f_X(x)f_Y(y).
+			$$
+		\end{itemize}
 	\item Let $X$ have distribution $F$ and density function $f$ and let $A$ be a subset of $\mathbb{R}$. Denote by $I_A(x)$ the indicator function for $A$. Let $Y = I_A(X)$. Find an expression for the cumulative distribution of $Y$. Hint: first find the probability mass function for $Y$.
 		\begin{itemize}
 			\item Denote the CDF of $Y$ by $G$. Note that $Y$ either takes $0$ or $1$ as its value. The PDF $g$ of $Y$ is $g(t) = 1$ if $X(t) \in A$ and $0$ else. This means that the CDF for $y < 0$ is just $0$, for $0 \leq y < 1$, $G(y) = P(X \in A)$ and $G(y) = 1$ for all $y \geq 1$. Note that
@@ -702,6 +708,32 @@ Ex2_2(draw = False, save = False)
 			$$
 		\end{itemize}
 	\item Let $X$ and $Y$ be independent. Show that $g(X)$ is independent of $h(Y)$ where $g$ and $h$ are functions.
+		\begin{itemize}
+			\item
+			Note that
+			$$
+			\{g(X) \leq x\} = X^{-1}(g^{-1}(-\infty, x])
+			$$
+			This motivates the definitions $G_x := g^{-1}(-\infty, x]$ and $H_y := h^{-1}(-\infty, y]$. Note that
+			$$
+			\begin{aligned}
+			P(X(g) \leq x, Y(h) \leq y) &= P(X \in G_x, Y \in H_y) \\
+			&= \int_{G_x \times H_y} f_{X, Y}(x', y') dx'dy'
+			\end{aligned}
+			$$
+			where of course $f_{X, Y}$ denotes the joint probability density function. Because $X$ and $Y$ are independent it follows that
+			$$
+			f_{X, Y}(x', y') = f_X(x')f_Y(y')
+			$$
+			and so
+			$$
+			\begin{aligned}
+			\int_{G_x \times H_y} f_{X, Y}(x', y') dx'dy' &= \int_{G_x \times H_y} f_X(x')f_Y(y') dx' dy' \\
+			&= \int_{G_x} f_X(x')dx'\int_{H_y}f_Y(y')dy' \\
+			&= P(X \in G_x)P(Y \in G_y).
+			\end{aligned}
+			$$
+		\end{itemize}
 	\item Suppose we toss a coin once and let $p$ be the probability of heads. Let $X$ denote the number of heads and let $Y$ denote the number of tails.
 		\begin{enumerate}
 			\item Prove that $X$ and $Y$ are dependent.
@@ -711,6 +743,24 @@ Ex2_2(draw = False, save = False)
 			\item Let $N \sim \operatorname{Poisson}(\lambda)$ and suppose we toss a coin $N$ times. Let $X$ and $Y$ be the number of heads and tails. Show that $X$ and $Y$ are independent.
 		\end{enumerate}
 	\item Prove Theorem 2.33: Suppose that the range of $X$ and $Y$ is a (possibly infinite) rectangle. If $f(x, y) = g(x)h(y)$ for some functions $g$ and $h$ (not necessarily probability density functions) then $X$ and $y$ are independent.
+		\begin{itemize}
+			\item Consider the marginal PDF
+			$$
+			\begin{aligned}
+			f_X(x) &= \int f(x, y) dy \\
+			&= \int g(x) h(y) dy \\
+			&= g(x) \int h(y) dy,
+			\end{aligned}
+			$$
+			as such
+			$$
+			\begin{aligned}
+			P(X \leq x, Y \leq y) &= \int \int f(x, y) dx dy \\
+			&= \int g(x) \int h(y) dy dx \\
+			&= \int g(x) dx \int h(y) dy.
+			\end{aligned}
+			$$
+		\end{itemize}
 	\item Let $X \sim \mathcal{N}(0, 1)$ and let $Y = e^X$.
 		\begin{enumerate}
 			\item Find the PDF for $Y$. Plot it.
@@ -753,6 +803,29 @@ plt.savefig('Ex2_13b.png', dpi=300)
 				\end{itemize}
 		\end{enumerate}
 	\item Let $(X, Y)$ be uniformly distributed on the unit disk $\{(x, y) : x^2 + y^2 \leq 1\}$. Let $R = \sqrt{X^2 + Y^2}$. Find the CFD and PDF of $R$.
+		\begin{itemize}
+			\item Let $D = \{(x, y) \in \mathbb{R}^2 : x^2 + y^2 \leq 1\}$ and note that for $A \subseteq D$ measureable
+			$$
+			P(A) = \frac{\lambda^2(A)}{\lambda^2(D)} = \frac{1}{\pi} \lambda^2(A).
+			$$
+			$$
+			\begin{aligned}
+			P(X \leq x) = x,&&P(Y \leq y) = y.
+			\end{aligned}
+			$$
+			We can calculate
+			$$
+			\begin{aligned}
+			P(R \leq r) &= P\left(\sqrt{X^2 + Y^2} \leq r\right) \\
+			&= P(X^2 + Y^2 \leq r^2) \\
+			&= \int_{\{X^2 + Y^2 \leq r^2\}} dP \\
+			&= \frac{1}{\pi}\int_0^r \int_{0}^{\sqrt{r^2 - y^2}} 1 dx dy \\
+			&= \frac{1}{\pi} \int_0^r \sqrt{r^2 - y^2} dy \\
+			&= \frac{1}{\pi} \pi r^2 = r^2.
+			\end{aligned}
+			$$
+			As such $F(r) = r^2$, to obtain the PDF we differentiate: $f(r) = F'(r) = 2r$.
+		\end{itemize}
 	\item (A univeral random number generator.) Let $X$ have a continuous, strictly increasing CDF $F$. Let $Y = F(X)$. Find the density of $Y$. This is called the probability integral transform. Now, let $U \sim \operatorname{Uniform}(0,1)$ and let $X = F^{-1}(U)$. Show that $X \sim F$. Now write a program that takes Uniform $(0,1)$ random variables and generates random variables from an Exponential $(\lambda)$ distribution.
 	\item Let $X \sim \operatorname{Poisson}(\lambda)$ and $Y \sim \operatorname{Poisson}(\mu)$ and assume that $X$ and $Y$ are independent. Show that the dstribution of $X$ given that $X + Y = n$ is $\operatorname{Binomial}(n, \pi)$ where $\pi = \frac{\lambda}{\lambda + \mu}$.
 	Hint 1: You may use the following fact: If $X \sim \operatorname{Poisson}(\lambda)$ and $Y \sim \operatorname{Poisson}(\mu)$, and $X$ and $Y$ are independent, then $X + Y \sim \operatorname{Poisson}(\lambda + \mu)$.

@@ -14,3 +14,4 @@ $X_i \sim \operatorname{Gamma}(\alpha_i, \beta)$ independent then
 $
 \sum_i X_i \sim \operatorname{Gamma}\left(\sum_i \alpha_i, \beta\right).
 $
+<!--SR:!2023-05-08,1,130-->

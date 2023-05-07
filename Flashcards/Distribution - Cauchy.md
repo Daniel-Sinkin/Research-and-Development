@@ -9,3 +9,4 @@ $
 \end{aligned}
 $
 The Cauchy distribution is simply $t_1$.
+<!--SR:!2023-05-09,2,150-->

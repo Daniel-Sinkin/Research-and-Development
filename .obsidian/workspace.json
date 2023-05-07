@@ -4,22 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "567c6130a26f02e6",
+        "id": "7d25a6a6ff367a48",
         "type": "tabs",
         "children": [
           {
-            "id": "17e1322f47e76920",
+            "id": "54d8a5e65333c83a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Flashcards/Definition - Markov Process.md",
+                "file": "Flashcards/Definition - Martingale.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "ffb3f978d37f8d9e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -48,7 +61,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "SR:",
+                "query": "martingale",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Flashcards/Definition - Markov Process.md",
+                "file": "Untitled.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Flashcards/Definition - Markov Process.md",
+                "file": "Untitled.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Flashcards/Definition - Markov Process.md"
+                "file": "Untitled.md"
               }
             }
           },
@@ -157,17 +170,28 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "17e1322f47e76920",
+  "active": "ffb3f978d37f8d9e",
   "lastOpenFiles": [
+    "Books-and-Courses/Wasserman-Statistics/Exercises.pyg",
+    "Books-and-Courses/Wasserman-Statistics/Exercises.aex",
+    "Books-and-Courses/Wasserman-Statistics/Exercises.w18",
+    "Flashcards/Definition - Martingale.md",
+    "Untitled.md",
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/SymmetricScaledRandomWalk.py",
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/randomWalk (copy).py",
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/ScaledSymmetricRandomWalk.png",
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/ScaledSymmetricRandomWalk.png",
+    "Flashcards/Definition - Radon-Nikodym Derivative.md",
+    "Flashcards/Definition - Equivalent Probability Measures.md",
+    "Flashcards/Definition - Risk Neutral Probability Measure.md",
+    "Flashcard",
+    "Flashcards/Definition - Markov Process.md",
     "Books-and-Courses/Stochastic-Calculus-For-Finance/Exercises.aex",
     "Books-and-Courses/Stochastic-Calculus-For-Finance/Exercises.w18",
     "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/randomWalk.png",
     "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/randomWalk.py",
     "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion",
     "Books-and-Courses/Stochastic-Calculus-For-Finance/Untitled Folder",
-    "Books-and-Courses/Stochastic-Calculus-For-Finance/Untitled-1.ipynb",
-    "Flashcards/Definition - Martingale.md",
-    "Flashcards/Definition - Markov Process.md",
     "Flashcards/Definition - Independence.md",
     "Flashcards/Definition - Adapted Stochastic Process.md",
     "Flashcards/Definition - G-Measureable Set.md",
@@ -175,12 +199,7 @@
     "Books-and-Courses/Stochastic-Calculus-For-Finance/_Stochastic-Calculus-For-Finance.md",
     "Flashcards/Distribution - Bernoulli.md",
     "Flashcards/Distribution - Beta.md",
-    "Books-and-Courses/Stochastic-Calculus-For-Finance/StochCalc2.djvu",
     "README.md",
-    "Books-and-Courses/Wasserman-Statistics/Scripts/__pycache__/plots.cpython-310.pyc",
-    "Books-and-Courses/Dive-into-Deep-Learning/03-Linear_Neural_Networks_for_Regression/d2l/torch.py",
-    "Books-and-Courses/Dive-into-Deep-Learning/03-Linear_Neural_Networks_for_Regression/d2l/tensorflow.py",
-    "Books-and-Courses/Dive-into-Deep-Learning/03-Linear_Neural_Networks_for_Regression/d2l/mxnet.py",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Symmetric of Random Variables.md",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/State and proof the Unbiasedness of sample variance Theorem.md",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/State and Prove Theorem 6.1.4 about error minimizers.md",
@@ -192,18 +211,12 @@
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Define Skewness.md",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Define Moments.md",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Define Median, Mode.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/What does it mean for a distribution to have the memoryless property.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/State and Proof the Universality of the Uniform theorem.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/Survival Function.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/Poisson Process.md",
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_7.png",
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_3.png",
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-50.png",
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-25.png",
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-100.png",
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png",
-    "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_1.png",
-    "Books-and-Courses/Wasserman-Statistics/4-Probability_Inequalities/Ex4_4c.png",
-    "Books-and-Courses/Wasserman-Statistics/4-Probability_Inequalities/Ex4_4b.png"
+    "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_1.png"
   ]
 }
