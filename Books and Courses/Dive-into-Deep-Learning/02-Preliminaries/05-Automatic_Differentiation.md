@@ -1,1 +1,0 @@
-*Autograd* is the short form of automatic differentiation. To calculate derivatives, automatic differentiation works backwards through a computation graph by applying the chain rule.
