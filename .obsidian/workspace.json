@@ -4,18 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "4f473a53055ee1c9",
+        "id": "567c6130a26f02e6",
         "type": "tabs",
         "children": [
           {
             "id": "17e1322f47e76920",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "Wasserman-Statistics/Flashcards/Distribution - Exponential.md",
-                "mode": "source",
-                "source": false
+                "file": "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png"
               }
             }
           }
@@ -48,7 +46,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#Flashcard",
+                "query": "Poisson",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,7 +67,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "3a9908c8b26da96d",
@@ -85,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Wasserman-Statistics/Flashcards/Distribution - Exponential.md",
+                "file": "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Wasserman-Statistics/Flashcards/Distribution - Exponential.md",
+                "file": "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +123,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Wasserman-Statistics/Flashcards/Distribution - Exponential.md"
+                "file": "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png"
               }
             }
           },
@@ -153,46 +151,55 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "obsidian-spaced-repetition:Review flashcards": false
+      "obsidian-spaced-repetition:Review flashcards": false,
+      "templater-obsidian:Templater": false
     }
   },
-  "active": "cef1cd1a1aed2369",
+  "active": "17e1322f47e76920",
   "lastOpenFiles": [
+    "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-25.png",
+    "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-50.png",
+    "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-100.png",
+    "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_3.png",
+    "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_7.png",
+    "_Meta/Obsidian/Templates/Flashcard.md",
+    "Books and Courses/Blitzstein-Probability/3 - Random Variables/bin_9_80pct.png",
+    "Books and Courses/Blitzstein-Probability/3 - Random Variables/bin_10_12pct.png",
+    "Books and Courses/Blitzstein-Probability/3 - Random Variables/bin_10_50pct.png",
+    "Flashcards/Distribution - Hypergeometric.md",
+    "Flashcards/Distribution - Negative Binomial.md",
+    "Flashcards/Distribution - Weibull.md",
+    "Flashcards/Distribution - Logistic.md",
+    "Flashcards/Distribution - Rayleigh.md",
+    "Books and Courses/Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Normal, standard normal.md",
+    "Books and Courses/Blitzstein-Probability/Flashcards/Chapter 5/Poisson Process.md",
+    "Flashcards/Distribution - Poission.md",
+    "Books and Courses/Blitzstein-Probability/Flashcards/Chapter 4/Distribution - Poisson.md",
+    "Books and Courses/Blitzstein-Probability/Flashcards/Chapter 4/Explain the connection between Poisson and Binomial.md",
+    "Flashcards/Inequality - Hoeffding.md",
+    "Flashcards/Distribution - Multivariate Normal.md",
+    "Flashcards/Distribution - Cauchy.md",
+    "Flashcards/Distribution - t.md",
+    "Flashcards/Distribution - Uniform.md",
+    "Flashcards/Inequality - Chebyshev.md",
+    "Flashcards/Distribution - Multinomial.md",
+    "Flashcards/Distribution - Geometric.md",
+    "Flashcards/Distribution - Gamma.md",
+    "Flashcards/Distribution - Exponential.md",
+    "Flashcards/Distribution - Discrete Uniform.md",
+    "Flashcards/Distribution - Chi_Squared.md",
+    "Flashcards/Distribution - Binomial.md",
+    "Flashcards/Distribution - Beta.md",
+    "Flashcards/Untitled",
+    "Books and Courses/Wasserman-Statistics/Mean_Variance_Table.png",
+    "Flashcards",
+    "_Meta/Obsidian/Templates",
+    "_Meta/Obsidian",
+    "_Meta",
+    "Books and Courses",
+    "Books and Courses/Wasserman-Statistics/Exercises.pdf",
+    "Notes",
     "Wasserman-Statistics/Exercises.aex",
-    "Wasserman-Statistics/Exercises.w18",
-    "Wasserman-Statistics/Exercises.pyg",
-    "Wasserman-Statistics/4-Probability_Inequalities/_4.md",
-    "Blitzstein-Probability/Flashcards/Chapter 3/Conditional PMF.md",
-    "Dive-into-Deep-Learning/03-Linear_Neural_Networks_for_Regression/3 Synthetic Regression Data.md",
-    "Flashcard Test.md",
-    "Wasserman-Statistics/Flashcards/Distribution - Exponential.md",
-    "Wasserman-Statistics/Flashcards/Inequality - Chebychev.md",
-    "Wasserman-Statistics/Flashcards/Inequality - Markov.md",
-    "Wasserman-Statistics/Flashcards/Theorem Law of Total Probability.md",
-    "Wasserman-Statistics/Flashcards/Theorem Continuity Theorem for Probabilities.md",
-    "Wasserman-Statistics/Flashcards/Theorem Bayes.md",
-    "Wasserman-Statistics/Exercises.pdf",
-    "Wasserman-Statistics/Exercises.toc",
-    "Wasserman-Statistics/Exercises.out",
-    "Wasserman-Statistics/Exercises.aux",
-    "Wasserman-Statistics/_minted-Exercises",
-    "Wasserman-Statistics/Exercises.log",
-    "Wasserman-Statistics/Exercises.tex",
-    "Blitzstein-Probability/Flashcards/Chapter 13",
-    "Blitzstein-Probability/Flashcards/Chapter 6/Probability Generating Function.md",
-    "Blitzstein-Probability/Flashcards/Chapter 8.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6/Distribution - Weibull.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6/Moment generating function.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6/State and proof the Unbiasedness of sample variance Theorem.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6/Mean and Variance of Sample Mean.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6/Sample Moment.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6/Kurtosis.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6/Symmetric of Random Variables.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6/Define Skewness.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6/Define Moments.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6/State and Prove Theorem 6.1.4 about error minimizers.md",
-    "Blitzstein-Probability/Flashcards/Chapter 6/Define Median, Mode.md",
-    "Blitzstein-Probability/Flashcards/Chapter 5/Poisson Process.md",
-    "Blitzstein-Probability/Flashcards/Chapter 5/What does it mean for a distribution to have the memoryless property.md"
+    "Wasserman-Statistics/Exercises.w18"
   ]
 }

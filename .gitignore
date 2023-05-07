@@ -4,7 +4,7 @@
 *.aux
 *.toc
 
-# Ignore Obsidian and Jupyter Notebook folders
+# Ignore Jupyter Notebook folders
 .ipynb_checkpoints/
 _minted-Exercises/
 __pycache__/
@@ -13,3 +13,4 @@ __pycache__/
 Blitzstein-Probability/ProbBook.pdf
 Dive-into-Deep-Learning/d2l-en.pdf
 Wasserman-Statistics/StatBook.pdf
+Wasserman-Statistics/Data/
