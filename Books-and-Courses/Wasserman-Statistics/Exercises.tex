@@ -30,7 +30,6 @@
 \newpage
 
 \section{Probability}
-\subsection{Probability}
 \begin{enumerate}
 	\item Fill in the details of the proof of Theorem 1.8. Also, prove the monotone decreasing case.
 		\begin{itemize}
@@ -483,7 +482,7 @@ Ex1_23(A, B)
 		\end{itemize}
 \end{enumerate}
 
-\subsection{Random Variables}
+\section{Random Variables}
 \begin{enumerate}
 	\item Show that
 	$$
@@ -828,7 +827,7 @@ plt.savefig('Ex2_13b.png', dpi=300)
 		\end{itemize}
 \end{enumerate}
 
-\subsection{Expectation}
+\section{Expectation}
 \begin{enumerate}
 	\item Suppose we playa game where we start with $c$ dollars. On each play of the game you either double or halve your money, with equal probability. What is your expected fortune after $n$ trials?
 		\begin{itemize}
@@ -1048,7 +1047,7 @@ for i in range(4):
 	$$
 \end{enumerate}
 
-\subsection{Inequalities}
+\section{Inequalities}
 \begin{enumerate}
 	\item Let $X \sim \operatorname{Exp}(\beta)$. Find $P(|X - \mu_X| \geq k \sigma_X)$ for $k > 1$. Compare this to the bound you get from Chebyshev's inequality.
 	\item Let $X \sim \operatorname{Po}(\lambda)$. Use Chebyshev's inequality to show that $P(X \geq 2\lambda) \leq \frac{1}{\lambda}$.
@@ -1171,7 +1170,7 @@ plt.savefig("Ex4_4c.png")
 	Compare to the Chebyshev bound.
 \end{enumerate}
 
-\subsection{Convergence of Random Variable}
+\section{Convergence of Random Variable}
 \begin{enumerate}
 	\item
 	\item Let $X_1, X_2, \dots$ be a sequence of random variables.Show that $X_n \overset{qm}{\longrightarrow} b$ if and only if
@@ -1226,8 +1225,7 @@ plt.savefig("Ex4_4c.png")
 	\item Construct an example where $X_n \leadsto X$ and $Y_n \leadsto Y$ but $X_n + Y_n$ does not converge in distribution to $X + Y$.
 \end{enumerate}
 
-\section{Statistical Inference}
-\subsection{Models, Statistical Inference and Learning}
+\section{Models, Statistical Inference and Learning}
 \begin{enumerate}
 	\item Let $X_1, \dots, X_n \sim \operatorname{Poisson}(\lambda)$ and let $\hat{\lambda} = \frac{1}{n} \sum_{i = 1}^n$. Find the $\bias$, $\se$, and $\mse$ of this estimator.
 		\begin{itemize}
@@ -1316,7 +1314,7 @@ plt.savefig("Ex4_4c.png")
 	\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta} = 2 \overline{X}_n$. Find the $\bias$, $\se$, and $\mse$ of this estimator.
 \end{enumerate}
 
-\subsection{Estimating the CDF and Statistical Functionals}
+\section{Estimating the CDF and Statistical Functionals}
 \begin{enumerate}
 	\item Prove Theorem 7.3.
 		\begin{itemize}
@@ -1622,7 +1620,7 @@ print(f"(mu-z*se, mu+z*se) = ({mu - z * sigma:.2f}, {mu + z * sigma:.2f})")
 	\item 
 \end{enumerate}
 
-\subsection{The Bootstrap}
+\section{The Bootstrap}
 \begin{enumerate}
 	\item Consider the data in Example 8.6. Find the plug-in estimate of the correlation coefficient. Estimate the standard error using the bootstrap. Find a 95 percent confidence interval using the Normal, pivotal, and percentile methods.
 	\item (Computer Experiment.) Conduct a simulation to compare the various bootstrap confidence interval methods. Let $n = 50$ and let $T(F) = \int(x - \mu)^3 dF(x)/\sigma^3$ be the skewness. Draw $Y_1, \dots, Y_n \sim \mathcal{N}(O,1)$ and set $X_i = e^{Y_i}, i = 1, \dots, n$. Construct the three types of bootstrap $95$ percent intervals for $T(F)$ from the data $X_1, \dots, X_n$. Repeat this whole thing many times and estimate the true coverage of the three intervals.
@@ -1671,16 +1669,15 @@ print(f"(mu-z*se, mu+z*se) = ({mu - z * sigma:.2f}, {mu + z * sigma:.2f})")
 	$$
 \end{enumerate}
 
-\subsection{Parametric Inference}
+\section{Parametric Inference}
 
-\subsection{Hypothesis Testing and p-values}
+\section{Hypothesis Testing and p-values}
 
-\subsection{Bayesian Inference}
+\section{Bayesian Inference}
 
-\subsection{Statistical Decision Theory}
+\section{Statistical Decision Theory}
 
-\section{Statistical Models and Methods}
-\subsection{Linear and Logistic Regression}
+\section{Linear and Logistic Regression}
 \begin{enumerate}
 	\item Prove Theorem 13.4.
 	\item Prove the formulas for the standard errors in Theorem 13.8. You should regard the $X_i$ as fixed constants.
@@ -1799,7 +1796,7 @@ plt.show()
 	\item Get the Coronary Risk-Factor Study (CORIS) data from the book web site. Use backward stepwise logistic regression based on AIC to select a model. Summarize your results.
 \end{enumerate}
 
-\subsection{Multivariate Models}
+\section{Multivariate Models}
 \begin{enumerate}
 	\item Prove Theorem 14.1
 	\item Find the Fisher information matrix for the $\MLE$ of a Multinomial.
@@ -1819,7 +1816,7 @@ plt.show()
 	\item (Computer Experiment.) Repeat the previous exercise $1000$ times. Compare teh coverage of the two confidence intervals for $\rho$.
 \end{enumerate}
 
-\subsection{Inference About Independence}
+\section{Inference About Independence}
 \begin{enumerate}
 	\item Prove Theorem 15.2.
 	\item Prove Theorem 15.3.
@@ -1846,7 +1843,7 @@ plt.show()
 	\texttt{http://lib.stat.cmu.edu/DASL/Datafiles/Calcium.html}
 \end{enumerate}
 
-\subsection{Causal Inference}
+\section{Causal Inference}
 \begin{enumerate}
 	\item Create an example like Example 16.2 in which $\alpha > 0$ and $\theta < 0$.
 	\item Prove Theorem 16.4.
@@ -1859,20 +1856,20 @@ plt.show()
 	\item Let $X \in \{0, 1\}$ be a binary treatment variable and let $(C_0, C_1)$ denote the correspondingg potential outcomes. Let $Y = C_X$ denote the observed response. Let $F_0$ and $F_1$ be cumulative distribution functions for $C_0$ and $C_1$. Assume that $F_0$ and $F_1$ are both continuous and strictly increasing. Let $\theta = m_1 - m_0$ where $m_i = F_i^{-1}(1 / 2)$ is the median of $C_i, i = 0, 1$. Suppose that the treatment $X$ is assigned randomly. Find an expression for $\theta$ involving only the joint distribution of $X$ and $Y$.
 \end{enumerate}
 
-\subsection{Directed Graphs and Conditional Independence}
+\section{Directed Graphs and Conditional Independence}
 
-\subsection{Undirected Graphs}
+\section{Undirected Graphs}
 
-\subsection{Log-Linear Models}
+\section{Log-Linear Models}
 
-\subsection{Nonparametric Curve Estimation}
+\section{Nonparametric Curve Estimation}
 
-\subsection{Smoothin Using Orthogonal Functions}
+\section{Smoothin Using Orthogonal Functions}
 
-\subsection{Classification}
+\section{Classification}
 
-\subsection{Probability Redux: Stochastic Processes}
+\section{Probability Redux: Stochastic Processes}
 
-\subsection{Simulation Methods}
+\section{Simulation Methods}
 
 \end{document}

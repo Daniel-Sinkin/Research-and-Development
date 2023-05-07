@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Flashcards/Distribution - Beta.md",
+                "file": "Flashcards/Definition - Markov Process.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Flashcards/Distribution - Beta.md",
+                "file": "Flashcards/Definition - Markov Process.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Flashcards/Distribution - Beta.md",
+                "file": "Flashcards/Definition - Markov Process.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Flashcards/Distribution - Beta.md"
+                "file": "Flashcards/Definition - Markov Process.md"
               }
             }
           },
@@ -159,15 +159,28 @@
   },
   "active": "17e1322f47e76920",
   "lastOpenFiles": [
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/Exercises.aex",
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/Exercises.w18",
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/randomWalk.png",
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/randomWalk.py",
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion",
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/Untitled Folder",
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/Untitled-1.ipynb",
+    "Flashcards/Definition - Martingale.md",
+    "Flashcards/Definition - Markov Process.md",
+    "Flashcards/Definition - Independence.md",
+    "Flashcards/Definition - Adapted Stochastic Process.md",
+    "Flashcards/Definition - G-Measureable Set.md",
+    "Flashcards/Definition - Filtration.md",
+    "Books-and-Courses/Stochastic-Calculus-For-Finance/_Stochastic-Calculus-For-Finance.md",
+    "Flashcards/Distribution - Bernoulli.md",
+    "Flashcards/Distribution - Beta.md",
     "Books-and-Courses/Stochastic-Calculus-For-Finance/StochCalc2.djvu",
     "README.md",
     "Books-and-Courses/Wasserman-Statistics/Scripts/__pycache__/plots.cpython-310.pyc",
     "Books-and-Courses/Dive-into-Deep-Learning/03-Linear_Neural_Networks_for_Regression/d2l/torch.py",
     "Books-and-Courses/Dive-into-Deep-Learning/03-Linear_Neural_Networks_for_Regression/d2l/tensorflow.py",
     "Books-and-Courses/Dive-into-Deep-Learning/03-Linear_Neural_Networks_for_Regression/d2l/mxnet.py",
-    "Books-and-Courses/Dive-into-Deep-Learning/03-Linear_Neural_Networks_for_Regression/d2l/jax.py",
-    "Books-and-Courses/Dive-into-Deep-Learning/03-Linear_Neural_Networks_for_Regression/d2l/__init__.py",
-    "Books-and-Courses/Dive-into-Deep-Learning/02-Preliminaries/__pycache__/printing.cpython-310.pyc",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Symmetric of Random Variables.md",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/State and proof the Unbiasedness of sample variance Theorem.md",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/State and Prove Theorem 6.1.4 about error minimizers.md",
@@ -183,18 +196,6 @@
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/State and Proof the Universality of the Uniform theorem.md",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/Survival Function.md",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/Poisson Process.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/Location-Scale Transformation.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/LOTUS for continuous.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/Expectation for continuous.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Uniform.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Normal, standard normal.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Exponential.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 5/Define PDF (Probability Density Function) and CDF, when is it valid?.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 4/State and proof the Fundamental bridge between probability and expectation theorem.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 4/Explain the connection between Poisson and Binomial.md",
-    "Books-and-Courses/Blitzstein-Probability/3 - Random Variables/__pycache__/scripts.cpython-310.pyc",
-    "Books-and-Courses/Wasserman-Statistics/_minted-Exercises/default.pygstyle",
-    "Books-and-Courses/Wasserman-Statistics/_minted-Exercises/ED6D3B5A7E5A2D033CADFB7A457340CB3610D4C2804217A5CD03CE82CEB11CDA.pygtex",
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_7.png",
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_3.png",
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-50.png",
@@ -203,7 +204,6 @@
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png",
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_1.png",
     "Books-and-Courses/Wasserman-Statistics/4-Probability_Inequalities/Ex4_4c.png",
-    "Books-and-Courses/Wasserman-Statistics/4-Probability_Inequalities/Ex4_4b.png",
-    "Books-and-Courses/Wasserman-Statistics/3-Expectation/Ex3_9.png"
+    "Books-and-Courses/Wasserman-Statistics/4-Probability_Inequalities/Ex4_4b.png"
   ]
 }
