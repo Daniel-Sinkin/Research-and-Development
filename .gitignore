@@ -4,6 +4,9 @@
 *.aux
 *.toc
 
+# Ignore Obsidian Files
+.obsidian/
+
 # Ignore Jupyter Notebook folders
 .ipynb_checkpoints/
 _minted-Exercises/
