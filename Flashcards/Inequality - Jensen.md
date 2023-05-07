@@ -1,4 +1,5 @@
-&
+State Jensen's Inequality
+&*
 If $g$ is convex, then
 $$
 Eg(X) \geq g(E(X)).

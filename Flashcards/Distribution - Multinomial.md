@@ -1,5 +1,5 @@
 Define the multinomial distribution, what are the marginal distributions?
-&
+&*
 $X \sim \operatorname{multinomial}(n, p)$ if it has the PDF
 $$
 f(x) = \binom{n}{\prod_i x_i} \prod_i p_i^{x_i},

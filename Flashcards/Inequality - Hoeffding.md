@@ -1,6 +1,6 @@
 State Hoeffding's Inequality in the general case and for the Bernoulli Case.
-Explain how to get a Confidencec Interval for a binomial parameter from it.
-&
+Explain how to get a Confidence Interval for a binomial parameter from it.
+&*
 Let $Y_1, \dots, Y_n$ be independent, such that $E(Y_i) = 0$ and
 $
 a_i \leq Y_i \leq b_i
@@ -17,8 +17,7 @@ where
 $
 \overline{X}_n = \frac{1}{n} \sum_{i = 1}^n X_i
 $
-is the mean.
-To obtain a confidence interval for a binomial parameter $p$ let $0 < \alpha < 1$ be arbitrary and consider
+is the mean. To obtain a confidence interval for a binomial parameter $p$ let $0 < \alpha < 1$ be arbitrary and consider
 $
 \varepsilon_n = \varepsilon_n(\alpha, n) = \sqrt{\frac{1}{2n} \log\left(\frac{2}{\alpha}\right)}.
 $

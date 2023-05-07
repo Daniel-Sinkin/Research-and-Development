@@ -1,5 +1,5 @@
 State and prove the Markov inequality.
-&
+&*
 Let $X$ be a non-negative random variable and suppose that $\mu := E(X)$ exists. For any $t > 0$ we have
 $$
 P(X > t) \leq \frac{\mu}{t}.

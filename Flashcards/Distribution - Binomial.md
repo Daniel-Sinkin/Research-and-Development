@@ -2,7 +2,7 @@ Suppose $X \sim \operatorname{Bin}(n, p)$, what is its PMF, mean, variance. What
 $$
 Y = \sum_i X_i.
 $$
-&
+&*
 $$
 f(k) = \begin{cases}
 \binom{n}{k}p^k(1 - p)^{n - k},&0 \leq k \leq n\\

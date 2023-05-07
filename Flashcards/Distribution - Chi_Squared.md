@@ -1,5 +1,5 @@
 Define the $\chi^2$ distribution, what is its PDF. What is the relationship between the $\chi^2$ distribution and the normal distribution?
-&
+&*
 $$
 X \sim \chi_p^2
 $$

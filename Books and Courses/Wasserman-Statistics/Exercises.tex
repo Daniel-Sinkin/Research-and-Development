@@ -225,6 +225,12 @@
 	$$
 	P(A, B, C) = P(A|BC)P(B|C)P(C).
 	$$
+		\begin{itemize}
+			\item
+			$$
+			P(ABC) = P(A|BC)P(BC) = P(A|BC)P(B|C)P(C).
+			$$
+		\end{itemize}
 	\item Suppose $k$ events form a partition of the sample space $\Omega$, i.e., they are disjoint and 
 	$$
 	\bigcup_{i = 1}^k A_i = \Omega.
@@ -533,6 +539,26 @@ Ex2_2(draw = False, save = False)
 			\end{center}
 		\end{itemize}
 	\item Prove Lemma 2.15.
+		\begin{itemize}
+			\item (1) was shown in the first exercise.
+			\item Note that
+			$$
+			P(X \leq y) = P(x < X \leq y) + P(X \leq x),
+			$$
+			i.e.,
+			$$
+			P(x < X \leq y) = P(X \leq y) - P(X \leq x) = F(y) - F(y).
+			$$
+			\item
+			$$
+			P(X > c) = P((X \leq x)^c) = 1 - P(X \leq x) = 1 - F(x).
+			$$
+			\item If $X$ is continuous then it has a PDF, i.e., a function $f$ such that
+			$$
+			F(t) = \int_{-\infty}^t f(x) dx.
+			$$
+			The statements then follow from the fact that individual points don't change the integral.
+		\end{itemize}
 	\item Let $X$ have probability density function
 	$$
 		f(x) = 
@@ -685,7 +711,7 @@ Ex2_2(draw = False, save = False)
 				\end{itemize}
 			\item Let $N \sim \operatorname{Poisson}(\lambda)$ and suppose we toss a coin $N$ times. Let $X$ and $Y$ be the number of heads and tails. Show that $X$ and $Y$ are independent.
 		\end{enumerate}
-	\item Prove Theorem 2.33
+	\item Prove Theorem 2.33: Suppose that the range of $X$ and $Y$ is a (possibly infinite) rectangle. If $f(x, y) = g(x)h(y)$ for some functions $g$ and $h$ (not necessarily probability density functions) then $X$ and $y$ are independent.
 	\item Let $X \sim \mathcal{N}(0, 1)$ and let $Y = e^X$.
 		\begin{enumerate}
 			\item Find the PDF for $Y$. Plot it.
@@ -728,7 +754,7 @@ plt.savefig('Ex2_13b.png', dpi=300)
 				\end{itemize}
 		\end{enumerate}
 	\item Let $(X, Y)$ be uniformly distributed on the unit disk $\{(x, y) : x^2 + y^2 \leq 1\}$. Let $R = \sqrt{X^2 + Y^2}$. Find the CFD and PDF of $R$.
-	\item Let $X$ have a continuous, strictly increasing CDF $F$. Let $Y = F(X)$. Find the density of $Y$. This is called the probability integral transform. Now, let $U \sim \operatorname{Uniform}(0,1)$ and let $X = F^{-1}(U)$. Show that $X \sim F$. Now write a program that takes Uniform $(0,1)$ random variables and generates random variables from an Exponential $(\lambda)$ distribution.
+	\item (A univeral random number generator.) Let $X$ have a continuous, strictly increasing CDF $F$. Let $Y = F(X)$. Find the density of $Y$. This is called the probability integral transform. Now, let $U \sim \operatorname{Uniform}(0,1)$ and let $X = F^{-1}(U)$. Show that $X \sim F$. Now write a program that takes Uniform $(0,1)$ random variables and generates random variables from an Exponential $(\lambda)$ distribution.
 	\item Let $X \sim \operatorname{Poisson}(\lambda)$ and $Y \sim \operatorname{Poisson}(\mu)$ and assume that $X$ and $Y$ are independent. Show that the dstribution of $X$ given that $X + Y = n$ is $\operatorname{Binomial}(n, \pi)$ where $\pi = \frac{\lambda}{\lambda + \mu}$.
 	Hint 1: You may use the following fact: If $X \sim \operatorname{Poisson}(\lambda)$ and $Y \sim \operatorname{Poisson}(\mu)$, and $X$ and $Y$ are independent, then $X + Y \sim \operatorname{Poisson}(\lambda + \mu)$.
 	Hint 2: Note that $\{X = x, X + Y = n\} = \{X = x, Y = n - x\}$.
@@ -763,9 +789,26 @@ plt.savefig('Ex2_13b.png', dpi=300)
 			$$
 			As such we have shown that $X|X + Y = n \sim \operatorname{Bin}\left(n, \frac{\lambda}{\lambda + \mu}\right)$.
 		\end{itemize}
-	\item 
-	\item 
-	\item Prove formula (2.12)
+	\item Let
+	$$
+	f_{X, Y}(x, y) = \begin{cases}
+	c(x + y^2),& (x, y) \in [0, 1]^2 \\
+	0,& \text{otherwise}.
+	\end{cases}
+	$$
+	Find $P\left(X < \frac{1}{2}| Y = \frac{1}{2}\right)$
+	\item let $X \sim \mathcal{N}(3, 16)$. Solve the following using the Normal table and using a computer package.
+		\begin{itemize}
+			\item Find $P(X < 7)$
+			\item Find $P(X > -2)$
+			\item Find $x$ such that $P(X > x) = 0.05$.
+			\item Find $P(0 \leq X < 4)$.
+			\item Find $x$ such that $P(|X| > |x|) = 0.05$.
+		\end{itemize}
+	\item Prove formula (2.12): When $r$ is strictly monotone increasing or strictly monotone decreasing then $r$ has an inverse $s = r^{-1}$ and in this case one can show that
+	$$
+	f_Y(y) = f_X(s(y)) \left|\frac{ds(y)}{dy}\right|.
+	$$
 	\item Let $X, Y \sim \operatorname{Uniform}(0, 1)$ be independent. Find the PDF for $X - Y$ and $X / Y$.
 	\item Let $X_1, \dots, X_n \sim \operatorname{Exp}(\beta)$ be iid. Let $Y = \max\{X_1, \dots, X_n\}$. Find the PDF of $Y$. Hint: $Y \leq y$ if and only if $X_i \leq y$ for all $i = 1, \dots, n$.
 		\begin{itemize}
@@ -1183,94 +1226,94 @@ plt.savefig("Ex4_4c.png")
 	\item Construct an example where $X_n \leadsto X$ and $Y_n \leadsto Y$ but $X_n + Y_n$ does not converge in distribution to $X + Y$.
 \end{enumerate}
 
-\section{Statistics}
+\section{Statistical Inference}
 \subsection{Models, Statistical Inference and Learning}
 \begin{enumerate}
-\item Let $X_1, \dots, X_n \sim \operatorname{Poisson}(\lambda)$ and let $\hat{\lambda} = \frac{1}{n} \sum_{i = 1}^n$. Find the $\bias$, $\se$, and $\mse$ of this estimator.
-	\begin{itemize}
-		\item Recall that $E_\lambda$ is linear and that the expected value of $X \sim \operatorname{Po}(\lambda)$ is $\lambda$. As such
-		$$
-		E_\lambda(\hat{\lambda}_n) = \frac{1}{n} \sum_{i = 1}^n E(X_i) = \frac{1}{n} n \lambda = \lambda.
-		$$
-		This means that $\bias = 0$, i.e., this estimator is unbiased.
-		\item Similiarly, the variance of $X \sim \operatorname{Po}(\lambda)$ is equal to $\lambda$, as such $se^2 = \lambda / n$. To see this note that $Var(aX) = a^2Var(X)$, i.e.,
-		$$
-		se = \sqrt{\lambda / n}.
-		$$
-		\item By Theorem 6.9 the mean square error is equal to
-		$$
-		\mse = \bias^2(\hat{\lambda}_n) + se^2(\hat{\lambda}_n) = \frac{\lambda}{n}.
-		$$
-	\end{itemize}
-\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta} = \max\{X_1, \dots, X_n\}$. Find the $\bias$, $\se$, and $\mse$ of this estimator.
-	\begin{itemize}
-		\item We begin by determining the CDF of $\hat{\theta}$.
-		$$
-		\begin{aligned}
-		F_{\hat{\theta}}(x) &= F(\hat{\theta} \leq x) \\ 
-		&= F(\max\{X_1, \dots, X_n\} \leq x) \\
-		&= F(X_1 \leq x, X_2 \leq x, \dots, X_n \leq x) \\
-		&\overset{1}{=} \prod_{i = 1}^n F(X_i \leq x) \\
-		&\overset{2}{=} (F(X_i \leq x))^n \\
-		&= \left( \frac{x}{\theta} \right)^n \\
-		&= \frac{x^n}{\theta^n},
-		\end{aligned}
-		$$
-		where we have used (1) the independence of the random variables and (2) the fact that they are identically distributed. To obtain the PDF we differentiate with respect to $x$ to obtain
-		$$
-		\begin{aligned}
-		f_{\hat{\theta}}(x) &= \frac{\partial}{\partial x} F_{\hat{\theta}}(x) \\
-		&= \frac{\partial}{\partial x} \frac{x^n}{\theta^n} \\
-		&= n \frac{x^{n - 1}}{\theta^n}.
-		\end{aligned}
-		$$
-		With that we can now calculate the expected value
-		$$
-		\begin{aligned}
-		E_\theta(\hat{\theta}) &= \int_0^\theta x (n x^{n-1} / \theta^n) dx \\
-		&= n \int_0^\theta \frac{x^{n}}{\theta^n} dx \\
-		&= \frac{n}{\theta^n} \int_0^\theta x^n dx \\
-		&= \frac{n}{\theta^n} \left[ \frac{x^{n+1}}{n+1} \right]_0^\theta \\
-		&= \frac{n}{n+1} \theta,
-		\end{aligned}
-		$$
-		and
-		$$
-		\begin{aligned}
-		\bias &= E_\theta(\hat{\theta}) - \theta \\
-		&= \frac{n}{n+1} \theta - \theta \\
-		&= \theta\left(\frac{n}{n+1} - 1\right) \\
-		&= -\frac{\theta}{n+1}.
-		\end{aligned}
-		$$
-		\item To compute the standard error we first calculate the second moment of $\hat{\theta}$:
-		$$
-		\begin{aligned}
-		E_\theta(\hat{\theta}^2) &= \int_0^\theta x^2 \frac{n x^{n - 1}}{\theta^n} dx \\
-		&= \frac{n}{\theta^n} \int_0^\theta x^{n + 1} dx \\
-		&= \frac{n}{\theta^n} \left. \frac{1}{n + 2} x^{n + 2} \right|_{x = 0}^{x = \theta} \\
-		&= \frac{n}{\theta^n} \frac{\theta^{n + 2}}{n + 2} \\
-		&= \frac{n}{n + 2} \theta^2.
-		\end{aligned}
-		$$
-		As such
-		$$
-		V(\hat{\theta}) = E_\theta(\hat{\theta}^2) - E_\theta(\hat{\theta})^2 = \frac{n}{n + 2} \theta^2 - \frac{\theta^2}{(n+1)^2}
-		$$
-		and
-		$$
-		\se(\hat{\theta}) = \sqrt{V(\hat{\theta})} = \sqrt{\frac{n}{n + 2} - \frac{1}{(n + 1)^2}}\theta.
-		$$
-		\item By Theorem 6.9 it follows
-		$$
-		\begin{aligned}
-		\mse(\hat{\theta}) &= \bias^2(\hat{\theta}) + V(\hat{\theta}) \\
-		&= \frac{\theta^2}{(n + 1)^2} + \frac{n}{n + 2}\theta^2 - \frac{\theta^2}{(n + 1)^2} \\
-		&= \frac{n}{n + 2}\theta^2.
-		\end{aligned}
-		$$
-	\end{itemize}
-\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta} = 2 \overline{X}_n$. Find the $\bias$, $\se$, and $\mse$ of this estimator.
+	\item Let $X_1, \dots, X_n \sim \operatorname{Poisson}(\lambda)$ and let $\hat{\lambda} = \frac{1}{n} \sum_{i = 1}^n$. Find the $\bias$, $\se$, and $\mse$ of this estimator.
+		\begin{itemize}
+			\item Recall that $E_\lambda$ is linear and that the expected value of $X \sim \operatorname{Po}(\lambda)$ is $\lambda$. As such
+			$$
+			E_\lambda(\hat{\lambda}_n) = \frac{1}{n} \sum_{i = 1}^n E(X_i) = \frac{1}{n} n \lambda = \lambda.
+			$$
+			This means that $\bias = 0$, i.e., this estimator is unbiased.
+			\item Similiarly, the variance of $X \sim \operatorname{Po}(\lambda)$ is equal to $\lambda$, as such $se^2 = \lambda / n$. To see this note that $Var(aX) = a^2Var(X)$, i.e.,
+			$$
+			se = \sqrt{\lambda / n}.
+			$$
+			\item By Theorem 6.9 the mean square error is equal to
+			$$
+			\mse = \bias^2(\hat{\lambda}_n) + se^2(\hat{\lambda}_n) = \frac{\lambda}{n}.
+			$$
+		\end{itemize}
+	\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta} = \max\{X_1, \dots, X_n\}$. Find the $\bias$, $\se$, and $\mse$ of this estimator.
+		\begin{itemize}
+			\item We begin by determining the CDF of $\hat{\theta}$.
+			$$
+			\begin{aligned}
+			F_{\hat{\theta}}(x) &= F(\hat{\theta} \leq x) \\ 
+			&= F(\max\{X_1, \dots, X_n\} \leq x) \\
+			&= F(X_1 \leq x, X_2 \leq x, \dots, X_n \leq x) \\
+			&\overset{1}{=} \prod_{i = 1}^n F(X_i \leq x) \\
+			&\overset{2}{=} (F(X_i \leq x))^n \\
+			&= \left( \frac{x}{\theta} \right)^n \\
+			&= \frac{x^n}{\theta^n},
+			\end{aligned}
+			$$
+			where we have used (1) the independence of the random variables and (2) the fact that they are identically distributed. To obtain the PDF we differentiate with respect to $x$ to obtain
+			$$
+			\begin{aligned}
+			f_{\hat{\theta}}(x) &= \frac{\partial}{\partial x} F_{\hat{\theta}}(x) \\
+			&= \frac{\partial}{\partial x} \frac{x^n}{\theta^n} \\
+			&= n \frac{x^{n - 1}}{\theta^n}.
+			\end{aligned}
+			$$
+			With that we can now calculate the expected value
+			$$
+			\begin{aligned}
+			E_\theta(\hat{\theta}) &= \int_0^\theta x (n x^{n-1} / \theta^n) dx \\
+			&= n \int_0^\theta \frac{x^{n}}{\theta^n} dx \\
+			&= \frac{n}{\theta^n} \int_0^\theta x^n dx \\
+			&= \frac{n}{\theta^n} \left[ \frac{x^{n+1}}{n+1} \right]_0^\theta \\
+			&= \frac{n}{n+1} \theta,
+			\end{aligned}
+			$$
+			and
+			$$
+			\begin{aligned}
+			\bias &= E_\theta(\hat{\theta}) - \theta \\
+			&= \frac{n}{n+1} \theta - \theta \\
+			&= \theta\left(\frac{n}{n+1} - 1\right) \\
+			&= -\frac{\theta}{n+1}.
+			\end{aligned}
+			$$
+			\item To compute the standard error we first calculate the second moment of $\hat{\theta}$:
+			$$
+			\begin{aligned}
+			E_\theta(\hat{\theta}^2) &= \int_0^\theta x^2 \frac{n x^{n - 1}}{\theta^n} dx \\
+			&= \frac{n}{\theta^n} \int_0^\theta x^{n + 1} dx \\
+			&= \frac{n}{\theta^n} \left. \frac{1}{n + 2} x^{n + 2} \right|_{x = 0}^{x = \theta} \\
+			&= \frac{n}{\theta^n} \frac{\theta^{n + 2}}{n + 2} \\
+			&= \frac{n}{n + 2} \theta^2.
+			\end{aligned}
+			$$
+			As such
+			$$
+			V(\hat{\theta}) = E_\theta(\hat{\theta}^2) - E_\theta(\hat{\theta})^2 = \frac{n}{n + 2} \theta^2 - \frac{\theta^2}{(n+1)^2}
+			$$
+			and
+			$$
+			\se(\hat{\theta}) = \sqrt{V(\hat{\theta})} = \sqrt{\frac{n}{n + 2} - \frac{1}{(n + 1)^2}}\theta.
+			$$
+			\item By Theorem 6.9 it follows
+			$$
+			\begin{aligned}
+			\mse(\hat{\theta}) &= \bias^2(\hat{\theta}) + V(\hat{\theta}) \\
+			&= \frac{\theta^2}{(n + 1)^2} + \frac{n}{n + 2}\theta^2 - \frac{\theta^2}{(n + 1)^2} \\
+			&= \frac{n}{n + 2}\theta^2.
+			\end{aligned}
+			$$
+		\end{itemize}
+	\item Let $X_1, \dots, X_n \sim \operatorname{Uniform}(0, \theta)$ and let $\hat{\theta} = 2 \overline{X}_n$. Find the $\bias$, $\se$, and $\mse$ of this estimator.
 \end{enumerate}
 
 \subsection{Estimating the CDF and Statistical Functionals}
@@ -1628,6 +1671,14 @@ print(f"(mu-z*se, mu+z*se) = ({mu - z * sigma:.2f}, {mu + z * sigma:.2f})")
 	$$
 \end{enumerate}
 
+\subsection{Parametric Inference}
+
+\subsection{Hypothesis Testing and p-values}
+
+\subsection{Bayesian Inference}
+
+\subsection{Statistical Decision Theory}
+
 \section{Statistical Models and Methods}
 \subsection{Linear and Logistic Regression}
 \begin{enumerate}
@@ -1767,5 +1818,61 @@ plt.show()
 	Plot the simulation as a scatterplot. Estimate the mean and covariance matrix $\Sigma$. Find the correlation $\rho$ between $X_1$ and $X_2$. Comapre this with the sample correlations from your simulation. Find $95\%$ confidence interval for $\rho$. Use two methods: the bootstrap and Fisher's method. Compare.
 	\item (Computer Experiment.) Repeat the previous exercise $1000$ times. Compare teh coverage of the two confidence intervals for $\rho$.
 \end{enumerate}
+
+\subsection{Inference About Independence}
+\begin{enumerate}
+	\item Prove Theorem 15.2.
+	\item Prove Theorem 15.3.
+	\item Prove Theorem 15.6.
+	\item The New York Times (January 8, 2003, page A12) reported the following data on death sentencing and race, from a study of Maryland:
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			& Black Victim & White Victim \\
+			\hline
+			Death Sentence & 14 & 62 \\
+			\hline
+			No Death Sentence & 641 & 594 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	Analyze the data using the tools from this chapter. Interpret the results. Explain why, based only on this information, you can't make causal conclusions. (The authors ofthe study did use much more information in their full report.)
+	\item Anaylsis teh data on the variables Age and Financial Status from:
+	\texttt{http://lib.stat.cmu.edu/DASL/Datafiles/montanadat.html}
+	\item Estimate the correlation between temperature and latitude using the data from
+	\texttt{http://lib.stat.cmu.edu/DASL/Datafiles/USTemperatures.html}
+	Use the correlation coefficient. Provide estimates, tests, and confidence intervals.
+	\item Test whether calcium intake and drop in blood pressure are associated. Use the data in
+	\texttt{http://lib.stat.cmu.edu/DASL/Datafiles/Calcium.html}
+\end{enumerate}
+
+\subsection{Causal Inference}
+\begin{enumerate}
+	\item Create an example like Example 16.2 in which $\alpha > 0$ and $\theta < 0$.
+	\item Prove Theorem 16.4.
+	\item Suppose your are given data $(X_i, Y_i), 1 \leq i \leq n$ from an observational study, where $X_i, Y_1 \in \{0, 1\}$. Although it is not possible to estimate the causal effect $\theta$, it is possible to put bounds on $\theta$. Find upper and lower bounds on $\theta$ that can be consistently estimated from the data. Show that the bounds have width $1$.
+	Hint: Note that
+	$$
+	E(C_1) = E(C_1|X = 1)P(X = 1) + E(C_1|X = 0)P(X = 0).
+	$$
+	\item Suppose that $X \in \mathbb{R}$ and that, for each subject $i$, $C_i(x) = \beta_{1i}x$. Each subject has their own slope $\beta_{1i}$. Construct a joint distribution on $(\beta_1, X)$ such that $P(\beta_1 > 0) = 1$ but $E(Y|X = x)$ is a decreasing function on $x$, where  $Y = C(X)$. Interpret.
+	\item Let $X \in \{0, 1\}$ be a binary treatment variable and let $(C_0, C_1)$ denote the correspondingg potential outcomes. Let $Y = C_X$ denote the observed response. Let $F_0$ and $F_1$ be cumulative distribution functions for $C_0$ and $C_1$. Assume that $F_0$ and $F_1$ are both continuous and strictly increasing. Let $\theta = m_1 - m_0$ where $m_i = F_i^{-1}(1 / 2)$ is the median of $C_i, i = 0, 1$. Suppose that the treatment $X$ is assigned randomly. Find an expression for $\theta$ involving only the joint distribution of $X$ and $Y$.
+\end{enumerate}
+
+\subsection{Directed Graphs and Conditional Independence}
+
+\subsection{Undirected Graphs}
+
+\subsection{Log-Linear Models}
+
+\subsection{Nonparametric Curve Estimation}
+
+\subsection{Smoothin Using Orthogonal Functions}
+
+\subsection{Classification}
+
+\subsection{Probability Redux: Stochastic Processes}
+
+\subsection{Simulation Methods}
 
 \end{document}

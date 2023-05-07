@@ -1,4 +1,4 @@
-&
+&*
 $X \sim U(a, b)$ if it has the pdf
 $$
 f(x) = \frac{1}{b - a}.

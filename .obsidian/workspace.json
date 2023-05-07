@@ -11,9 +11,11 @@
             "id": "17e1322f47e76920",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png"
+                "file": "Flashcards/Distribution - Beta.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -46,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Poisson",
+                "query": "SR:",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -83,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png",
+                "file": "Flashcards/Distribution - Beta.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png",
+                "file": "Flashcards/Distribution - Beta.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png"
+                "file": "Flashcards/Distribution - Beta.md"
               }
             }
           },
@@ -157,39 +159,43 @@
   },
   "active": "17e1322f47e76920",
   "lastOpenFiles": [
+    "Books and Courses/Wasserman-Statistics/Exercises.aex",
+    "Books and Courses/Wasserman-Statistics/Exercises.w18",
+    "Books and Courses/Wasserman-Statistics/Exercises.pyg",
+    "Flashcards/Distribution - Bernoulli.md",
+    "Flashcards/Distribution - Rayleigh.md",
+    "Flashcards/Distribution - t.md",
+    "Flashcards/Distribution - Uniform.md",
+    "Flashcards/Distribution - Normal.md",
+    "Flashcards/Distribution - Poisson.md",
+    "Flashcards/Distribution - Logistic.md",
+    "Flashcards/Distribution - Multinomial.md",
+    "Flashcards/Distribution - Hypergeometric.md",
+    "Flashcards/Distribution - Multivariate Normal.md",
+    "Flashcards/Distribution - Negative Binomial.md",
+    "Flashcards/Distribution - Point Mass.md",
+    "Flashcards/Distribution - Beta.md",
+    "Flashcards/Inequality - Jensen.md",
+    "Flashcards/Inequality - Hoeffding.md",
+    "Flashcards/Inequality - Chebyshev.md",
+    "Flashcards/Inequality - Cauchy Schwarz.md",
+    "Flashcards/Distribution - Binomial.md",
+    "Flashcards/Distribution - Cauchy.md",
+    "Flashcards/Distribution - Chi_Squared.md",
+    "Flashcards/Distribution - Discrete Uniform.md",
+    "Flashcards/Distribution - Exponential.md",
+    "Flashcards/Distribution - Gamma.md",
+    "Flashcards/Distribution - Geometric.md",
+    "Flashcards/Distribution - Weibull.md",
+    "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png",
     "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-25.png",
     "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-50.png",
     "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-100.png",
     "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_3.png",
     "Books and Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_7.png",
-    "_Meta/Obsidian/Templates/Flashcard.md",
     "Books and Courses/Blitzstein-Probability/3 - Random Variables/bin_9_80pct.png",
     "Books and Courses/Blitzstein-Probability/3 - Random Variables/bin_10_12pct.png",
     "Books and Courses/Blitzstein-Probability/3 - Random Variables/bin_10_50pct.png",
-    "Flashcards/Distribution - Hypergeometric.md",
-    "Flashcards/Distribution - Negative Binomial.md",
-    "Flashcards/Distribution - Weibull.md",
-    "Flashcards/Distribution - Logistic.md",
-    "Flashcards/Distribution - Rayleigh.md",
-    "Books and Courses/Blitzstein-Probability/Flashcards/Chapter 5/Distribution - Normal, standard normal.md",
-    "Books and Courses/Blitzstein-Probability/Flashcards/Chapter 5/Poisson Process.md",
-    "Flashcards/Distribution - Poission.md",
-    "Books and Courses/Blitzstein-Probability/Flashcards/Chapter 4/Distribution - Poisson.md",
-    "Books and Courses/Blitzstein-Probability/Flashcards/Chapter 4/Explain the connection between Poisson and Binomial.md",
-    "Flashcards/Inequality - Hoeffding.md",
-    "Flashcards/Distribution - Multivariate Normal.md",
-    "Flashcards/Distribution - Cauchy.md",
-    "Flashcards/Distribution - t.md",
-    "Flashcards/Distribution - Uniform.md",
-    "Flashcards/Inequality - Chebyshev.md",
-    "Flashcards/Distribution - Multinomial.md",
-    "Flashcards/Distribution - Geometric.md",
-    "Flashcards/Distribution - Gamma.md",
-    "Flashcards/Distribution - Exponential.md",
-    "Flashcards/Distribution - Discrete Uniform.md",
-    "Flashcards/Distribution - Chi_Squared.md",
-    "Flashcards/Distribution - Binomial.md",
-    "Flashcards/Distribution - Beta.md",
     "Flashcards/Untitled",
     "Books and Courses/Wasserman-Statistics/Mean_Variance_Table.png",
     "Flashcards",
@@ -198,8 +204,6 @@
     "_Meta",
     "Books and Courses",
     "Books and Courses/Wasserman-Statistics/Exercises.pdf",
-    "Notes",
-    "Wasserman-Statistics/Exercises.aex",
-    "Wasserman-Statistics/Exercises.w18"
+    "Notes"
   ]
 }

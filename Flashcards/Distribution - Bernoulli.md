@@ -1,4 +1,4 @@
-&
+&*
 Let X represent a binary coin flip. Then
 $$
 \begin{aligned}

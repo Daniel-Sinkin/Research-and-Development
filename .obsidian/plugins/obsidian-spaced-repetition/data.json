@@ -18,7 +18,7 @@
     "convertCurlyBracketsToClozes": false,
     "singleLineCardSeparator": "::",
     "singleLineReversedCardSeparator": ":::",
-    "multilineCardSeparator": "&",
+    "multilineCardSeparator": "&*",
     "multilineReversedCardSeparator": "&&",
     "editLaterTag": "#edit-later",
     "enableNoteReviewPaneOnStartup": true,
@@ -44,5 +44,5 @@
   },
   "buryDate": "2023-05-07",
   "buryList": [],
-  "historyDeck": "Flashcards"
+  "historyDeck": ""
 }
