@@ -1,0 +1,1 @@
+/home/daniel/Programming/GitHub/Research-and-Development/Books-and-Courses/The-Rust-Programming-Language/projects/using_structs/target/debug/using_structs: /home/daniel/Programming/GitHub/Research-and-Development/Books-and-Courses/The-Rust-Programming-Language/projects/using_structs/src/main.rs
