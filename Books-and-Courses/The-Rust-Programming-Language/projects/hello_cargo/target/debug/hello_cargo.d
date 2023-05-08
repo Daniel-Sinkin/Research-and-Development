@@ -1,0 +1,1 @@
+/home/daniel/Programming/GitHub/Research-and-Development/Books-and-Courses/The-Rust-Programming-Language/projects/hello_cargo/target/debug/hello_cargo: /home/daniel/Programming/GitHub/Research-and-Development/Books-and-Courses/The-Rust-Programming-Language/projects/hello_cargo/src/main.rs

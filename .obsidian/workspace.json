@@ -13,26 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Flashcards/Definition - Martingale.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ffb3f978d37f8d9e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Untitled.md",
+                "file": "Projects/Python-Rust/_Python-Rust.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -61,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "martingale",
+                "query": "cargo",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -98,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled.md",
+                "file": "Projects/Python-Rust/_Python-Rust.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled.md",
+                "file": "Projects/Python-Rust/_Python-Rust.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.md"
+                "file": "Projects/Python-Rust/_Python-Rust.md"
               }
             }
           },
@@ -170,28 +157,44 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "ffb3f978d37f8d9e",
+  "active": "54d8a5e65333c83a",
   "lastOpenFiles": [
-    "Books-and-Courses/Wasserman-Statistics/Exercises.pyg",
-    "Books-and-Courses/Wasserman-Statistics/Exercises.aex",
-    "Books-and-Courses/Wasserman-Statistics/Exercises.w18",
-    "Flashcards/Definition - Martingale.md",
+    "Projects/Python-Rust/testing/Cargo.toml",
+    "Projects/Python-Rust/testing/src/lib.rs",
+    "Projects/Python-Rust/testing/src",
+    "Projects/Python-Rust/testing/pyproject.toml",
+    "Projects/Python-Rust/testing",
+    "Projects/Python-Rust/string_sum/test.py",
+    "Projects/Python-Rust/string_sum/target/debug/libstring_sum.d",
+    "Projects/Python-Rust/string_sum/target/debug/libstring_sum.so",
+    "Projects/Python-Rust/string_sum/target/debug/deps/libstring_sum.so",
+    "Projects/Python-Rust/string_sum/target/debug/incremental/string_sum-2pkg5gk1ol1yy/s-gkrk1vdfcd-vp4myn-3ls81dbzs5c6i/work-products.bin",
+    "Projects/Python-Rust/string_sum/target/debug/incremental/string_sum-2pkg5gk1ol1yy/s-gkrk1vdfcd-vp4myn-3ls81dbzs5c6i/rusc6cr386dpwvl.o",
+    "Projects/Untitled.md",
+    "Projects/Python-Rust/_Python-Rust.md",
+    "Notes/kth Momentum calculation.md",
+    "Books-and-Courses/The-Rust-Programming-Language/1 Getting Started.md",
+    "Books-and-Courses/The-Rust-Programming-Language/3 Common Programming Concepts.md",
+    "Books-and-Courses/The-Rust-Programming-Language/2 Programming a Guessing Game.md",
+    "_Meta/Obsidian/Question.md",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/wheel-7b819b6101059cd0.svg",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/rust-logo-151179464ae7ed46.svg",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/favicon-32x32-422f7d1d52889060.png",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/favicon-2c020d218678b618.svg",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/favicon-16x16-8b506e7a72182f1c.png",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/clipboard-7571035ce49a181d.svg",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/SourceSerif4-LICENSE-971e190366a5901b.md",
+    "Books-and-Courses/The-Rust-Programming-Language/_The-Rust-Programming-Language.md",
+    "README.md",
     "Untitled.md",
-    "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/SymmetricScaledRandomWalk.py",
-    "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/randomWalk (copy).py",
+    "Flashcards/Definition - Martingale.md",
     "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/ScaledSymmetricRandomWalk.png",
     "Books-and-Courses/Stochastic-Calculus-For-Finance/ScaledSymmetricRandomWalk.png",
     "Flashcards/Definition - Radon-Nikodym Derivative.md",
     "Flashcards/Definition - Equivalent Probability Measures.md",
     "Flashcards/Definition - Risk Neutral Probability Measure.md",
-    "Flashcard",
     "Flashcards/Definition - Markov Process.md",
-    "Books-and-Courses/Stochastic-Calculus-For-Finance/Exercises.aex",
-    "Books-and-Courses/Stochastic-Calculus-For-Finance/Exercises.w18",
     "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/randomWalk.png",
-    "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion/randomWalk.py",
-    "Books-and-Courses/Stochastic-Calculus-For-Finance/3-Brownian-Motion",
-    "Books-and-Courses/Stochastic-Calculus-For-Finance/Untitled Folder",
     "Flashcards/Definition - Independence.md",
     "Flashcards/Definition - Adapted Stochastic Process.md",
     "Flashcards/Definition - G-Measureable Set.md",
@@ -199,24 +202,8 @@
     "Books-and-Courses/Stochastic-Calculus-For-Finance/_Stochastic-Calculus-For-Finance.md",
     "Flashcards/Distribution - Bernoulli.md",
     "Flashcards/Distribution - Beta.md",
-    "README.md",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Symmetric of Random Variables.md",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/State and proof the Unbiasedness of sample variance Theorem.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/State and Prove Theorem 6.1.4 about error minimizers.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Sample Moment.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Probability Generating Function.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Moment generating function.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Mean and Variance of Sample Mean.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Kurtosis.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Define Skewness.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Define Moments.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Define Median, Mode.md",
-    "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_7.png",
-    "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_3.png",
-    "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-50.png",
-    "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-25.png",
-    "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-100.png",
-    "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_2-10.png",
-    "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_2_1.png"
+    "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_7.png"
   ]
 }
