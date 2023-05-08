@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Projects/Python-Rust/_Python-Rust.md",
+                "file": "Books-and-Courses/The-Rust-Programming-Language/4 Understanding Ownership.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Projects/Python-Rust/_Python-Rust.md",
+                "file": "Books-and-Courses/The-Rust-Programming-Language/4 Understanding Ownership.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Projects/Python-Rust/_Python-Rust.md",
+                "file": "Books-and-Courses/The-Rust-Programming-Language/4 Understanding Ownership.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Projects/Python-Rust/_Python-Rust.md"
+                "file": "Books-and-Courses/The-Rust-Programming-Language/4 Understanding Ownership.md"
               }
             }
           },
@@ -159,19 +159,20 @@
   },
   "active": "54d8a5e65333c83a",
   "lastOpenFiles": [
-    "Projects/Python-Rust/testing/Cargo.toml",
-    "Projects/Python-Rust/testing/src/lib.rs",
-    "Projects/Python-Rust/testing/src",
-    "Projects/Python-Rust/testing/pyproject.toml",
-    "Projects/Python-Rust/testing",
-    "Projects/Python-Rust/string_sum/test.py",
-    "Projects/Python-Rust/string_sum/target/debug/libstring_sum.d",
-    "Projects/Python-Rust/string_sum/target/debug/libstring_sum.so",
-    "Projects/Python-Rust/string_sum/target/debug/deps/libstring_sum.so",
-    "Projects/Python-Rust/string_sum/target/debug/incremental/string_sum-2pkg5gk1ol1yy/s-gkrk1vdfcd-vp4myn-3ls81dbzs5c6i/work-products.bin",
-    "Projects/Python-Rust/string_sum/target/debug/incremental/string_sum-2pkg5gk1ol1yy/s-gkrk1vdfcd-vp4myn-3ls81dbzs5c6i/rusc6cr386dpwvl.o",
-    "Projects/Untitled.md",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/incremental/understanding_ownership-2iyj12kjx44ax/s-gkrmtadfjc-18asmn9-3bqcrnyqdrpxo/work-products.bin",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/incremental/understanding_ownership-2iyj12kjx44ax/s-gkrmtadfjc-18asmn9-3bqcrnyqdrpxo/query-cache.bin",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/incremental/understanding_ownership-2iyj12kjx44ax/s-gkrmtadfjc-18asmn9-3bqcrnyqdrpxo/dep-graph.bin",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/incremental/understanding_ownership-2iyj12kjx44ax/s-gkrmtadfjc-18asmn9-3bqcrnyqdrpxo",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/incremental/understanding_ownership-1nsxqj5c1xeg6/s-gkrmtad540-17cjmx2-2wizmh3kudkcg/dep-graph.bin",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/incremental/understanding_ownership-1nsxqj5c1xeg6/s-gkrmtad540-17cjmx2-2wizmh3kudkcg/work-products.bin",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/incremental/understanding_ownership-1nsxqj5c1xeg6/s-gkrmtad540-17cjmx2-2wizmh3kudkcg/query-cache.bin",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/incremental/understanding_ownership-1nsxqj5c1xeg6/s-gkrmtad540-17cjmx2-2wizmh3kudkcg",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/incremental/understanding_ownership-2iyj12kjx44ax/s-gkrmtadfjc-18asmn9.lock",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/incremental/understanding_ownership-1nsxqj5c1xeg6/s-gkrmtad540-17cjmx2-working",
+    "Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/incremental/understanding_ownership-1nsxqj5c1xeg6/s-gkrmtad540-17cjmx2.lock",
     "Projects/Python-Rust/_Python-Rust.md",
+    "Books-and-Courses/The-Rust-Programming-Language/4 Understanding Ownership.md",
+    "Projects/Untitled.md",
     "Notes/kth Momentum calculation.md",
     "Books-and-Courses/The-Rust-Programming-Language/1 Getting Started.md",
     "Books-and-Courses/The-Rust-Programming-Language/3 Common Programming Concepts.md",
@@ -203,7 +204,6 @@
     "Flashcards/Distribution - Bernoulli.md",
     "Flashcards/Distribution - Beta.md",
     "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/Symmetric of Random Variables.md",
-    "Books-and-Courses/Blitzstein-Probability/Flashcards/Chapter 6/State and proof the Unbiasedness of sample variance Theorem.md",
     "Books-and-Courses/Wasserman-Statistics/7-Estimating_the_CDF_and_Statistical_Functionals/Ex7_7.png"
   ]
 }
