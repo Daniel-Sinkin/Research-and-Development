@@ -90,3 +90,6 @@ if time_of_day < 22 {
 }
 ```
 is equivalent for `time_of_day: u16`.
+
+## Options3.rs
+https://doc.rust-lang.org/std/keyword.ref.html
