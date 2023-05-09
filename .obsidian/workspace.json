@@ -11,8 +11,12 @@
             "id": "54d8a5e65333c83a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Books-and-Courses/rustlings/_rustlings.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -65,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "3a9908c8b26da96d",
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Books-and-Courses/rustlings/_rustlings.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Books-and-Courses/rustlings/_rustlings.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Books-and-Courses/rustlings/_rustlings.md"
+              }
             }
           },
           {
@@ -151,17 +160,19 @@
   },
   "active": "54d8a5e65333c83a",
   "lastOpenFiles": [
-    "Books-and-Courses/rustlings/target/release/build/slab-a032c46801ab2ed8/out/probe0.ll",
-    "Books-and-Courses/rustlings/target/release/build/syn-daab59a3ad824add/build_script_build-daab59a3ad824add.d",
-    "Books-and-Courses/rustlings/target/release/build/syn-daab59a3ad824add/build_script_build-daab59a3ad824add",
-    "Books-and-Courses/rustlings/target/release/build/syn-daab59a3ad824add/build-script-build",
-    "Books-and-Courses/rustlings/target/release/build/syn-2657d4c0d8f4d380/stderr",
-    "Books-and-Courses/rustlings/target/release/build/syn-2657d4c0d8f4d380/root-output",
-    "Books-and-Courses/rustlings/target/release/build/syn-2657d4c0d8f4d380/output",
-    "Books-and-Courses/rustlings/target/release/build/syn-2657d4c0d8f4d380/out",
-    "Books-and-Courses/rustlings/target/release/build/syn-2657d4c0d8f4d380/invoked.timestamp",
-    "Books-and-Courses/rustlings/target/release/build/slab-a032c46801ab2ed8/stderr",
-    "Books-and-Courses/rustlings/target/release/build/slab-a032c46801ab2ed8/root-output",
+    "Books-and-Courses/rustlings/temp_30596_ThreadId1.options1.047352cb-cgu.5.rcgu.o",
+    "Books-and-Courses/rustlings/temp_30596_ThreadId1.options1.047352cb-cgu.10.rcgu.o",
+    "Books-and-Courses/rustlings/temp_30596_ThreadId1.options1.047352cb-cgu.3.rcgu.o",
+    "Books-and-Courses/rustlings/temp_30596_ThreadId1.options1.047352cb-cgu.13.rcgu.o",
+    "Books-and-Courses/rustlings/temp_30596_ThreadId1.options1.047352cb-cgu.4.rcgu.o",
+    "Books-and-Courses/rustlings/temp_30596_ThreadId1.options1.047352cb-cgu.12.rcgu.o",
+    "Books-and-Courses/rustlings/temp_30596_ThreadId1.options1.047352cb-cgu.2.rcgu.o",
+    "Books-and-Courses/rustlings/temp_30596_ThreadId1.options1.047352cb-cgu.11.rcgu.o",
+    "Books-and-Courses/rustlings/temp_30596_ThreadId1.options1.047352cb-cgu.1.rcgu.o",
+    "Books-and-Courses/rustlings/temp_30596_ThreadId1.options1.047352cb-cgu.14.rcgu.o",
+    "Books-and-Courses/rustlings/temp_30596_ThreadId1.options1.047352cb-cgu.0.rcgu.o",
+    "Latex Playground.md",
+    "README.md",
     "Books-and-Courses/rustlings/exercises/vecs/README.md",
     "Books-and-Courses/rustlings/exercises/variables/README.md",
     "Books-and-Courses/rustlings/exercises/traits/README.md",
@@ -185,8 +196,6 @@
     "Books-and-Courses/rustlings/exercises/generics/README.md",
     "Books-and-Courses/rustlings/exercises/functions/README.md",
     "Books-and-Courses/rustlings/exercises/error_handling/README.md",
-    "Books-and-Courses/rustlings/exercises/clippy/README.md",
-    "Books-and-Courses/rustlings/exercises/README.md",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/wheel-7b819b6101059cd0.svg",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/rust-logo-151179464ae7ed46.svg",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/favicon-32x32-422f7d1d52889060.png",

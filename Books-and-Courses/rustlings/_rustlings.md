@@ -32,3 +32,61 @@ enum Message {
 }
 ```
 
+## modules2.rs
+By default everything in rust is going to be private, to make it public use the `pub` keyword.
+```rust
+pub use self::fruits::PEAR as fruit;
+pub use self::veggies::CUCUMBER as veggie;
+```
+
+## modules3.rs
+If you want to `use` multiple things from a package you can do the following:
+```rust
+use std::time::{SystemTime, UNIX_EPOCH};
+```
+
+## hashmaps3.rs
+The following 
+```rust
+scores
+	.entry(team_1_name.clone())
+	.and_modify(|team| {
+		team.goals_scored += team_1_score;
+		team.goals_conceded += team_2_score;
+	})
+	.or_insert(Team {
+		name: team_1_name,
+		goals_scored: team_1_score,
+		goals_conceded: team_2_score,
+	});
+```
+is a more rustified version of
+```rust
+if let Some(team) = scores.get_mut(&team_1_name) {
+    team.goals_scored += team_1_score;
+    team.goals_conceded += team_2_score;
+} else {
+    scores.insert(team_1_name, Team { name: team_1_name.clone(), goals_scored: team_1_score, goals_conceded: team_2_score });
+}
+```
+
+## options1.rs
+The code
+```rust
+match time_of_day {
+	0..=21 => Some(5),
+	22..=23 => Some(0),
+	_ => None,
+};
+```
+and
+```rust
+if time_of_day < 22 {
+	Some(5)
+} else if time_of_day < 24 {
+	Some(0)
+} else {
+	None
+}
+```
+is equivalent for `time_of_day: u16`.
