@@ -37,7 +37,7 @@ fn send_tx(q: Queue, tx: mpsc::Sender<u32>) -> () {
         }
     });
 
-    thread::spawn(move || {
+    thread::spawn( || {
         for val in &qc2.second_half {
             println!("sending {:?}", val);
             tx.send(*val).unwrap();

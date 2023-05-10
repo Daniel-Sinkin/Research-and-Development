@@ -1,0 +1,1 @@
+/home/daniel/Programming/GitHub/Research-and-Development/Books-and-Courses/The-Rust-Programming-Language/projects/minigrep/target/debug/libminigrep.rlib: /home/daniel/Programming/GitHub/Research-and-Development/Books-and-Courses/The-Rust-Programming-Language/projects/minigrep/src/lib.rs
