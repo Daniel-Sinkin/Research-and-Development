@@ -93,3 +93,47 @@ is equivalent for `time_of_day: u16`.
 
 ## Options3.rs
 https://doc.rust-lang.org/std/keyword.ref.html
+
+## traits4.rs#
+In the following `SomeSoftware` and `OtherSoftware` both implement the trait called `Licensed` and we can accept any such object into the definition. For example we could consider a type of formatted string, which then accepts all structs with the trait `display`. Theoretically we could also have a parent struct like `LicensedSoftware` and have both of those as children, but that would create problems if we have too much inheritence.
+```rust
+struct SomeSoftware {}
+
+struct OtherSoftware {}
+
+impl Licensed for SomeSoftware {}
+impl Licensed for OtherSoftware {}
+
+// YOU MAY ONLY CHANGE THE NEXT LINE
+fn compare_license_types(software: impl Licensed, software_two: impl Licensed) -> bool {
+    software.licensing_info() == software_two.licensing_info()
+}
+```
+
+## traits5.rs
+```rust
+fn some_func(item: impl SomeTrait + OtherTrait) -> bool {
+    item.some_function() && item.other_function()
+}
+```
+
+### lifetimes2.rs
+Note that `string1` has `main()` as its scope so it will live throughout the entirety of the code, but `string2` has a different scope. Now, computing result is not a problem while we stay in the same scope, but when we want to leave the inner scope we have a problem. Namely as we leave the inner scope the variable `string2` gets removed because it falls out of the scope, and because result only has a borrowed reference to `string2` a compilation error is thrown. This is because we try to access the value of result. So we either have to only use the value of result in the scope, or move the definiton of `string2` into the scope that we wanted to use. Note that `result` itself was defined in the larger scope, just the value assignment was in the smaller one, so result as a variable doesn't fall out of scope.
+```rust
+let string1 = String::from("long string is long");
+let result;
+{
+	let string2 = String::from("xyz");
+	result = longest(string1.as_str(), string2.as_str());
+	println!("The longest string is '{}'", result);
+}
+// Here the scope doesn't do anything because longest has the lower lifetime
+// of string1, string2, both of which are in a larger scope.
+let string1 = String::from("long string is long");
+let string2 = String::from("xyz");
+let result;
+{
+	result = longest(string1.as_str(), string2.as_str());
+}
+println!("The longest string is '{}'", result);
+```
