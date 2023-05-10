@@ -1,8 +1,6 @@
 // threads3.rs
 // Execute `rustlings hint threads3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 use std::sync::mpsc;
 use std::sync::Arc;
 use std::thread;
@@ -20,7 +18,7 @@ impl Queue {
             length: 10,
             first_half: vec![1, 2, 3, 4, 5],
             second_half: vec![6, 7, 8, 9, 10],
-        }
+        } 
     }
 }
 
@@ -29,28 +27,36 @@ fn send_tx(q: Queue, tx: mpsc::Sender<u32>) -> () {
     let qc1 = Arc::clone(&qc);
     let qc2 = Arc::clone(&qc);
 
-    thread::spawn(move || {
+    let mut tx1 = mpsc::Sender::clone(&tx);
+    let JH1 = thread::spawn(move || {
+        // [1,2,3,4,5]
         for val in &qc1.first_half {
             println!("sending {:?}", val);
-            tx.send(*val).unwrap();
+            tx1.send(*val).unwrap();
             thread::sleep(Duration::from_secs(1));
         }
     });
 
-    thread::spawn( || {
+    let mut tx2 = mpsc::Sender::clone(&tx);
+    let JH2 = thread::spawn(move || {
+        // [6,7,8,9,10]
         for val in &qc2.second_half {
             println!("sending {:?}", val);
-            tx.send(*val).unwrap();
+            tx2.send(*val).unwrap();
             thread::sleep(Duration::from_secs(1));
         }
     });
+
+    JH1.join(); JH2.join();
 }
 
 fn main() {
     let (tx, rx) = mpsc::channel();
+    // queue = {length: 10, firstHalf: [1,2,3,4,5], secondHalf: [6,7,8,9,10]}
     let queue = Queue::new();
-    let queue_length = queue.length;
+    let queue_length = queue.length; // == 10
 
+    // queue = {length: 10, firstHalf: [1,2,3,4,5], secondHalf: [6,7,8,9,10]}
     send_tx(queue, tx);
 
     let mut total_received: u32 = 0;
