@@ -1,1 +1,0 @@
-/home/daniel/Programming/GitHub/Research-and-Development/Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/target/debug/understanding_ownership: /home/daniel/Programming/GitHub/Research-and-Development/Books-and-Courses/The-Rust-Programming-Language/projects/understanding_ownership/src/main.rs
