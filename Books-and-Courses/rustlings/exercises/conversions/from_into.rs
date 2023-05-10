@@ -43,8 +43,6 @@ impl From<&str> for Person {
 
         let name = split.next().unwrap();
 
-        dbg!(name);
-
         if name.is_empty() { return Person::default(); }
 
         let y = split.next();
