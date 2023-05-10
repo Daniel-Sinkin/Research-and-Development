@@ -118,7 +118,7 @@ fn some_func(item: impl SomeTrait + OtherTrait) -> bool {
 ```
 
 ### lifetimes2.rs
-Note that `string1` has `main()` as its scope so it will live throughout the entirety of the code, but `string2` has a different scope. Now, computing result is not a problem while we stay in the same scope, but when we want to leave the inner scope we have a problem. Namely as we leave the inner scope the variable `string2` gets removed because it falls out of the scope, and because result only has a borrowed reference to `string2` a compilation error is thrown. This is because we try to access the value of result. So we either have to only use the value of result in the scope, or move the definiton of `string2` into the scope that we wanted to use. Note that `result` itself was defined in the larger scope, just the value assignment was in the smaller one, so result as a variable doesn't fall out of scope.
+Note that `string1` has `main` as its scope so it will live throughout the entirety of the code, but `string2` has a different scope. Now, computing result is not a problem while we stay in the same scope, but when we want to leave the inner scope we have a problem. Namely as we leave the inner scope the variable `string2` gets removed because it falls out of the scope, and because result only has a borrowed reference to `string2` a compilation error is thrown. This is because we try to access the value of result. So we either have to only use the value of result in the scope, or move the definiton of `string2` into the scope that we wanted to use. Note that `result` itself was defined in the larger scope, just the value assignment was in the smaller one, so result as a variable doesn't fall out of scope.
 ```rust
 let string1 = String::from("long string is long");
 let result;
@@ -137,3 +137,25 @@ let result;
 }
 println!("The longest string is '{}'", result);
 ```
+
+## threads1.rs
+The following code spawns 10 threads.
+```rust
+let mut handles = vec![];
+for i in 0..10 {
+	handles.push(thread::spawn(move || {
+		let start = Instant::now();
+		thread::sleep(Duration::from_millis(250));
+		println!("thread {} is complete", i);
+		start.elapsed().as_millis()
+	}));
+}
+```
+And then waits for them to finish. Note that `join` actually waits. An error is only thrown if the underlying threads propagated an error up, so it's okay to use `unwrap` here.
+```rust
+let mut results: Vec<u128> = vec![];
+for handle in handles {
+	results.push(handle.join().unwrap());
+}
+```
+
