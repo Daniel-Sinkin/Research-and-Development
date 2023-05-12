@@ -4,6 +4,9 @@
 *.aux
 *.toc
 
+# Ignore Rust Build files
+*/target
+
 # Ignore Obsidian Files
 .obsidian/
 

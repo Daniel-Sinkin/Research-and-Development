@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Books-and-Courses/rustlings/_rustlings.md",
+                "file": "Flashcards/Definition - Filtration.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "cargo",
+                "query": "_Blitzstein",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "3a9908c8b26da96d",
@@ -86,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Books-and-Courses/rustlings/_rustlings.md",
+                "file": "Flashcards/Definition - Filtration.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Books-and-Courses/rustlings/_rustlings.md",
+                "file": "Flashcards/Definition - Filtration.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Books-and-Courses/rustlings/_rustlings.md"
+                "file": "Flashcards/Definition - Filtration.md"
               }
             }
           },
@@ -153,13 +152,19 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false,
       "obsidian-spaced-repetition:Review flashcards": false,
+      "command-palette:Open command palette": false,
       "templater-obsidian:Templater": false
     }
   },
-  "active": "54d8a5e65333c83a",
+  "active": "cef1cd1a1aed2369",
   "lastOpenFiles": [
+    "Flashcards/Definition - Equivalent Probability Measures.md",
+    "Flashcards/Definition - Adapted Stochastic Process.md",
+    "README.md",
+    "Notes/kth Momentum calculation.md",
+    "Notes/Rust.md",
+    "Books-Courses-Exercises/Blitzstein-Probability/_Blitzstein-Probability.md",
     "Books-and-Courses/rustlings/temp_26819_ThreadId1",
     "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads2.5bdd0a33-cgu.12.rcgu.o",
     "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads2.5bdd0a33-cgu.2.rcgu.o",
@@ -170,9 +175,7 @@
     "Books-and-Courses/rustlings/temp_26819_ThreadId1.18gduxmrszmpomnm.rcgu.o",
     "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads1.15300078-cgu.12.rcgu.o",
     "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads1.15300078-cgu.2.rcgu.o",
-    "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads1.15300078-cgu.13.rcgu.o",
     "Latex Playground.md",
-    "README.md",
     "Books-and-Courses/rustlings/exercises/vecs/README.md",
     "Books-and-Courses/rustlings/exercises/variables/README.md",
     "Books-and-Courses/rustlings/exercises/traits/README.md",
@@ -192,10 +195,6 @@
     "Books-and-Courses/rustlings/exercises/intro/README.md",
     "Books-and-Courses/rustlings/exercises/enums/README.md",
     "Books-and-Courses/rustlings/exercises/if/README.md",
-    "Books-and-Courses/rustlings/exercises/hashmaps/README.md",
-    "Books-and-Courses/rustlings/exercises/generics/README.md",
-    "Books-and-Courses/rustlings/exercises/functions/README.md",
-    "Books-and-Courses/rustlings/exercises/error_handling/README.md",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/wheel-7b819b6101059cd0.svg",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/rust-logo-151179464ae7ed46.svg",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/favicon-32x32-422f7d1d52889060.png",

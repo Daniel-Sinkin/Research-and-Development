@@ -48,7 +48,7 @@ Note that `parse()` returns a `Result` enum which can be used to handle non-conv
 let guess: u32 = guess.trim().parse().expect("Input:");
 ```
 
-[[Question_Solved]]: Does `Shadowing` mean we have the same value stored twice in two versions or does it just overwrite the old variable. For example if I have `let mut x = String::new()` and then write `let x: u32 = x.trim().parse()`, do we now have two versions of `x` in memory?
+[[Question_Solved]]
 > Answer: "Rustaceans say that the first variable is _shadowed_ by the second, which means that the second variable is what the compiler will see when you use the name of the variable. In effect, the second variable overshadows the first, taking any uses of the variable name to itself until either it itself is shadowed or the scope ends". The new variable simply takes the place of the old variable in the current scope.
 
 Note that we have never told Rust what data type `secret_number` is, so here it uses type inference to determine that the type is `u32`.

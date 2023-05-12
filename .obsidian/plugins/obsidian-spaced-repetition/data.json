@@ -16,18 +16,19 @@
     "convertHighlightsToClozes": true,
     "convertBoldTextToClozes": false,
     "convertCurlyBracketsToClozes": false,
-    "singleLineCardSeparator": "::",
-    "singleLineReversedCardSeparator": ":::",
+    "singleLineCardSeparator": "",
+    "singleLineReversedCardSeparator": "",
     "multilineCardSeparator": "&*",
-    "multilineReversedCardSeparator": "&&",
+    "multilineReversedCardSeparator": "",
     "editLaterTag": "#edit-later",
     "enableNoteReviewPaneOnStartup": true,
     "tagsToReview": [
       "#review"
     ],
     "noteFoldersToIgnore": [
-      "Books and Courses",
+      "Books-Courses-Exercises",
       "Notes",
+      "Playgrounds",
       "_Meta"
     ],
     "openRandomNote": false,
@@ -42,7 +43,7 @@
     "maxLinkFactor": 1,
     "showDebugMessages": false
   },
-  "buryDate": "2023-05-07",
+  "buryDate": "2023-05-12",
   "buryList": [],
-  "historyDeck": ""
+  "historyDeck": "Playgrounds"
 }
