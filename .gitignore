@@ -5,7 +5,7 @@
 *.toc
 
 # Ignore Rust Build files
-*/target
+**/target/
 
 # Ignore Obsidian Files
 .obsidian/
