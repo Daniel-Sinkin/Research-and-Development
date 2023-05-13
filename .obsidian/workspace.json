@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Flashcards/Definition - Filtration.md",
+                "file": "Notes/Linked List in Rust.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Flashcards/Definition - Filtration.md",
+                "file": "Notes/Linked List in Rust.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Flashcards/Definition - Filtration.md",
+                "file": "Notes/Linked List in Rust.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,20 +125,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Flashcards/Definition - Filtration.md"
+                "file": "Notes/Linked List in Rust.md"
               }
-            }
-          },
-          {
-            "id": "68a459cdd6aae4b2",
-            "type": "leaf",
-            "state": {
-              "type": "review-queue-list-view",
-              "state": {}
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -152,29 +144,29 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "obsidian-spaced-repetition:Review flashcards": false,
       "command-palette:Open command palette": false,
       "templater-obsidian:Templater": false
     }
   },
-  "active": "cef1cd1a1aed2369",
+  "active": "54d8a5e65333c83a",
   "lastOpenFiles": [
+    "Playgrounds/Rust/leetcode/target/debug/incremental/leetcode-3n6he9y5a72rv/s-gkxa6vrmvl-14dw4r4-working/work-products.bin",
+    "Playgrounds/Rust/leetcode/target/debug/incremental/leetcode-3n6he9y5a72rv/s-gkxa6vrmvl-14dw4r4-working/query-cache.bin",
+    "Playgrounds/Rust/leetcode/target/debug/incremental/leetcode-3n6he9y5a72rv/s-gkxa6vrmvl-14dw4r4-working/dep-graph.part.bin",
+    "Playgrounds/Rust/leetcode/target/debug/incremental/leetcode-3n6he9y5a72rv/s-gkxa6vrmvl-14dw4r4-working/dep-graph.bin",
+    "Playgrounds/Rust/leetcode/target/debug/incremental/leetcode-3n6he9y5a72rv/s-gkxa6vrmvl-14dw4r4-working",
+    "Playgrounds/Rust/leetcode/target/debug/incremental/leetcode-3n6he9y5a72rv/s-gkxa6vrmvl-14dw4r4.lock",
+    "Playgrounds/Rust/leetcode/target/debug/incremental/leetcode-1z7aq2nxob56g/s-gkxa6vrlw0-1lo4xn2-working/query-cache.bin",
+    "Playgrounds/Rust/leetcode/target/debug/incremental/leetcode-1z7aq2nxob56g/s-gkxa6vrlw0-1lo4xn2-working/work-products.bin",
+    "Playgrounds/Rust/leetcode/target/debug/incremental/leetcode-1z7aq2nxob56g/s-gkxa6vrlw0-1lo4xn2-working/dep-graph.part.bin",
+    "Playgrounds/Rust/leetcode/target/debug/incremental/leetcode-1z7aq2nxob56g/s-gkxa6vrlw0-1lo4xn2-working/dep-graph.bin",
+    "Playgrounds/Rust/leetcode/target/debug/incremental/leetcode-1z7aq2nxob56g/s-gkxa6vrlw0-1lo4xn2-working",
     "Flashcards/Definition - Equivalent Probability Measures.md",
     "Flashcards/Definition - Adapted Stochastic Process.md",
     "README.md",
     "Notes/kth Momentum calculation.md",
     "Notes/Rust.md",
     "Books-Courses-Exercises/Blitzstein-Probability/_Blitzstein-Probability.md",
-    "Books-and-Courses/rustlings/temp_26819_ThreadId1",
-    "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads2.5bdd0a33-cgu.12.rcgu.o",
-    "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads2.5bdd0a33-cgu.2.rcgu.o",
-    "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads2.5bdd0a33-cgu.13.rcgu.o",
-    "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads2.5bdd0a33-cgu.1.rcgu.o",
-    "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads2.5bdd0a33-cgu.14.rcgu.o",
-    "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads2.5bdd0a33-cgu.0.rcgu.o",
-    "Books-and-Courses/rustlings/temp_26819_ThreadId1.18gduxmrszmpomnm.rcgu.o",
-    "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads1.15300078-cgu.12.rcgu.o",
-    "Books-and-Courses/rustlings/temp_26819_ThreadId1.threads1.15300078-cgu.2.rcgu.o",
     "Latex Playground.md",
     "Books-and-Courses/rustlings/exercises/vecs/README.md",
     "Books-and-Courses/rustlings/exercises/variables/README.md",
@@ -194,7 +186,6 @@
     "Books-and-Courses/rustlings/exercises/conversions/README.md",
     "Books-and-Courses/rustlings/exercises/intro/README.md",
     "Books-and-Courses/rustlings/exercises/enums/README.md",
-    "Books-and-Courses/rustlings/exercises/if/README.md",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/wheel-7b819b6101059cd0.svg",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/rust-logo-151179464ae7ed46.svg",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/favicon-32x32-422f7d1d52889060.png",

@@ -1,22 +1,52 @@
-use std::fmt::Error;
+use core::num;
+use std::thread::panicking;
 
-fn TwoSum(nums: Vec<i32>, target: i32) -> Option<Vec<i32>> {
-    for (i, left) in nums.iter().enumerate() {
-        for (j, right) in nums.iter().enumerate().skip(i + 1) {
-            if left + right == target {
-                let iRet = i as i32;
-                let jRet = j as i32;
-                return Some(vec![iRet, jRet]);
-            }
-        }
+#[derive(PartialEq, Eq, Clone, Debug)]
+pub struct ListNode<T> {
+  pub val: T,
+  pub next: Option<Box<ListNode<T>>>
+}
+
+impl<T: Clone> ListNode<T> {
+    #[inline]
+    fn new(val: T) -> Self {
+      ListNode::<T> {
+              next: None,
+              val
+          }
     }
 
-    None
+  fn from_list(nums: Vec<T>) -> Self {
+    if nums.len() == 0 {
+      panic!("Can't generate a vector from an empty list");
+    }
+
+    if nums.len() == 1 {
+      return ListNode::new(nums[0].clone());
+    }
+
+    let mut head = Box::new(ListNode::new(nums[1].clone()));
+    let mut curr = &mut head;
+
+    for n in nums.iter().skip(2) {
+      curr.next = Some(Box::new(ListNode::new(n.clone())));
+      curr = curr.next.as_mut().unwrap();
+    }
+
+    ListNode {val: nums[0].clone(), next: Some(head)}
+  }
 }
 
 fn main() {
-    let nums = vec![3, 3];
-    let target = 6;
+  let list1 = vec![2, 4, 3];
+  let list2 = vec![5, 6, 4];
 
-    dbg!(TwoSum(nums, target));
+  let l1 = ListNode::<i32>::from_list(list1);
+  let l2 = ListNode::<i32>::from_list(list2);
+
+  let mut left = l1.next;
+  while let Some(x) = left {
+    dbg!(x);
+  }
+
 }

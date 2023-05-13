@@ -7,13 +7,10 @@
 # Ignore Rust Build files
 **/target/
 
-# Ignore Obsidian Files
-.obsidian/
-
 # Ignore Jupyter Notebook folders
-.ipynb_checkpoints/
-_minted-Exercises/
-__pycache__/
+**/.ipynb_checkpoints/
+**/_minted-Exercises/
+**/__pycache__/
 
 # Ignore files I don't have copyright for
 Books-Courses-Exercises/Blitzstein-Probability/ProbBook.pdf
