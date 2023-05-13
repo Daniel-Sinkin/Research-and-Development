@@ -6,6 +6,7 @@
 
 # Ignore Rust Build files
 **/target/
+*.lock
 
 # Ignore Jupyter Notebook folders
 **/.ipynb_checkpoints/
@@ -15,8 +16,13 @@
 # Ignore files I don't have copyright for
 Books-Courses-Exercises/Blitzstein-Probability/ProbBook.pdf
 Books-Courses-Exercises/Dive-into-Deep-Learning/d2l-en.pdf
+
 Books-Courses-Exercises/Wasserman-Statistics/StatBook.pdf
 Books-Courses-Exercises/Wasserman-Statistics/Data/
+
 Books-Courses-Exercises/Stochastic-Calculus-For-Finance/StochCalc1.djvu
 Books-Courses-Exercises/Stochastic-Calculus-For-Finance/StochCalc2.djvu
 
+Books-Courses-Exercises/zero2prod/zero2prod.pdf
+
+Books-Courses-Exercises/Lets-Get-Rusty-Cheatsheet/Lets-Get-Rusty-Cheatsheet.pdf
