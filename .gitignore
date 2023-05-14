@@ -4,6 +4,9 @@
 *.aux
 *.toc
 
+# Ignore VS Code files
+**/.vscode/
+
 # Ignore Rust Build files
 **/target/
 *.lock
