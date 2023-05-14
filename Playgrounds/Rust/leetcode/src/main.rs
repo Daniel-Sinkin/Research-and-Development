@@ -25,6 +25,8 @@ impl<T: Clone> ListNode<T> {
       return ListNode::new(nums[0].clone());
     }
 
+    // Note that this `head` is the head of the children, not the head of the linked list
+    // i.e. on list [2, 4, 3] we have a node (2) -> [(4) -> [(3)]] and head is the node for '4'
     let mut head = Box::new(ListNode::new(nums[1].clone()));
     let mut curr = &mut head;
 
@@ -39,14 +41,61 @@ impl<T: Clone> ListNode<T> {
 
 fn main() {
   let list1 = vec![2, 4, 3];
-  let list2 = vec![5, 6, 4];
+  let list2 = vec![5, 6, 4, 7];
 
   let l1 = ListNode::<i32>::from_list(list1);
   let l2 = ListNode::<i32>::from_list(list2);
 
-  let mut left = l1.next;
-  while let Some(x) = left {
-    dbg!(x);
+  let mut cur1 = Some(&l1);
+  let mut cur2 = Some(&l2);
+
+  let mut num1: i32;
+  let mut num2: i32;
+  
+  let mut num_curr: i32;
+  let mut carry: bool = false;
+
+  let retList = ListNode::new(l1.val + l2.val);
+
+  let mut str: String = String::new();
+
+  while let Some(node1) = cur1 {
+    num1 = node1.val;
+    cur1 = node1.next.as_deref();
+    if let Some(node2) = cur2 {
+      num2 = node2.val.clone();
+      cur2 = node2.next.as_deref();
+    } else {
+      num2 = 0;
+    }
+
+    println!("{} + {} = {}", num1, num2, num1 + num2);
+
+    if carry { num_curr = 1; }
+    else { num_curr = 0; }
+
+    num_curr += num1 + num2;
+
+    if num_curr >= 10 {
+      num_curr /= 10;
+      carry = true;
+    }
+
+    str.push_str("(");
+    str.push_str(&i32::to_string(&num_curr));
+    str.push_str(") -> ");
+
+    // str.append"({}) -> (* + {})", num_curr, if carry {1} else {0});
   }
 
+  while let Some(node2) = cur2 {
+    num2 = node2.val;
+    cur2 = node2.next.as_deref();
+
+    str.push_str(&i32::to_string(&num2));
+
+    println!("Left has ended! {}", num2);
+  }
+
+  println!("{}", str);
 }
