@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Linked List in Rust.md",
+                "file": "Books-Courses-Exercises/Stochastic-Calculus-For-Finance/3-Brownian-Motion/_3-Brownian-Motion.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Notes/Linked List in Rust.md",
+                "file": "Books-Courses-Exercises/Stochastic-Calculus-For-Finance/3-Brownian-Motion/_3-Brownian-Motion.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Notes/Linked List in Rust.md",
+                "file": "Books-Courses-Exercises/Stochastic-Calculus-For-Finance/3-Brownian-Motion/_3-Brownian-Motion.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Notes/Linked List in Rust.md"
+                "file": "Books-Courses-Exercises/Stochastic-Calculus-For-Finance/3-Brownian-Motion/_3-Brownian-Motion.md"
               }
             }
           }
@@ -148,8 +148,10 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "cef1cd1a1aed2369",
+  "active": "54d8a5e65333c83a",
   "lastOpenFiles": [
+    "Notes/Linked List in Rust.md",
+    "Books-Courses-Exercises/Stochastic-Calculus-For-Finance/3-Brownian-Motion/_3-Brownian-Motion.md",
     "Books-Courses-Exercises/zero2prod/general.yml",
     "Books-Courses-Exercises/zero2prod/audit.yml",
     "Books-Courses-Exercises/zero2prod/target/debug/incremental/zero2prod-2p7bv38rk6dgf/s-gkxnjswr7g-5yex40-2b9uoxix8o1zp/work-products.bin",
@@ -160,7 +162,6 @@
     "Books-Courses-Exercises/zero2prod/target/debug/incremental/zero2prod-2p7bv38rk6dgf/s-gkxnjngddu-11fei89-2b9uoxix8o1zp/dep-graph.bin",
     "Books-Courses-Exercises/zero2prod/target/debug/incremental/zero2prod-2p7bv38rk6dgf/s-gkxnjngddu-11fei89-2b9uoxix8o1zp/work-products.bin",
     "Books-Courses-Exercises/zero2prod/target/debug/incremental/zero2prod-2p7bv38rk6dgf/s-gkxnjngddu-11fei89-2b9uoxix8o1zp/query-cache.bin",
-    "Books-Courses-Exercises/zero2prod/target/debug/incremental/zero2prod-2p7bv38rk6dgf/s-gkxnjngddu-11fei89-2b9uoxix8o1zp",
     "Books-Courses-Exercises/zero2prod/_zero2prod.md",
     "Flashcards/Definition - Equivalent Probability Measures.md",
     "Flashcards/Definition - Adapted Stochastic Process.md",
@@ -185,7 +186,6 @@
     "Books-and-Courses/rustlings/exercises/lifetimes/README.md",
     "Books-and-Courses/rustlings/exercises/iterators/README.md",
     "Books-and-Courses/rustlings/exercises/conversions/README.md",
-    "Books-and-Courses/rustlings/exercises/intro/README.md",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/wheel-7b819b6101059cd0.svg",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/rust-logo-151179464ae7ed46.svg",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/favicon-32x32-422f7d1d52889060.png",
