@@ -1,7 +1,3 @@
-use core::num;
-use std::thread::panicking;
-
-
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
   pub val: i32,
@@ -17,15 +13,19 @@ impl ListNode {
     }
   }
 
-  fn get_last(mut self: ListNode) -> ListNode {
-    let mut node = Box::new(self);
-      while let Some(next) = node.next {
-          node = next;
-      }
-      *node
+  fn get_last(&mut self) -> &mut ListNode {
+    let mut node = self;
+    loop {
+        match &mut node.next {
+            Some(next) => node = next,
+            None => break,
+        }
+    }
+    node
   }
 
-  fn push(mut self: ListNode, val: i32) {
+
+  fn push(&mut self, val: i32) {
     let mut last = self.get_last();
 
     last.next = Some(Box::new(ListNode::new(val)));
@@ -77,8 +77,8 @@ fn main() {
   let list1 = vec![2, 4, 3];
   let list2 = vec![5, 6, 4, 7];
 
-  let l1 = ListNode::from_list(list1);
-  let l2 = ListNode::from_list(list2);
+  let mut l1 = ListNode::from_list(list1);
+  let mut l2 = ListNode::from_list(list2);
 
   let mut cur1 = Some(&l1);
   let mut cur2 = Some(&l2);
@@ -141,7 +141,24 @@ fn main() {
 
   //l1.push(-1);
 
-  println!("{}", &l1.get_last().val);
+  let t = &l1.get_last();
 
-  // l1.push(-1);
+  println!("{}", &t.val);
+
+  //  l1.push(-1);
+}
+
+#[cfg(test)]
+mod tests {
+    use std::collections::LinkedList;
+
+    use crate::ListNode;
+
+    #[test]
+    fn listnode_push() {
+        let mut l1 = ListNode::from_list(vec![1,2,3,4]);
+        l1.push(5);
+        let mut l2 = ListNode::from_list(vec![1,2,3,4,5]);
+        assert_eq!(&l1, &l2);
+    }
 }
