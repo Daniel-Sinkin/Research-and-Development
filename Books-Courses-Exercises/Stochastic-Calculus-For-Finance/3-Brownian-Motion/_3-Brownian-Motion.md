@@ -1,4 +1,4 @@
-Later on we will define a type of Brownian motion as a scaled limit of a symmetric random walk, so let's start by discussing what this means.
+SLater on we will define a type of Brownian motion as a scaled limit of a symmetric random walk, so let's start by discussing what this means.
 
 Let $X_i, i \in \mathbb{N}_0$ be a sequence of random variables such that $X_i \in \{-1, 1\}$ with equal probability and consider the symmetric random walk
 $$

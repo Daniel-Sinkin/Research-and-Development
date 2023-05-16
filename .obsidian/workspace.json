@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Books-Courses-Exercises/Stochastic-Calculus-For-Finance/3-Brownian-Motion/_3-Brownian-Motion.md",
+                "file": "Books-Courses-Exercises/The-Rust-Programming-Language/15 Smart Pointers.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Books-Courses-Exercises/Stochastic-Calculus-For-Finance/3-Brownian-Motion/_3-Brownian-Motion.md",
+                "file": "Books-Courses-Exercises/The-Rust-Programming-Language/15 Smart Pointers.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Books-Courses-Exercises/Stochastic-Calculus-For-Finance/3-Brownian-Motion/_3-Brownian-Motion.md",
+                "file": "Books-Courses-Exercises/The-Rust-Programming-Language/15 Smart Pointers.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Books-Courses-Exercises/Stochastic-Calculus-For-Finance/3-Brownian-Motion/_3-Brownian-Motion.md"
+                "file": "Books-Courses-Exercises/The-Rust-Programming-Language/15 Smart Pointers.md"
               }
             }
           }
@@ -150,19 +150,22 @@
   },
   "active": "54d8a5e65333c83a",
   "lastOpenFiles": [
-    "Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/incremental/hello-zulqy04y4cw4/s-gl0hqfdtw0-1ps0hfd-1no80bpjis47a/work-products.bin",
-    "Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/incremental/hello-zulqy04y4cw4/s-gl0hqfdtw0-1ps0hfd-1no80bpjis47a/query-cache.bin",
-    "Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/incremental/hello-zulqy04y4cw4/s-gl0hqfdtw0-1ps0hfd-1no80bpjis47a/dep-graph.bin",
-    "Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/incremental/hello-zulqy04y4cw4/s-gl0hqfdtw0-1ps0hfd-1no80bpjis47a",
-    "Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/incremental/hello-32h01skfdx483/s-gl0hqfdtw2-1a0w0j4-1ru3e4njkcq6g/work-products.bin",
-    "Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/incremental/hello-32h01skfdx483/s-gl0hqfdtw2-1a0w0j4-1ru3e4njkcq6g/query-cache.bin",
-    "Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/incremental/hello-32h01skfdx483/s-gl0hqfdtw2-1a0w0j4-1ru3e4njkcq6g/dep-graph.bin",
-    "Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/incremental/hello-32h01skfdx483/s-gl0hqfdtw2-1a0w0j4-1ru3e4njkcq6g",
-    "Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/incremental/hello-32h01skfdx483/s-gl0hqfdtw2-1a0w0j4.lock",
-    "Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/incremental/hello-zulqy04y4cw4/s-gl0hqfdtw0-1ps0hfd.lock",
-    "Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/incremental/hello-zulqy04y4cw4/s-gl0hqb8rhe-17euhx4-1no80bpjis47a/dep-graph.bin",
-    "Notes/Linked List in Rust.md",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/smart_pointers/target/debug/incremental/smart_pointers-2k0bp3jq5qcuv/s-gl0mr9lrq2-1yn2a91-3t8nw5t8ib1ur/work-products.bin",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/smart_pointers/target/debug/incremental/smart_pointers-2k0bp3jq5qcuv/s-gl0mr9lrq2-1yn2a91-3t8nw5t8ib1ur/query-cache.bin",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/smart_pointers/target/debug/incremental/smart_pointers-2k0bp3jq5qcuv/s-gl0mr9lrq2-1yn2a91-3t8nw5t8ib1ur/dep-graph.bin",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/smart_pointers/target/debug/incremental/smart_pointers-2k0bp3jq5qcuv/s-gl0mr9lrq2-1yn2a91-3t8nw5t8ib1ur/4bst8tladd0jegew.o",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/smart_pointers/target/debug/incremental/smart_pointers-2k0bp3jq5qcuv/s-gl0mr9lrq2-1yn2a91-3t8nw5t8ib1ur/43e2icmfmg6af5bq.o",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/smart_pointers/target/debug/incremental/smart_pointers-2k0bp3jq5qcuv/s-gl0mr9lrq2-1yn2a91-3t8nw5t8ib1ur/3rdql1g5ahdtlzao.o",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/smart_pointers/target/debug/incremental/smart_pointers-2k0bp3jq5qcuv/s-gl0mr9lrq2-1yn2a91-3t8nw5t8ib1ur/3b406o4q4z521giy.o",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/smart_pointers/target/debug/incremental/smart_pointers-2k0bp3jq5qcuv/s-gl0mr9lrq2-1yn2a91-3t8nw5t8ib1ur/37yo9jdtl137xdv5.o",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/smart_pointers/target/debug/incremental/smart_pointers-2k0bp3jq5qcuv/s-gl0mr9lrq2-1yn2a91-3t8nw5t8ib1ur/30q9ctqfxlmq3goq.o",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/smart_pointers/target/debug/incremental/smart_pointers-2k0bp3jq5qcuv/s-gl0mr9lrq2-1yn2a91-3t8nw5t8ib1ur/29yg98mioir9cn1s.o",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/smart_pointers/target/debug/incremental/smart_pointers-2k0bp3jq5qcuv/s-gl0mr9lrq2-1yn2a91-3t8nw5t8ib1ur/1p82285zwftz2lpx.o",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/4 Understanding Ownership.md",
     "Books-Courses-Exercises/Stochastic-Calculus-For-Finance/3-Brownian-Motion/_3-Brownian-Motion.md",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/15 Smart Pointers.md",
+    "Books-Courses-Exercises/The-Rust-Programming-Language/4 Understanding Ownership (copy).md",
+    "Notes/Linked List in Rust.md",
     "Books-Courses-Exercises/zero2prod/_zero2prod.md",
     "Flashcards/Definition - Equivalent Probability Measures.md",
     "Flashcards/Definition - Adapted Stochastic Process.md",
@@ -183,9 +186,6 @@
     "Books-and-Courses/rustlings/exercises/options/README.md",
     "Books-and-Courses/rustlings/exercises/move_semantics/README.md",
     "Books-and-Courses/rustlings/exercises/macros/README.md",
-    "Books-and-Courses/rustlings/exercises/modules/README.md",
-    "Books-and-Courses/rustlings/exercises/lifetimes/README.md",
-    "Books-and-Courses/rustlings/exercises/iterators/README.md",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/wheel-7b819b6101059cd0.svg",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/rust-logo-151179464ae7ed46.svg",
     "Books-and-Courses/The-Rust-Programming-Language/projects/guessing_game/target/doc/static.files/favicon-32x32-422f7d1d52889060.png",
