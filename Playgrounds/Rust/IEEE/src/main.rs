@@ -1,4 +1,5 @@
 use std::f32::{INFINITY, NEG_INFINITY};
+use std::mem;
 
 const BIAS32: u32 = 127;
 const SIGN32: u32 = 0b1_00000000_00000000000000000000000;
@@ -16,7 +17,7 @@ impl F32 {
     }
 
     fn to_float(&self) -> f32 {
-        let is_negative = ((&self.digits & SIGN32) != 0);
+        let is_negative = (&self.digits & SIGN32) != 0;
 
         if &self.digits & EXP32 == EXP32 {
             if &self.digits & DIG32 == 0 {
@@ -31,37 +32,51 @@ impl F32 {
             }
         }
 
-        let exp_biased = ((&self.digits & EXP32) >> 22) as u8;
+        let exp_biased = (&self.digits & EXP32) >> 22;
         // 0..254 can't be converted to i8
-        let exp = exp_biased.wrapping_sub(127) as i8;
+        let exp = exp_biased.wrapping_sub(127) as i32;
 
         let mantissa = &self.digits & DIG32;
 
-        
+        let mut ret_val: f32 = 0.0;
+        let mask: u32 = 0b1_00000_00000_00000_00000_00;
+        let mut mult: f32 = 1.0;
 
-        return f32::NAN;
+        for step in 0..23 {
+            println!("{:032b}", mask >> step);
+            println!("{:032b}", mantissa);
+            if (mask >> step) & mantissa != 0 {
+                ret_val += mult;
+            }
+            mult /= 2.0;
+        }
+
+        let base: f32 = 2.0;
+        base.powi(exp)
     }
+}
+
+unsafe fn print_with_binary(x: f32) {
+    let binary_representation: u32 = mem::transmute(x);
+    println!("{} = {:032b}", x, binary_representation);
 }
 
 fn main() {
     // binary32 -> 24 digits, 8 exp
-    let x: u32 = 0b1_00110100_01000010001100000100100u32;
-    let y: u32 = 0b0_11111111_00000000000000000000000u32;
+    let x: u32 = 0b0_01111100_01000000000000000000000u32;
+    let xf: F32 = F32{digits: x};
+    let xff: f32 = xf.to_float();
 
-    // This is equivalent to x & SIGN32 == SIGN32
-    let is_negative: bool = (x & SIGN32 != 0);
+    unsafe { print_with_binary(xff) };
 
-    let exp_biased = ((x & EXP32) >> 23) as u8;
-    // 0..254 can't be converted to i8
-    let exp = exp_biased.wrapping_sub(127) as i8;
 
-    let mantissa = x & DIG32;
+    // let values = vec![f32::INFINITY, f32::NEG_INFINITY, f32::NAN, 0.0, xf.to_float()];
 
-    println!("{}{:08b}{:023b}", if is_negative {1} else {0}, exp_biased, mantissa);
-
-    println!("{0:032b}", x);
-    println!("{:08b}", exp_biased);
-    println!("{}", exp);
+    //values.iter().for_each(|&value| {
+    //    unsafe {
+    //        print_binary(value);
+    //    }
+    //});
 }
 
 #[cfg(test)]

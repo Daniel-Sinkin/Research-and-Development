@@ -1,18 +1,32 @@
-enum List {
-    Cons(i32, Box<List>),
-    Nil,
+use std::ops::Deref;
+
+struct MyBox<T>(T);
+
+impl<T> MyBox<T> {
+    fn new(x: T) -> MyBox<T> {
+        MyBox(x)
+    }
+}
+
+impl<T> Deref for MyBox<T> {
+    type Target = T;
+    
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
+fn hello(name: &str) {
+    println!("Hello, {name}!");
 }
 
 fn main() {
-    let l = List::Nil;
-    let l2 = List::Cons(0, Box::new(l));
-    let l3 = List::Cons(1, Box::new(l2));
+    let x = 5;
+    let y = MyBox::new(x);
 
-    if let List::Cons(x, y) = l3 {
-        println!("{x}");
+    assert_eq!(5, x);
+    assert_eq!(5, *y);
 
-        if let List::Cons(xp, _) = *y {
-            println!("{xp}");
-        }
-    }
+    let m = MyBox::new(String::from("Rust"));
+    hello(&m);
 }
