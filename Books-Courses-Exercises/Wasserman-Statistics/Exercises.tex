@@ -1245,7 +1245,19 @@ plt.savefig("Ex4_4c.png")
 
 \section{Convergence of Random Variable}
 \begin{enumerate}
-	\item
+	\item Let $X_1, \dots, X_n$ be IID with finite mean $\mu = E(X_1)$ and finite variance $\sigma^2 = V(X_1)$. Let $\overline{X}_n$ be the sample mean and let $S_n^2$ be the sample variance.
+		\begin{enumerate}
+			\item Show that $E(S_n^2) = \sigma^2$.
+			\item Show that $S_n^2 \overset{P}{\rightarrow} \sigma^2$. Hint: Show that
+			$$
+			S_n^2 = c_n n^{-1}\sum_{i = 1}^n X_i^2 - d_n \overline{X}_n^2
+			$$
+			where $c_n \rightarrow 1$ and $d_n \rightarrow 1$. Apply the law of large numbers to
+			$$
+			n^{-1} \sum_{i = 1}^n X_i^2
+			$$
+			and to $\overline{X}_n$. Then use part (e) of Theorem 5.5.
+		\end{enumerate}
 	\item Let $X_1, X_2, \dots$ be a sequence of random variables.Show that $X_n \overset{qm}{\longrightarrow} b$ if and only if
 	$$
 	\begin{aligned}
