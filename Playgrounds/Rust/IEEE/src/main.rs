@@ -2,8 +2,8 @@ use std::f32::{INFINITY, NEG_INFINITY};
 
 const BIAS32: u32 = 127;
 const SIGN32: u32 = 0b1_00000000_00000000000000000000000;
-const EXP32: u32 = 0b0_11111111_00000000000000000000000;
-const DIG32: u32 = 0b0_00000000_11111111111111111111111;
+const EXP32: u32  = 0b0_11111111_00000000000000000000000;
+const DIG32: u32  = 0b0_00000000_11111111111111111111111;
 
 struct F32 {
     digits: u32,
@@ -31,18 +31,37 @@ impl F32 {
             }
         }
 
-        let exp_biased = (&self.digits & EXP32) >> 22;
+        let exp_biased = ((&self.digits & EXP32) >> 22) as u8;
+        // 0..254 can't be converted to i8
+        let exp = exp_biased.wrapping_sub(127) as i8;
+
+        let mantissa = &self.digits & DIG32;
+
+        
+
         return f32::NAN;
     }
 }
 
 fn main() {
     // binary32 -> 24 digits, 8 exp
-    let mut x: u32 = 0b0_01111100_01000000000000000000000u32;
-    let mut y: u32 = 0b0_11111111_00000000000000000000000u32;
-    let mut exp_biased = (x & EXP32) >> 23;
+    let x: u32 = 0b1_00110100_01000010001100000100100u32;
+    let y: u32 = 0b0_11111111_00000000000000000000000u32;
 
-    println!("{:032b}", exp);
+    // This is equivalent to x & SIGN32 == SIGN32
+    let is_negative: bool = (x & SIGN32 != 0);
+
+    let exp_biased = ((x & EXP32) >> 23) as u8;
+    // 0..254 can't be converted to i8
+    let exp = exp_biased.wrapping_sub(127) as i8;
+
+    let mantissa = x & DIG32;
+
+    println!("{}{:08b}{:023b}", if is_negative {1} else {0}, exp_biased, mantissa);
+
+    println!("{0:032b}", x);
+    println!("{:08b}", exp_biased);
+    println!("{}", exp);
 }
 
 #[cfg(test)]
