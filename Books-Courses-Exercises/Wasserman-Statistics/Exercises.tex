@@ -1248,6 +1248,32 @@ plt.savefig("Ex4_4c.png")
 	\item Let $X_1, \dots, X_n$ be IID with finite mean $\mu = E(X_1)$ and finite variance $\sigma^2 = V(X_1)$. Let $\overline{X}_n$ be the sample mean and let $S_n^2$ be the sample variance.
 		\begin{enumerate}
 			\item Show that $E(S_n^2) = \sigma^2$.
+				\begin{itemize}
+					\item Recall that
+					$$
+					S_n^2 = \frac{1}{n - 1} \sum_{i = 1}^n (X_i - \overline{X}_n)^2
+					$$
+					and note that
+					$$
+					\begin{aligned}
+					E(S_n^2) = \frac{1}{n - 1} \sum_{i = 1}^n E(X_i - \overline{X}_n)^2.
+					\end{aligned}
+					$$
+					Because the $X_i$ are IID it follows that they are uncorrelated and from this we can see that
+					$$
+					\begin{aligned}
+					E(X_i - \overline{X}_n) &= \frac{1}{n} \sum_{j = 1}^n E[X_iX_j] \\
+					&= \frac{1}{n} \sum_{j = 1}^n \mu^2 = \mu^2.
+					\end{aligned}
+					$$
+					holds. With this we can then compute
+					$$
+					\begin{aligned}
+					E(S_n^2) &= \frac{1}{n - 1} \sum_{i = 1}^n EX_i^2 - 2 E(X_i \overline{X}_n) + E\overline{X}_n^2 \\
+					&= \frac{1}{n - 1} \sum_{i = 1}^n Var(X_i) - \mu^2 + ...
+					\end{aligned}
+					$$
+				\end{itemize}
 			\item Show that $S_n^2 \overset{P}{\rightarrow} \sigma^2$. Hint: Show that
 			$$
 			S_n^2 = c_n n^{-1}\sum_{i = 1}^n X_i^2 - d_n \overline{X}_n^2
@@ -1258,17 +1284,30 @@ plt.savefig("Ex4_4c.png")
 			$$
 			and to $\overline{X}_n$. Then use part (e) of Theorem 5.5.
 		\end{enumerate}
-	\item Let $X_1, X_2, \dots$ be a sequence of random variables.Show that $X_n \overset{qm}{\longrightarrow} b$ if and only if
+	\item Let $X_1, X_2, \dots$ be a sequence of random variables. Show that $X_n \overset{\operatorname{qm}}{\longrightarrow} b$ if and only if
 	$$
 	\begin{aligned}
 	\lim_{n \rightarrow \infty} E(X_n) = b,&&\lim_{n \rightarrow \infty}V(X_n) = 0.
 	\end{aligned}
 	$$
+		\begin{itemize}
+			\item Let $Y$ be a random variable which is point mass at $b$, then $X_n \overset{\operatorname{qm}}{\longrightarrow} b$ is equivalent to $X_n \overset{\operatorname{qm}}{\longrightarrow} Y$.
+			\item
+			$$
+			\begin{aligned}
+			E(X_n - Y)^2 &= EX_n^2 - 2E(X_nY) + EY^2 \\
+			&= EX_n^2 - 2b EX_N + b^2 \\
+			&= (EX_n - b)^2.
+			\end{aligned}
+			$$
+			This converging to $0$ implies that $\lim_{n \rightarrow \infty} EX_n = b$ and $V(X_n) \rightarrow 0$.
+			\item Similiarly, if $EX_n \rightarrow b$ then $X_n \overset{\operatorname{qm}}{\rightarrow} Y$.
+		\end{itemize}
 	\item Let $X_1, \dots, X_n$ be IID and let $\mu := E(X_1)$. Suppose that the variance is finite. Show that $\overline{X}_n \overset{qm}{\longrightarrow} \mu$
 	\item Let $X_1, X_2, \dots$ be a sequence of random variables such that
 	$$
 	\begin{aligned}
-	P\left(X_n = \frac{1}{n}\right) = 1 - \frac{1}{n^2},&& P(X_n = n) \frac{1}{n^2}
+	P\left(X_n = \frac{1}{n}\right) = 1 - \frac{1}{n^2},&& P(X_n = n) = \frac{1}{n^2}
 	\end{aligned}
 	$$
 	Does $X_n$ converge in probability? Does $X_n$ converge in quadratic mean?
