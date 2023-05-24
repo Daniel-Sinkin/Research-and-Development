@@ -5,14 +5,10 @@ use eframe::egui;
 fn main() -> Result<(), eframe::Error> {
     env_logger::init(); // Log to stderr (if you run with `RUST_LOG=debug`).
     let options = eframe::NativeOptions {
-        initial_window_size: Some(egui::vec2(1280.0, 720.0)),
+        initial_window_size: Some(egui::vec2(640.0, 480.0)),
         ..Default::default()
     };
-    eframe::run_native(
-        "Tempi",
-        options,
-        Box::new(|_cc| Box::<MyApp>::default()),
-    )
+    eframe::run_native("Tempi", options, Box::new(|_cc| Box::<MyApp>::default()))
 }
 
 struct MyApp {
@@ -42,7 +38,10 @@ impl eframe::App for MyApp {
             if ui.button("Double Age").clicked() {
                 self.age *= 2;
             }
-            ui.label(format!("Good morning '{}', your age is {}", self.name, self.age));
+            ui.label(format!(
+                "Good morning '{}', your age is {}",
+                self.name, self.age
+            ));
         });
     }
 }
