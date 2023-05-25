@@ -16,6 +16,9 @@
 **/_minted-Exercises/
 **/__pycache__/
 
+# Things like API keys will be stored in `secret` files
+**/secret
+
 # Ignore files I don't have copyright for
 Books-Courses-Exercises/Blitzstein-Probability/ProbBook.pdf
 Books-Courses-Exercises/Dive-into-Deep-Learning/d2l-en.pdf
