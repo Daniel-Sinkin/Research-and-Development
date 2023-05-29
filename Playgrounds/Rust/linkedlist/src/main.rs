@@ -64,6 +64,11 @@ fn main() {
     let mut l2 = ListNode::from_vec(&l2_vec).unwrap();
 
     println!("<{}> + <{}> + <{}>", l1.val, l2.val, l1.val + l2.val);
+    let mut tail: ListNode = None;
+    let head = ListNode {
+        val: l1.val + l2.val,
+        next: tail,
+    };
 
     let mut overflow = false;
     while let Some(x) = l1.next {
@@ -89,6 +94,13 @@ fn main() {
             // 0 <= curr <= 18 as such curr / 10 == curr % 10
             curr = curr % 10;
             overflow = true;
+        }
+
+        if let None = tail {
+            tail = ListNode::new(curr);
+        } else {
+            tail.insert(curr);
+            tail.next
         }
     }
 }
