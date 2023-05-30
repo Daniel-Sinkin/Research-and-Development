@@ -1,43 +1,40 @@
 use std::fs::File;
 use std::io::{self, Read};
 
-fn contains((x1, x2): (u32, u32), (y1, y2): (u32, u32)) -> bool {
-    (x1 <= y1) && (y2 <= x2)
-}
-
-const FILENAME: &str = "day4";
+const FILENAME: &str = "day5";
+#[allow(unused_mut)]
+#[allow(unused_variables)]
 fn main() -> io::Result<()> {
     let file = File::open(FILENAME);
 
     if let Ok(mut file) = File::open(FILENAME) {
         let mut body = String::new();
         file.read_to_string(&mut body)?;
-        let mut counter = 0;
-        for line in body.split("\n") {
-            if line == "" {
+
+        let mut stacks: [Vec<char>; 9] = Default::default();
+
+        let mut split = body.split("\n\n");
+        let string_stack = split.next().unwrap();
+
+        let mut string_stack_split = string_stack.split("\n");
+        for line in string_stack_split {
+            if line == "" || line.contains('1') {
                 break;
             }
-            let mut split = line.split(",");
-            let left = split.next().unwrap();
-            let right = split.next().unwrap();
+            for i in 0..9 {
+                let curr = line.chars().nth(4 * i + 1).unwrap();
+                print!("[{}] ", curr);
 
-            let mut left_split = left.split("-");
-            let left1 = left_split.next().unwrap().parse::<u32>().unwrap();
-            let left2 = left_split.next().unwrap().parse::<u32>().unwrap();
-
-            let left = (left1, left2);
-
-            let mut right_split = right.split("-");
-            let right1 = right_split.next().unwrap().parse::<u32>().unwrap();
-            let right2 = right_split.next().unwrap().parse::<u32>().unwrap();
-
-            let right = (right1, right2);
-
-            if contains(left, right) || contains(right, left) {
-                counter += 1;
+                if curr != ' ' {
+                    stacks[i].push(curr);
+                }
             }
+
+            for mut stack in stacks {
+                stack.reverse();
+            }
+            println!("\t{line}");
         }
-        dbg!(counter);
     } else {
         return Err(io::Error::new(
             io::ErrorKind::Other,
