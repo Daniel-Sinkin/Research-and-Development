@@ -40,6 +40,7 @@ fn main() {
 ```
 
 # 4. Basic Types
+## 4.1. Numbers
 Done: {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 Missing: {}
 ```rust
@@ -98,3 +99,19 @@ fn main() {
     println!("0x80 >> 2 is 0x{:x}", 0x80u32 >> 2);
 }
 ```
+
+## 4.2. Char, Bool and Unit
+Done: {1, 2, 3, 4, 5, 6}
+```rust
+fn main() {
+    let c1 = "中";
+    print_char(c1.chars().nth(0).unwrap());
+}
+
+fn print_char(c: char) {
+    println!("{}", c);
+}
+```
+
+## 4.3. Statements and Expressions
+Done = {1}

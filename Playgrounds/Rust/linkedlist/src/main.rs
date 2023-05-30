@@ -57,22 +57,24 @@ impl ListNode {
 
 fn main() {
     let l1_vec = vec![2, 4, 3];
-    let l2_vec = vec![5, 6, 4];
+    let l2_vec = vec![5, 6, 6, 2, 5];
 
     // 1 <= l1.len <= 100 so we can't have empty lists
     let mut l1 = ListNode::from_vec(&l1_vec).unwrap();
     let mut l2 = ListNode::from_vec(&l2_vec).unwrap();
 
-    println!("<{}> + <{}> + <{}>", l1.val, l2.val, l1.val + l2.val);
-    let mut tail: ListNode = None;
-    let head = ListNode {
-        val: l1.val + l2.val,
-        next: tail,
-    };
-
+    let mut curr = l1.val + l2.val;
     let mut overflow = false;
+
+    if curr >= 10 {
+        curr = curr % 10;
+        overflow = true;
+    }
+
+    dbg!(curr);
+
     while let Some(x) = l1.next {
-        let mut curr = x.val;
+        curr = x.val;
         l1 = *x;
 
         if let Some(y) = l2.next {
@@ -81,8 +83,6 @@ fn main() {
         } else {
             println!("End of l2");
         }
-        // Note that y is already out of the scope so we can't access it
-        println!("<{}> + <{}> = <{}>", l1.val, curr - l1.val, curr);
 
         if overflow {
             curr += 1;
@@ -95,12 +95,25 @@ fn main() {
             curr = curr % 10;
             overflow = true;
         }
+        dbg!(curr);
+    }
 
-        if let None = tail {
-            tail = ListNode::new(curr);
-        } else {
-            tail.insert(curr);
-            tail.next
+    while let Some(y) = l2.next {
+        curr = y.val;
+        l2 = *y;
+        if overflow {
+            curr += 1;
+            overflow = false;
         }
+
+        if curr >= 10 {
+            curr = curr % 10;
+            overflow = true;
+        }
+        dbg!(curr);
+    }
+
+    if overflow {
+        dbg!(1);
     }
 }
