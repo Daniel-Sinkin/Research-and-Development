@@ -1,86 +1,47 @@
 use std::fs::File;
 use std::io::{self, Read};
 
-use std::collections::HashMap;
+fn contains((x1, x2): (u32, u32), (y1, y2): (u32, u32)) -> bool {
+    (x1 <= y1) && (y2 <= x2)
+}
 
+const FILENAME: &str = "day4";
 fn main() -> io::Result<()> {
-    if let Ok(mut file) = File::open("day3") {
+    let file = File::open(FILENAME);
+
+    if let Ok(mut file) = File::open(FILENAME) {
         let mut body = String::new();
-
-        let mut hm: HashMap<char, (bool, bool)> = HashMap::new();
-
         file.read_to_string(&mut body)?;
-        let mut iter = body.split("\n");
-
-        let mut i = 0;
-        let mut score = 0;
-        while let Some(str) = iter.next() {
-            if str == "" {
+        let mut counter = 0;
+        for line in body.split("\n") {
+            if line == "" {
                 break;
             }
-            let str1 = iter.next().unwrap();
-            let str2 = iter.next().unwrap();
+            let mut split = line.split(",");
+            let left = split.next().unwrap();
+            let right = split.next().unwrap();
 
-            let mut badge: Option<char> = None;
+            let mut left_split = left.split("-");
+            let left1 = left_split.next().unwrap().parse::<u32>().unwrap();
+            let left2 = left_split.next().unwrap().parse::<u32>().unwrap();
 
-            hm = HashMap::new();
-            for c in str.chars() {
-                // Here we just want to add all keys that appear in str
-                if !hm.contains_key(&c) {
-                    hm.insert(c, (true, false));
-                }
-            }
+            let left = (left1, left2);
 
-            for c in str1.chars() {
-                // Here we want to modify all keys that appear in str
-                if hm.contains_key(&c) {
-                    hm.insert(c, (true, true));
-                }
-            }
+            let mut right_split = right.split("-");
+            let right1 = right_split.next().unwrap().parse::<u32>().unwrap();
+            let right2 = right_split.next().unwrap().parse::<u32>().unwrap();
 
-            for c in str2.chars() {
-                if hm.contains_key(&c) {
-                    if let (true, true) = hm[&c] {
-                        badge = Some(c);
-                        break;
-                    }
-                }
-            }
+            let right = (right1, right2);
 
-            let cc = match badge {
-                None => panic!(),
-                Some(b) => b,
-            };
-
-            if cc.is_ascii_lowercase() {
-                let val = (cc as u8) - 97 + 1;
-                println!(
-                    "Adding {} ({}) to the score of {} to get {}",
-                    cc,
-                    val,
-                    score,
-                    score + val as u32
-                );
-                score += val as u32;
-            } else if cc.is_ascii_uppercase() {
-                let val = (cc as u8) - 65 + 27;
-                println!(
-                    "Adding {} ({}) to the score of {} to get {}",
-                    cc,
-                    val,
-                    score,
-                    score + val as u32
-                );
-                score += val as u32;
-            } else {
-                panic!();
+            if contains(left, right) || contains(right, left) {
+                counter += 1;
             }
         }
-        dbg!(score);
+        dbg!(counter);
     } else {
         return Err(io::Error::new(
             io::ErrorKind::Other,
-            "Failed to open the File!",
+            "Failed to open the file!",
         ));
     }
 
