@@ -1,53 +1,8 @@
 use std::fs::File;
 use std::io::{self, Read};
+use std::vec;
 
-struct Directory {
-    name: String,
-    children: Vec<Box<Node>>, // Note that using Option here would give two representations for no children
-    // !vec[] and None, so it's probably better to only keep the first representation
-    parent: Option<Box<Directory>>,
-}
-
-impl Directory {
-    fn new(name: String, parent: Option<Box<Directory>>) -> Directory {
-        Directory {
-            name,
-            children: Vec::new(),
-            parent,
-        }
-    }
-
-    fn to_string(&self) -> String {
-        String::from("")
-    }
-}
-
-struct Document {
-    name: String,
-    parent: Box<Directory>,
-    size: usize,
-}
-
-impl Document {
-    fn new(name: String, parent: Box<Directory>, size: usize) -> Document {
-        Document {
-            name,
-            parent,
-            size,
-        }
-    }
-
-    fn to_string(&self) -> String {
-        format!("{} ({})", self.name, self.size).to_string()
-    }
-}
-
-enum Node {
-    Directory(Directory),
-    Document(Document),
-}
-
-const FILENAME: &str = "day7";
+const FILENAME: &str = "day8";
 #[allow(unused_mut)]
 #[allow(unused_variables)]
 fn main() -> io::Result<()> {
@@ -57,14 +12,24 @@ fn main() -> io::Result<()> {
         let mut body = String::new();
         file.read_to_string(&mut body)?;
 
-        let mut root = Directory::new(String::from("/"), None);
-        let doc = Document::new(String::from("testdoc.pdf"), Box::new(root), 342341);
-        let doc2 = Document::new(String::from("testdoc.pdf"), Box::new(root), 990245);
+        let mut grid: Vec<Vec<u8>> = Default::default();
+        let mut grid: Vec<Vec<bool> = Default::default();
 
-        let mut dir = Directory::new(String::from("Images"), Some(Box::new(root)));
-        let doc_dir_1 = Document::new(String::from("001.jpg"), Box::new(dir), 32423);
+        for line in body.lines() {
+            let mut row: Vec<u8> = Default::default();
 
-        println!("{}", root.name);
+            for c in line.chars() {
+                row.push(c.to_digit(10).unwrap() as u8);
+            }
+            grid.push(row);
+        }
+
+        for y in 1..=98 {
+            for x in 1..=98 {
+                for 
+            }
+            println!("{:?}", &grid[y]);
+        }
     } else {
         return Err(io::Error::new(
             io::ErrorKind::Other,
