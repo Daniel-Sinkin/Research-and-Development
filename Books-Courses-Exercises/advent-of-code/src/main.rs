@@ -1,35 +1,53 @@
 use std::fs::File;
 use std::io::{self, Read};
 
-struct Stacks {
-    crates: [Vec<char>; 9],
+struct Directory {
+    name: String,
+    children: Vec<Box<Node>>, // Note that using Option here would give two representations for no children
+    // !vec[] and None, so it's probably better to only keep the first representation
+    parent: Option<Box<Directory>>,
 }
 
-impl Stacks {
-    fn move_stack(&mut self, n: usize, from: usize, to: usize) {
-        for i in 0..n {
-            let x = self.crates[from].pop().unwrap();
-            self.crates[to].push(x);
+impl Directory {
+    fn new(name: String, parent: Option<Box<Directory>>) -> Directory {
+        Directory {
+            name,
+            children: Vec::new(),
+            parent,
         }
     }
 
-    fn print_stack(&self, i: usize) {
-        dbg!(&self.crates[i]);
-    }
-
-    fn height(&self) -> usize {
-        let mut max = 0;
-        for c in &self.crates {
-            if c.len() > max {
-                max = c.len();
-            }
-        }
-
-        max
+    fn to_string(&self) -> String {
+        String::from("")
     }
 }
 
-const FILENAME: &str = "day5";
+struct Document {
+    name: String,
+    parent: Box<Directory>,
+    size: usize,
+}
+
+impl Document {
+    fn new(name: String, parent: Box<Directory>, size: usize) -> Document {
+        Document {
+            name,
+            parent,
+            size,
+        }
+    }
+
+    fn to_string(&self) -> String {
+        format!("{} ({})", self.name, self.size).to_string()
+    }
+}
+
+enum Node {
+    Directory(Directory),
+    Document(Document),
+}
+
+const FILENAME: &str = "day7";
 #[allow(unused_mut)]
 #[allow(unused_variables)]
 fn main() -> io::Result<()> {
@@ -39,53 +57,14 @@ fn main() -> io::Result<()> {
         let mut body = String::new();
         file.read_to_string(&mut body)?;
 
-        let mut stacks: [Vec<char>; 9] = Default::default();
+        let mut root = Directory::new(String::from("/"), None);
+        let doc = Document::new(String::from("testdoc.pdf"), Box::new(root), 342341);
+        let doc2 = Document::new(String::from("testdoc.pdf"), Box::new(root), 990245);
 
-        let mut split = body.split("\n\n");
-        let string_stack = split.next().unwrap();
+        let mut dir = Directory::new(String::from("Images"), Some(Box::new(root)));
+        let doc_dir_1 = Document::new(String::from("001.jpg"), Box::new(dir), 32423);
 
-        let mut string_stack_split = string_stack.split("\n");
-        for line in string_stack_split {
-            if line == "" || line.contains('1') {
-                break;
-            }
-            for i in 0..9 {
-                let curr = line.chars().nth(4 * i + 1).unwrap();
-                print!("[{}] ", curr);
-
-                if curr != ' ' {
-                    stacks[i].push(curr);
-                }
-            }
-
-            println!("\t{line}");
-        }
-        for mut stack in &mut stacks {
-            stack.reverse();
-        }
-
-        let mut ms = Stacks { crates: stacks };
-        let string_stack = split.next().unwrap();
-        let str = string_stack.split("\n");
-
-        for s in str.into_iter() {
-            if s == "" {
-                break;
-            }
-
-            let mut sp = s.split(" ").into_iter();
-            sp.next();
-            let n = sp.next().unwrap().parse::<usize>().unwrap();
-            sp.next();
-            let from = sp.next().unwrap().parse::<usize>().unwrap() - 1;
-            sp.next();
-            let to = sp.next().unwrap().parse::<usize>().unwrap() - 1;
-            ms.move_stack(n, from, to);
-        }
-
-        for i in 0..9 {
-            ms.print_stack(i);
-        }
+        println!("{}", root.name);
     } else {
         return Err(io::Error::new(
             io::ErrorKind::Other,
