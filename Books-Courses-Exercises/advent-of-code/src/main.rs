@@ -1,97 +1,68 @@
+use core::panic;
 use std::fs::File;
 use std::io::{self, Read};
 
-const FILENAME: &str = "day8";
-const ENABLE_OUTPUT: bool = false;
+use std::collections::HashSet;
+
+const FILENAME: &str = "day6";
+const _ENABLE_OUTPUT: bool = false;
+const k: usize = 14;
+
+fn shift_push(frame: &mut [char; k], c: char) {
+    for i in 0..=(k - 2) {
+        frame[i] = frame[i + 1];
+    }
+
+    frame[k - 1] = c;
+}
+
+fn check_for_duplicates(frame: &[char; k]) -> bool {
+    let mut set = HashSet::new();
+
+    for &c in frame {
+        if !set.insert(c) {
+            return true;
+        }
+    }
+    false
+}
+
 fn main() -> io::Result<()> {
-    let _file = File::open(FILENAME);
+    // Reading in the file, it might be faster to read the file in as we go through
+    // the problem instead of all at once
+    let mut file = File::open(FILENAME).expect("Couldn't open file!");
+    let mut body = String::new();
+    file.read_to_string(&mut body)?;
+    body = body.lines().next().unwrap().to_string();
 
-    if let Ok(mut file) = File::open(FILENAME) {
-        let mut body = String::new();
-        file.read_to_string(&mut body)?;
+    let mut frame: [char; k] = body.chars()
+                                .take(k)
+                                .collect::<Vec<char>>()
+                                .try_into()
+                                .unwrap();
 
-        let mut grid: Vec<Vec<u8>> = Default::default();
+    frame = Default::default();
 
-        for line in body.lines() {
-            let mut row: Vec<u8> = Default::default();
+    dbg!(frame);
+    
+    for (i, c) in body.chars().enumerate() {
 
-            for c in line.chars() {
-                row.push(c.to_digit(10).unwrap() as u8);
-            }
-            grid.push(row);
+        println!("Checking the {}th character", i + 1);
+        shift_push(&mut frame, c);
+        for i in 0..k {
+            print!("{}", frame[i]);
         }
-
-        let mut count = 0;
-        for y in 1..=98 {
-            for x in 1..=98 {
-                let mut hidden = false;
-                let curr = &grid[y][x];
-                for h in 0..y {
-                    if &grid[h][x] >= curr {
-                        hidden = true;
-                        break;
-                    }
-                }
-
-                if !hidden {
-                    if ENABLE_OUTPUT {
-                        println!("\tCell at <y = {}, x = {}> is not hidden (1)", y, x);
-                    }
-                } else {
-                    for h in (y + 1)..99 {
-                        if &grid[h][x] >= curr {
-                            hidden = true;
-                            break;
-                        }
-                    }
-
-                    if !hidden {
-                        if ENABLE_OUTPUT {
-                            println!("\tCell at <y = {}, x = {}> is not hidden (1)", y, x);
-                        }
-                    } else {
-                        for v in 0..x {
-                            if &grid[y][v] >= curr {
-                                hidden = true;
-                                break;
-                            }
-                        }
-
-                        if !hidden {
-                            if ENABLE_OUTPUT {
-                                println!("\tCell at <y = {}, x = {}> is not hidden (1)", y, x);
-                            }
-                        } else {
-                            for v in (x + 1)..99 {
-                                if &grid[y][v] >= curr {
-                                    hidden = true;
-                                    break;
-                                }
-                            }
-
-                            if !hidden {
-                                if ENABLE_OUTPUT {
-                                    println!("\tCell at <y = {}, x = {}> is not hidden (1)", y, x);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if hidden {
-                    if ENABLE_OUTPUT {
-                        println!("\tCell at <y = {}, x = {}> is hidden!", y, x);
-                    }
-                    count += 1;
-                }
+        println!();
+        if !check_for_duplicates(&frame) {
+            print!("{} - ", i + 1);
+            for i in 0..k {
+                print!("{}", frame[i]);
             }
+            println!();
+
+            println!("The last char is = {}", body.chars().nth(i + 1).unwrap());
+            panic!();
         }
-        dbg!(count);
-    } else {
-        return Err(io::Error::new(
-            io::ErrorKind::Other,
-            "Failed to open the file!",
-        ));
     }
 
     Ok(())
