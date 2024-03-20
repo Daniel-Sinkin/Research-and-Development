@@ -1,1 +1,0 @@
-/home/daniel/MyStuff/GitHub/Research-and-Development/Books-Courses-Exercises/The-Rust-Programming-Language/hello/target/debug/hello: /home/daniel/MyStuff/GitHub/Research-and-Development/Books-Courses-Exercises/The-Rust-Programming-Language/hello/src/lib.rs /home/daniel/MyStuff/GitHub/Research-and-Development/Books-Courses-Exercises/The-Rust-Programming-Language/hello/src/main.rs
