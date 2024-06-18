@@ -42,3 +42,7 @@ Books-Courses-Exercises/Too-Many-Lists/too-many-lists.pdf
 
 # Advent-Of-Code; https://old.reddit.com/r/adventofcode/wiki/faqs/copyright/inputs
 Books-Courses-Exercises/Advent-Of-Code/input/
+
+
+.DS_Store
+*/.DS_Store
